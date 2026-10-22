@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowLeft, ArrowRight, BookOpen, Clock, Calendar, Compass, Sparkles } from "lucide-react";
+import { ArrowLeft, ArrowRight, BookOpen, Clock, Calendar } from "lucide-react";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
+import FloatingTourismDock from "@/components/FloatingTourismDock";
 import { culturalArticles } from "@/data/mockData";
 
 export const metadata: Metadata = {
@@ -158,6 +159,7 @@ export default function VanHoaPage() {
           </div>
         </section>
       </main>
+      <FloatingTourismDock />
       <SiteFooter />
     </>
   );

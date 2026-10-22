@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowLeft, Compass, Eye, MapPin, Sparkles, Info } from "lucide-react";
+import { ArrowLeft, Compass, Eye, MapPin } from "lucide-react";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
+import FloatingTourismDock from "@/components/FloatingTourismDock";
 import InteractivePanoramaViewer from "@/components/InteractivePanoramaViewer";
 import { panoramaScenes, heritageSites } from "@/data/mockData";
 
@@ -126,6 +127,7 @@ export default function KhamPhaPage() {
           </div>
         </section>
       </main>
+      <FloatingTourismDock />
       <SiteFooter />
     </>
   );

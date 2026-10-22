@@ -33,7 +33,7 @@
 - **Key Sections:**
   - **Cinematic Prologue Hero:** Atmospheric landscape view with evocative title, narrative lead paragraph, and immediate primary action: *"Khám Phá Toàn Cảnh 360°"*.
   - **Bản Đồ Điểm Chạm (Curated Explorer Preview):** Asymmetric editorial showcase of 3–4 key heritage areas.
-  - **Dòng Chảy Lịch Sử (Historical Vignette):** Brief, respectful introduction to the revolutionary ATK heritage of Chợ Đồn.
+  - **Dòng Chảy Lịch Sử (Historical Vignette):** Brief, respectful introduction to the revolutionary ATK heritage of Định Hóa.
   - **Âm Vang Rừng Đại Ngàn (Cultural Highlight):** Brief audio/visual glimpse into traditional Tày/Nùng folk life.
   - **Minh Bạch & Tuyên Bố Dữ Liệu:** Clear disclaimer regarding project development status and asset verification.
 - **Rendering Strategy:** Static Server Component (`generateStaticParams` / SSG) for instantaneous first-paint.
@@ -78,7 +78,7 @@
   - Nghệ thuật Hát Then, đàn Tính của đồng bào Tày.
   - Kiến trúc Nhà Sàn truyền thống và nếp sống cộng đồng.
   - Lễ hội bản địa (Lễ hội Lồng Tồng / xuống đồng).
-  - Ẩm thực truyền thống và nông sản đặc trưng vùng cao Chợ Đồn.
+  - Ẩm thực truyền thống và nông sản đặc trưng vùng cao Định Hóa.
 - **Rendering Strategy:** Markdown / MDX-driven static Server Components.
 
 ---

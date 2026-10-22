@@ -1,7 +1,7 @@
 # Project Brief: V360 Nghĩa Tá
 
 **Project Name:** V360 Nghĩa Tá — Interactive Heritage & Virtual Exploration  
-**Project Location:** Nghĩa Tá Commune, Chợ Đồn District, Bắc Kạn Province, Vietnam  
+**Project Location:** Nghĩa Tá Commune, Định Hóa District, Thái Nguyên Province, Vietnam  
 **Version:** 1.0.0 (Foundational Brief)  
 **Status:** Approved for Implementation Planning  
 
@@ -18,11 +18,11 @@ Instead of a noisy, commercial booking directory or generic AI-generated landing
 ## 2. Target Audience
 
 1. **Cultural Heritage Travelers & Eco-Tourists:**
-   - Individuals planning visits to the ATK Chợ Đồn revolutionary base area and seeking authentic, in-depth cultural narratives before traveling.
+   - Individuals planning visits to the ATK Định Hóa revolutionary base area and seeking authentic, in-depth cultural narratives before traveling.
 2. **Educators, Students & Researchers:**
    - Audiences studying revolutionary history, ethnic minority traditions (Tày, Nùng, Dao), and northern mountainous eco-systems.
 3. **Local Community & Northern Diaspora:**
-   - People from Bắc Kạn and Nghĩa Tá seeking a digital cultural touchstone that represents their homeland with dignity and pride.
+   - People from Thái Nguyên and Nghĩa Tá seeking a digital cultural touchstone that represents their homeland with dignity and pride.
 4. **General Digital Explorers:**
    - Users on mobile devices and desktops seeking virtual travel and 360° panorama exploration.
 
@@ -44,7 +44,7 @@ Instead of a noisy, commercial booking directory or generic AI-generated landing
 > The following items represent current working assumptions and open data requests. No unverified geographical, historical, or cultural fact may be stated as definitive truth in the product without human validation.
 
 ### Working Assumptions
-- **Geographical Scope:** Nghĩa Tá is assumed to be situated within the mountainous terrain of Chợ Đồn District, Bắc Kạn Province, having historical ties to the Việt Bắc Safe Zone (ATK - An Toàn Khu) during the Resistance War against French colonialists.
+- **Geographical Scope:** Nghĩa Tá is situated within the mountainous terrain of Định Hóa District, Thái Nguyên Province, having historical ties to the Việt Bắc Safe Zone (ATK Định Hóa - An Toàn Khu) during the Resistance War against French colonialists.
 - **Cultural Landscape:** The predominant cultural tapestry includes ethnic communities such as the Tày and Nùng, characterized by traditional stilt houses (*nhà sàn*), folk singing (*Hát Then*), and agricultural livelihoods.
 - **Language Priority:** The default language is **Vietnamese** (`lang="vi"`), with architecture prepared for English localization in later phases.
 

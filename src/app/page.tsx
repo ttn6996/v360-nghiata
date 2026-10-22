@@ -6,7 +6,6 @@ import {
   MapPin,
   Compass,
   ArrowRight,
-  Eye,
   Calendar,
   Sparkles,
   ChevronRight,
@@ -15,9 +14,13 @@ import {
   Users,
   Clock,
   Car,
+  SunMedium,
+  Search,
+  ShieldCheck,
 } from "lucide-react";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
+import FloatingTourismDock from "@/components/FloatingTourismDock";
 import InteractivePanoramaViewer from "@/components/InteractivePanoramaViewer";
 import InteractiveTourismMap from "@/components/InteractiveTourismMap";
 import {
@@ -46,7 +49,7 @@ export default function HomePage() {
            ====================================================== */}
         <section
           aria-label="Cảnh sắc Nghĩa Tá"
-          className="relative min-h-[92vh] lg:min-h-screen flex items-center justify-center overflow-hidden"
+          className="relative min-h-[95vh] lg:min-h-screen flex items-center justify-center overflow-hidden"
         >
           {/* Hero Background Image */}
           <div className="absolute inset-0 z-0">
@@ -56,26 +59,33 @@ export default function HomePage() {
               fill
               priority
               quality={90}
-              className="object-cover object-center scale-105 animate-in fade-in duration-1000"
+              className="object-cover object-center scale-105"
               sizes="100vw"
             />
             {/* Cinematic Gradients for Readability */}
-            <div className="absolute inset-0 bg-gradient-to-t from-[#0b0f0d] via-[#0b0f0d]/40 to-black/40" />
-            <div className="absolute inset-0 bg-gradient-to-r from-[#0b0f0d]/80 via-transparent to-black/30" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#0b0f0d] via-[#0b0f0d]/45 to-black/40" />
+            <div className="absolute inset-0 bg-gradient-to-r from-[#0b0f0d]/85 via-transparent to-black/35" />
           </div>
 
           {/* Hero Content */}
-          <div className="container-editorial relative z-10 pt-28 pb-20 md:py-36 text-white">
+          <div className="container-editorial relative z-10 pt-32 pb-24 md:py-36 text-white">
             <div className="max-w-3xl">
-              {/* Destination Tag */}
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#1c382b]/90 border border-[#dca354]/40 backdrop-blur-md mb-6 shadow-lg">
-                <Compass size={14} className="text-[#dca354]" />
-                <span className="text-xs font-semibold tracking-wider uppercase text-[#dca354]">
-                  Xã Nghĩa Tá · Định Hóa · Thái Nguyên
-                </span>
+              {/* Destination Tag & Weather Badge */}
+              <div className="flex flex-wrap items-center gap-2.5 mb-6">
+                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#1c382b]/90 border border-[#dca354]/40 backdrop-blur-md shadow-lg">
+                  <Compass size={14} className="text-[#dca354]" />
+                  <span className="text-xs font-semibold tracking-wider uppercase text-[#dca354]">
+                    Xã Nghĩa Tá · Huyện Định Hóa · Tỉnh Thái Nguyên
+                  </span>
+                </div>
+
+                <div className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-black/40 border border-white/20 backdrop-blur-md text-xs text-white/90">
+                  <SunMedium size={13} className="text-amber-400" />
+                  <span>23°C · Tiết trời thu đông lý tưởng</span>
+                </div>
               </div>
 
-              {/* Headline */}
+              {/* Headline with Playfair Display */}
               <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.08] mb-6 drop-shadow-xl text-[#fbf9f5]">
                 Hồn Thiêng Chiến Khu, <br className="hidden sm:block" />
                 Kỳ Quan Đại Ngàn
@@ -86,6 +96,29 @@ export default function HomePage() {
                 Hành trình đưa bạn khám phá không gian 360° vùng đất cội nguồn cách mạng ATK Định Hóa,
                 ngắm dải lụa trắng Thác Nàng Tiên và hòa mình vào nếp nhà sàn thanh bình của đồng bào Tày, Nùng.
               </p>
+
+              {/* Quick Discovery Search Bar */}
+              <form
+                action="/di-tich"
+                method="GET"
+                className="mb-8 max-w-xl flex items-center bg-white/10 hover:bg-white/15 focus-within:bg-black/60 focus-within:border-[#dca354] border border-white/25 rounded-2xl p-1.5 backdrop-blur-xl transition-all shadow-xl"
+              >
+                <div className="pl-3.5 pr-2 text-white/70">
+                  <Search size={18} />
+                </div>
+                <input
+                  type="text"
+                  name="q"
+                  placeholder="Tìm di tích ATK, thác nước, nhà sàn..."
+                  className="w-full bg-transparent border-none text-sm text-white placeholder-white/60 focus:outline-none"
+                />
+                <button
+                  type="submit"
+                  className="px-4 py-2 rounded-xl bg-[#dca354] hover:bg-[#edb86e] text-[#0b0f0d] text-xs font-bold transition-all flex-shrink-0 active:scale-95"
+                >
+                  Tìm Kiếm
+                </button>
+              </form>
 
               {/* Dual Action CTAs */}
               <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
@@ -99,7 +132,7 @@ export default function HomePage() {
 
                 <Link
                   href="#ban-do-du-lich"
-                  className="px-6 py-3.5 rounded-xl bg-black/40 hover:bg-black/60 border border-white/25 hover:border-white/50 backdrop-blur-md text-white font-medium text-base flex items-center justify-center gap-2 transition-all"
+                  className="px-6 py-3.5 rounded-xl bg-black/40 hover:bg-black/60 border border-white/25 hover:border-white/50 backdrop-blur-md text-white font-medium text-base flex items-center justify-center gap-2 transition-all hover:scale-105 active:scale-95"
                 >
                   <MapPin size={18} className="text-[#dca354]" />
                   <span>Bản Đồ Điểm Đến</span>
@@ -174,13 +207,13 @@ export default function HomePage() {
                 </h2>
                 <p className="text-sm md:text-base text-[#a9a69b] max-w-2xl mt-2 font-body">
                   Kéo chuột để xoay quanh 360 độ, cuộn để phóng to chi tiết và nhấp vào các điểm chạm (hotspots)
-                  để khám phá những thắng cảnh biểu tượng của Nghĩa Tá, Định Hóa.
+                  để khám phá những thắng cảnh biểu tượng của xã Nghĩa Tá, huyện Định Hóa, tỉnh Thái Nguyên.
                 </p>
               </div>
 
               <Link
                 href="/kham-pha"
-                className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white/10 hover:bg-[#1c382b] border border-white/20 text-sm font-semibold text-white transition-all hover:border-[#dca354]"
+                className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white/10 hover:bg-[#1c382b] border border-white/20 text-sm font-semibold text-white transition-all hover:border-[#dca354] active:scale-95"
               >
                 <span>Mở Phòng Chiếu Toàn Màn Hình</span>
                 <ArrowRight size={15} />
@@ -197,7 +230,20 @@ export default function HomePage() {
         </section>
 
         {/* ======================================================
-            SECTION 3: KHÁM PHÁ ĐIỂM ĐẾN (Asymmetric Magazine Layout)
+            SECTION 3: BẢN ĐỒ DU LỊCH SỐ TƯƠNG TÁC
+           ====================================================== */}
+        <section
+          id="ban-do-du-lich"
+          aria-labelledby="tourism-map-heading"
+          className="py-16 md:py-24 bg-[var(--bg-subtle)]/40 scroll-mt-20"
+        >
+          <div className="container-editorial">
+            <InteractiveTourismMap sites={heritageSites} />
+          </div>
+        </section>
+
+        {/* ======================================================
+            SECTION 4: KHÁM PHÁ ĐIỂM ĐẾN (Asymmetric Magazine Layout)
            ====================================================== */}
         <section
           aria-labelledby="destinations-heading"
@@ -229,7 +275,7 @@ export default function HomePage() {
             {/* Asymmetrical Grid: 1 Large Hero Card + 3 Secondary Cards */}
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 md:gap-8">
               {/* Featured Landmark Hero Card (7 Cols) */}
-              <div className="lg:col-span-7 group relative rounded-2xl overflow-hidden bg-[var(--bg-surface)] border border-[var(--border-subtle)] shadow-lg flex flex-col justify-between">
+              <div className="lg:col-span-7 group relative rounded-2xl overflow-hidden bg-[var(--bg-surface)] border border-[var(--border-subtle)] shadow-lg flex flex-col justify-between hover-lift">
                 <div className="relative h-72 sm:h-96 w-full overflow-hidden">
                   <Image
                     src={featuredSite.imageUrl}
@@ -240,8 +286,9 @@ export default function HomePage() {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent" />
                   <div className="absolute top-4 left-4">
-                    <span className="px-3 py-1.5 rounded-full text-xs font-semibold bg-[#1c382b]/90 text-[#dca354] border border-[#dca354]/30 backdrop-blur-md">
-                      Di Tích Lịch Sử Quốc Gia
+                    <span className="px-3 py-1.5 rounded-full text-xs font-semibold bg-[#1c382b]/90 text-[#dca354] border border-[#dca354]/30 backdrop-blur-md flex items-center gap-1.5">
+                      <ShieldCheck size={13} className="text-[#dca354]" />
+                      <span>Di Tích Lịch Sử Quốc Gia</span>
                     </span>
                   </div>
                   <div className="absolute bottom-4 left-4 right-4 text-white">
@@ -258,12 +305,12 @@ export default function HomePage() {
                 </div>
 
                 <div className="p-6 md:p-8 flex-1 flex flex-col justify-between">
-                  <p className="text-sm text-[var(--text-secondary)] leading-relaxed mb-6">
+                  <p className="text-sm text-[var(--text-secondary)] leading-relaxed mb-6 font-body">
                     {featuredSite.description}
                   </p>
 
                   <div className="pt-4 border-t border-[var(--border-subtle)] flex items-center justify-between">
-                    <div className="flex items-center gap-4 text-xs text-[var(--text-muted)]">
+                    <div className="flex items-center gap-4 text-xs text-[var(--text-muted)] font-mono">
                       <span className="flex items-center gap-1.5">
                         <Clock size={14} className="text-[#b37322]" />
                         2 - 3 giờ
@@ -276,10 +323,10 @@ export default function HomePage() {
 
                     <Link
                       href={`/di-tich/${featuredSite.slug}`}
-                      className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#b37322] hover:text-[#965f1a]"
+                      className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#b37322] hover:text-[#965f1a] group/btn"
                     >
-                      <span>Khám phá</span>
-                      <ArrowRight size={14} />
+                      <span>Khám phá chi tiết</span>
+                      <ArrowRight size={14} className="group-hover/btn:translate-x-1 transition-transform" />
                     </Link>
                   </div>
                 </div>
@@ -290,7 +337,7 @@ export default function HomePage() {
                 {secondarySites.map((site) => (
                   <article
                     key={site.id}
-                    className="group rounded-2xl overflow-hidden bg-[var(--bg-surface)] border border-[var(--border-subtle)] p-4 flex gap-4 hover:border-[#b37322]/40 shadow-sm transition-all hover:shadow-md"
+                    className="group rounded-2xl overflow-hidden bg-[var(--bg-surface)] border border-[var(--border-subtle)] p-4 flex gap-4 hover:border-[#b37322]/40 shadow-sm transition-all hover:shadow-md hover-lift"
                   >
                     <div className="relative w-32 sm:w-40 h-28 sm:h-32 rounded-xl overflow-hidden flex-shrink-0">
                       <Image
@@ -310,13 +357,13 @@ export default function HomePage() {
                         <h4 className="font-display font-bold text-base sm:text-lg text-[var(--text-primary)] group-hover:text-[#b37322] transition-colors line-clamp-1">
                           {site.title}
                         </h4>
-                        <p className="text-xs text-[var(--text-secondary)] line-clamp-2 mt-1">
+                        <p className="text-xs text-[var(--text-secondary)] line-clamp-2 mt-1 font-body">
                           {site.subtitle}
                         </p>
                       </div>
 
                       <div className="flex items-center justify-between pt-2">
-                        <span className="text-[11px] text-[var(--text-muted)]">
+                        <span className="text-[11px] text-[var(--text-muted)] font-mono">
                           {site.locationName.split(",")[0]}
                         </span>
                         <Link
@@ -332,19 +379,6 @@ export default function HomePage() {
                 ))}
               </div>
             </div>
-          </div>
-        </section>
-
-        {/* ======================================================
-            SECTION 4: BẢN ĐỒ DU LỊCH SỐ TƯƠNG TÁC
-           ====================================================== */}
-        <section
-          id="ban-do-du-lich"
-          aria-labelledby="tourism-map-heading"
-          className="py-16 md:py-24 bg-[var(--bg-subtle)]/40 scroll-mt-20"
-        >
-          <div className="container-editorial">
-            <InteractiveTourismMap sites={heritageSites} />
           </div>
         </section>
 
@@ -381,7 +415,7 @@ export default function HomePage() {
               {culturalArticles.map((article) => (
                 <article
                   key={article.id}
-                  className="group rounded-2xl overflow-hidden bg-[var(--bg-surface)] border border-[var(--border-subtle)] flex flex-col justify-between shadow-sm hover:shadow-xl transition-all duration-300"
+                  className="group rounded-2xl overflow-hidden bg-[var(--bg-surface)] border border-[var(--border-subtle)] flex flex-col justify-between shadow-sm hover:shadow-xl transition-all duration-300 hover-lift"
                 >
                   <div>
                     {/* Article Thumbnail */}
@@ -404,14 +438,14 @@ export default function HomePage() {
                       <h3 className="font-display text-xl font-bold text-[var(--text-primary)] group-hover:text-[#b37322] transition-colors mb-3 leading-snug">
                         {article.title}
                       </h3>
-                      <p className="text-sm text-[var(--text-secondary)] leading-relaxed line-clamp-3">
+                      <p className="text-sm text-[var(--text-secondary)] leading-relaxed line-clamp-3 font-body">
                         {article.excerpt}
                       </p>
                     </div>
                   </div>
 
                   <div className="px-6 pb-6 pt-4 border-t border-[var(--border-subtle)] flex items-center justify-between">
-                    <span className="text-xs text-[var(--text-muted)] flex items-center gap-1">
+                    <span className="text-xs text-[var(--text-muted)] flex items-center gap-1 font-mono">
                       <Calendar size={13} />
                       {article.readTime} phút đọc
                     </span>
@@ -449,7 +483,7 @@ export default function HomePage() {
               </h2>
               <p className="text-sm sm:text-base text-[#a9a69b]">
                 Những lộ trình được thiết kế chu đáo giúp bạn cảm nhận trọn vẹn bề dày lịch sử kháng chiến
-                và không gian sinh thái hoang sơ của vùng đất Định Hóa.
+                và không gian sinh thái hoang sơ của vùng đất Định Hóa, Thái Nguyên.
               </p>
             </div>
 
@@ -457,7 +491,7 @@ export default function HomePage() {
               {travelItineraries.map((itinerary, idx) => (
                 <div
                   key={itinerary.id}
-                  className="rounded-2xl p-6 md:p-8 bg-white/5 border border-white/10 backdrop-blur-md flex flex-col justify-between"
+                  className="rounded-2xl p-6 md:p-8 bg-white/5 border border-white/10 backdrop-blur-md flex flex-col justify-between hover:border-[#dca354]/40 transition-all"
                 >
                   <div>
                     <div className="flex items-center justify-between gap-2 mb-4">
@@ -490,7 +524,7 @@ export default function HomePage() {
 
                   <Link
                     href="/kham-pha"
-                    className="w-full py-3 rounded-xl bg-white/10 hover:bg-[#dca354] hover:text-[#0b0f0d] border border-white/20 text-center text-sm font-semibold transition-all"
+                    className="w-full py-3 rounded-xl bg-white/10 hover:bg-[#dca354] hover:text-[#0b0f0d] border border-white/20 text-center text-sm font-semibold transition-all active:scale-95"
                   >
                     Bắt Đầu Chuyến Đi 360°
                   </Link>
@@ -500,6 +534,7 @@ export default function HomePage() {
           </div>
         </section>
       </main>
+      <FloatingTourismDock />
       <SiteFooter />
     </>
   );

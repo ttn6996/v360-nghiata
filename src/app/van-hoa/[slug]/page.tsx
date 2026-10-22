@@ -2,9 +2,10 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeft, Clock, Calendar, User, BookOpen, ArrowRight, Compass } from "lucide-react";
+import { ArrowLeft, Clock, User, BookOpen, ArrowRight } from "lucide-react";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
+import FloatingTourismDock from "@/components/FloatingTourismDock";
 import { culturalArticles } from "@/data/mockData";
 
 interface Props {
@@ -171,6 +172,7 @@ export default async function VanHoaDetailPage({ params }: Props) {
           </div>
         </section>
       </main>
+      <FloatingTourismDock />
       <SiteFooter />
     </>
   );

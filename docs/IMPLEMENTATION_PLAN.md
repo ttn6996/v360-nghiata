@@ -1,6 +1,6 @@
 # Implementation Plan: V360 Nghĩa Tá
 
-**Project:** V360 Nghĩa Tá (Chợ Đồn, Bắc Kạn)  
+**Project:** V360 Nghĩa Tá (Định Hóa, Thái Nguyên)  
 **Document Status:** Phased Engineering Roadmap  
 **Target Architecture:** Next.js App Router, TypeScript, Tailwind CSS  
 **Version:** 1.0.0  

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://v360-nghiata.vn"),
   title: {
     default: "V360 Nghĩa Tá — Khám Phá Di Sản & Cảnh Quan Định Hóa, Thái Nguyên",
     template: "%s | V360 Nghĩa Tá",

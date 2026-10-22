@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowLeft, MapPin, Compass, Mail, Phone, Heart, Users, Sparkles } from "lucide-react";
+import { ArrowLeft, MapPin, Compass, Mail, Heart, Users, Sparkles } from "lucide-react";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
+import FloatingTourismDock from "@/components/FloatingTourismDock";
 
 export const metadata: Metadata = {
   title: "Giới Thiệu Vùng Đất Nghĩa Tá · Định Hóa, Thái Nguyên",
@@ -141,6 +142,7 @@ export default function GioiThieuPage() {
           </div>
         </section>
       </main>
+      <FloatingTourismDock />
       <SiteFooter />
     </>
   );

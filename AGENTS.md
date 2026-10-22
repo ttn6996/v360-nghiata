@@ -1,6 +1,6 @@
 # V360 Nghĩa Tá — Frontend Agent Rules & Architecture Guidelines
 
-> **Project Mandate:** V360 Nghĩa Tá is a digital heritage and tourism exploration web platform for Nghĩa Tá (Chợ Đồn, Bắc Kạn).
+> **Project Mandate:** V360 Nghĩa Tá is a digital heritage and tourism exploration web platform for Nghĩa Tá (Định Hóa, Thái Nguyên).
 > The aesthetic direction combines **cinematic heritage storytelling** with an **interactive exploration experience**.
 > All interface code must feel authored with intentional editorial craft by an expert human designer, strictly avoiding generic AI templates, boilerplate slop, or deceptive content.
 

@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useState, useEffect, useRef } from "react";
 import { Menu, X, Map, BookOpen, Camera, Info, ChevronRight } from "lucide-react";
+import AmbientAudioPlayer from "@/components/AmbientAudioPlayer";
 
 const NAV_LINKS = [
   { href: "/", label: "Trang Chủ" },
@@ -107,8 +108,10 @@ export default function SiteHeader() {
               ))}
             </nav>
 
-            {/* Right Action + Mobile Toggle */}
-            <div className="flex items-center gap-3">
+            {/* Right Action + Audio Player + Mobile Toggle */}
+            <div className="flex items-center gap-2.5 sm:gap-3">
+              <AmbientAudioPlayer />
+
               <Link
                 href="/kham-pha"
                 className="hidden sm:inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#dca354] hover:bg-[#edb86e] text-[#0b0f0d] text-sm font-semibold shadow-lg shadow-[#dca354]/25 transition-all hover:scale-105 active:scale-95"

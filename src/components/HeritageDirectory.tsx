@@ -8,7 +8,6 @@ import {
   MapPin,
   Clock,
   Car,
-  Compass,
   ArrowRight,
   Eye,
   Landmark,
@@ -16,7 +15,7 @@ import {
   Users,
   Sparkles,
 } from "lucide-react";
-import type { HeritageSite, HeritageSiteCategory } from "@/types/heritage";
+import type { HeritageSite } from "@/types/heritage";
 
 interface Props {
   initialSites: HeritageSite[];

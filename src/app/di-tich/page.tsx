@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ArrowLeft, Compass, MapPin } from "lucide-react";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
+import FloatingTourismDock from "@/components/FloatingTourismDock";
 import HeritageDirectory from "@/components/HeritageDirectory";
 import { heritageSites } from "@/data/mockData";
 
@@ -63,6 +64,7 @@ export default function DiTichPage() {
           </div>
         </section>
       </main>
+      <FloatingTourismDock />
       <SiteFooter />
     </>
   );

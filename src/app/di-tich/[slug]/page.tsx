@@ -6,17 +6,14 @@ import {
   ArrowLeft,
   Camera,
   MapPin,
-  Clock,
-  Car,
   Compass,
   CheckCircle2,
-  Calendar,
   Sparkles,
-  ArrowRight,
   Eye,
 } from "lucide-react";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
+import FloatingTourismDock from "@/components/FloatingTourismDock";
 import { heritageSites } from "@/data/mockData";
 
 interface Props {
@@ -316,6 +313,7 @@ export default async function DiTichDetailPage({ params }: Props) {
           </div>
         </section>
       </main>
+      <FloatingTourismDock />
       <SiteFooter />
     </>
   );

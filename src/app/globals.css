@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..700;1,6..72,300..700&family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,500;1,600;1,700&family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=JetBrains+Mono:wght@400;500&display=swap");
 @import "tailwindcss";
 
 
@@ -21,6 +21,7 @@
   --accent-heritage: #b37322;
   --accent-heritage-hover: #965f1a;
   --accent-forest: #1c382b;
+  --accent-forest-light: #2c5441;
   --accent-river: #223542;
 
   /* Borders & Dividers */
@@ -32,9 +33,9 @@
   --status-pending: #a86214;
   --status-error: #9f2a2a;
 
-  /* Font Stacks */
-  --font-display: "Newsreader", Georgia, serif;
-  --font-body: "Be Vietnam Pro", system-ui, sans-serif;
+  /* Font Stacks with full Vietnamese Diacritics Support */
+  --font-display: "Playfair Display", Georgia, "Times New Roman", serif;
+  --font-body: "Be Vietnam Pro", system-ui, -apple-system, sans-serif;
   --font-mono: "JetBrains Mono", monospace;
 
   /* Timing */
@@ -476,3 +477,89 @@ body {
 .btn-outline-dark:active {
   transform: scale(0.97);
 }
+
+/* ============================================================
+   TACTILE & EDITORIAL ENHANCEMENTS (Anti-Slop Craft)
+   ============================================================ */
+
+/* Tactile Glass Panels with Warm Grounding */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(202, 195, 180, 0.6);
+}
+
+.glass-panel-dark {
+  background: rgba(14, 23, 19, 0.82);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+/* Glass Pill Badge */
+.glass-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  background: rgba(28, 56, 43, 0.85);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(220, 163, 84, 0.35);
+  color: #fbf9f5;
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+/* Card Hover Elevation */
+.hover-lift {
+  transition: transform var(--duration-standard) var(--ease-out-punchy),
+              box-shadow var(--duration-standard) var(--ease-out-punchy),
+              border-color var(--duration-standard) var(--ease-out-punchy);
+}
+.hover-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 36px -10px rgba(28, 56, 43, 0.16);
+  border-color: rgba(179, 115, 34, 0.45);
+}
+
+/* Tactile 360 Drag Cursors */
+.cursor-grab {
+  cursor: grab;
+}
+.cursor-grab:active,
+.cursor-grabbing {
+  cursor: grabbing;
+}
+
+/* Soundwave Equalizer Animation */
+@keyframes soundwave {
+  0%, 100% { height: 4px; }
+  50% { height: 16px; }
+}
+
+.soundwave-bar-1 { animation: soundwave 1.1s ease-in-out infinite; }
+.soundwave-bar-2 { animation: soundwave 0.75s ease-in-out infinite 0.15s; }
+.soundwave-bar-3 { animation: soundwave 1.3s ease-in-out infinite 0.35s; }
+.soundwave-bar-4 { animation: soundwave 0.9s ease-in-out infinite 0.2s; }
+
+/* Radar Beacon Ripple */
+@keyframes radar-ring {
+  0% {
+    transform: scale(0.9);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(2.4);
+    opacity: 0;
+  }
+}
+
+.radar-ring {
+  animation: radar-ring 2.4s cubic-bezier(0.23, 1, 0.32, 1) infinite;
+}
+
