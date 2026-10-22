@@ -31,6 +31,7 @@ import {
   Check,
   CheckCircle2,
   Sparkles,
+  Globe,
 } from "lucide-react";
 import type { PanoramaScene, PanoramaHotspot } from "@/types/heritage";
 import PanoramaMinimap from "@/components/PanoramaMinimap";
@@ -788,6 +789,15 @@ export default function InteractivePanoramaViewer({
             <HelpCircle size={15} />
           </button>
 
+          {/* Little Planet Globe Toggle */}
+          <button
+            onClick={() => setShowIntroSplash(true)}
+            className="w-9 h-9 rounded-xl bg-black/60 hover:bg-black/80 border border-white/20 hover:border-[#dca354] backdrop-blur-md flex items-center justify-center text-white/90 transition-all active:scale-95"
+            title="Toàn cảnh quả địa cầu trên cao"
+          >
+            <Globe size={15} className="text-sky-400" />
+          </button>
+
           {/* VR Headset Mode Toggle */}
           <button
             onClick={() => setIsVrMode(!isVrMode)}
@@ -1166,11 +1176,16 @@ export default function InteractivePanoramaViewer({
       />
 
       {/* ======================================================
-          INTRO SCREEN SPLASH OVERLAY (intro_screen / bt_start)
+          INTRO SCREEN SPLASH OVERLAY (Little Planet Globe Intro)
          ====================================================== */}
       <PanoramaIntroSplash
         isOpen={showIntroSplash}
-        onStart={() => setShowIntroSplash(false)}
+        onStart={(sceneId?: string) => {
+          if (sceneId) {
+            switchScene(sceneId);
+          }
+          setShowIntroSplash(false);
+        }}
         language={language}
       />
     </div>
