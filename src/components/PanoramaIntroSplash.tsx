@@ -37,8 +37,8 @@ export default function PanoramaIntroSplash({
         {/* Main Title */}
         <h2 className="font-display text-2xl sm:text-3xl md:text-4xl font-bold text-[#fbf9f5] mb-2 tracking-tight">
           {isEn
-            ? "V360 Nghia Ta Exploration"
-            : "Khám Phá Toàn Cảnh V360 Nghĩa Tá"}
+            ? "Nghia Ta Virtual Exploration"
+            : "Khám Phá Toàn Cảnh Nghĩa Tá"}
         </h2>
         <p className="text-xs sm:text-sm text-[#dca354] font-medium mb-4">
           {isEn

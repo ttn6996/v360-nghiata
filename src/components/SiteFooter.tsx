@@ -14,20 +14,15 @@ export default function SiteFooter() {
           <div className="lg:col-span-5">
             <Link
               href="/"
-              className="inline-flex items-center gap-3 mb-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#dca354] rounded-lg"
-              aria-label="V360 Nghĩa Tá — Trang chủ"
+              className="inline-flex flex-col mb-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#dca354] rounded-lg group"
+              aria-label="Nghĩa Tá — Trang chủ"
             >
-              <div className="w-10 h-10 rounded-xl bg-[#1c382b] text-[#dca354] border border-[#dca354]/40 flex items-center justify-center font-bold font-display text-base shadow-md">
-                V360
-              </div>
-              <div>
-                <span className="font-display text-xl font-bold text-white block leading-tight">
-                  V360 Nghĩa Tá
-                </span>
-                <span className="text-xs text-[#dca354] font-medium tracking-wide">
-                  Cổng Thông Tin Du Lịch Di Sản Số
-                </span>
-              </div>
+              <span className="font-display text-2xl font-bold text-white group-hover:text-[#dca354] transition-colors leading-tight">
+                Nghĩa Tá
+              </span>
+              <span className="text-xs text-[#dca354] font-medium tracking-wide mt-1">
+                Định Hóa · Thái Nguyên — Cổng Thông Tin Du Lịch Di Sản Số
+              </span>
             </Link>
 
             <p className="text-sm leading-relaxed text-[#a9a69b] mb-6 max-w-md">
@@ -150,7 +145,7 @@ export default function SiteFooter() {
       {/* Footer Bottom Bar */}
       <div className="border-t border-white/8 bg-[#0c1410] py-4">
         <div className="container-editorial flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-[#737066]">
-          <p>© 2026 V360 Nghĩa Tá — Xã Nghĩa Tá, Huyện Định Hóa, Tỉnh Thái Nguyên.</p>
+          <p>© 2026 Du Lịch Nghĩa Tá — Xã Nghĩa Tá, Huyện Định Hóa, Tỉnh Thái Nguyên.</p>
           <p className="flex items-center gap-2">
             <span>Dự án số hóa di sản & du lịch cộng đồng</span>
           </p>

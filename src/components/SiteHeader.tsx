@@ -59,23 +59,18 @@ export default function SiteHeader() {
       >
         <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16 md:h-18">
-            {/* Logo & Destination Brand */}
+            {/* Destination Brand (Typographic Wordmark - No Logo Box) */}
             <Link
               href="/"
-              className="flex items-center gap-2.5 sm:gap-3 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#dca354] rounded-xl p-1 flex-shrink-0 whitespace-nowrap"
-              aria-label="V360 Nghĩa Tá — Trang chủ"
+              className="flex flex-col group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#dca354] rounded-xl py-1 flex-shrink-0 whitespace-nowrap"
+              aria-label="Nghĩa Tá — Trang chủ"
             >
-              <div className="w-9 h-9 md:w-10 md:h-10 rounded-xl bg-gradient-to-br from-[#1c382b] to-[#12241b] border border-[#dca354]/40 flex items-center justify-center font-bold font-display text-base text-[#dca354] shadow-md transition-transform group-hover:scale-105 flex-shrink-0">
-                V360
-              </div>
-              <div className="flex flex-col">
-                <span className="font-display text-base md:text-lg font-bold tracking-tight leading-tight text-[#fbf9f5] group-hover:text-[#dca354] transition-colors whitespace-nowrap">
-                  Nghĩa Tá
-                </span>
-                <span className="text-[10px] md:text-[11px] font-medium tracking-wide text-[#dca354]/80 whitespace-nowrap">
-                  Định Hóa · Thái Nguyên
-                </span>
-              </div>
+              <span className="font-display text-lg md:text-xl font-bold tracking-tight leading-tight text-[#fbf9f5] group-hover:text-[#dca354] transition-colors whitespace-nowrap">
+                Nghĩa Tá
+              </span>
+              <span className="text-[10px] md:text-[11px] font-medium tracking-wide text-[#dca354]/90 whitespace-nowrap">
+                Định Hóa · Thái Nguyên
+              </span>
             </Link>
 
             {/* Desktop Navigation — strictly single-line, zero wrapping */}
@@ -151,14 +146,14 @@ export default function SiteHeader() {
             className="absolute top-0 right-0 bottom-0 w-80 max-w-[85vw] bg-[#0c1410] border-l border-white/10 shadow-2xl p-6 flex flex-col justify-between overflow-y-auto animate-in slide-in-from-right duration-250"
           >
             <div>
-              {/* Header inside drawer */}
+              {/* Header inside drawer (Typographic Wordmark - No Logo Box) */}
               <div className="flex items-center justify-between pb-6 border-b border-white/10 mb-6">
-                <div className="flex items-center gap-2.5">
-                  <div className="w-8 h-8 rounded-xl bg-[#1c382b] border border-[#dca354]/40 flex items-center justify-center font-bold text-sm text-[#dca354]">
-                    V360
-                  </div>
-                  <span className="font-display font-bold text-base text-[#fbf9f5]">
-                    Nghĩa Tá · Định Hóa
+                <div className="flex flex-col">
+                  <span className="font-display font-bold text-lg text-[#fbf9f5] leading-tight">
+                    Nghĩa Tá
+                  </span>
+                  <span className="text-[11px] font-medium text-[#dca354]">
+                    Định Hóa · Thái Nguyên
                   </span>
                 </div>
                 <button

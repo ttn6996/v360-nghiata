@@ -570,8 +570,8 @@ export default function InteractivePanoramaViewer({
   const t = {
     vi: {
       backHome: "Trang Chủ",
-      clusterTitle: "V360 Nghĩa Tá",
-      clusterSubtitle: "Cụm Di Tích Lịch Sử & Thắng Cảnh Định Hóa",
+      clusterTitle: "Nghĩa Tá · Định Hóa",
+      clusterSubtitle: "Cụm Di Tích Lịch Sử & Thắng Cảnh Thái Nguyên",
       audioGuide: "Thuyết Minh",
       sound: "Âm Thanh",
       info: "Thông Tin",
@@ -591,7 +591,7 @@ export default function InteractivePanoramaViewer({
     },
     en: {
       backHome: "Home",
-      clusterTitle: "V360 Nghia Ta",
+      clusterTitle: "Nghia Ta · Dinh Hoa",
       clusterSubtitle: "Heritage & Natural Landscape Complex",
       audioGuide: "Audio Guide",
       sound: "Sound",

@@ -31,7 +31,7 @@ import {
 } from "@/data/mockData";
 
 export const metadata: Metadata = {
-  title: "V360 Nghĩa Tá — Khám Phá Di Sản & Cảnh Quan Du Lịch Định Hóa, Thái Nguyên",
+  title: "Nghĩa Tá — Khám Phá Di Sản & Cảnh Quan Du Lịch Định Hóa, Thái Nguyên",
   description:
     "Cổng thông tin du lịch và tour không gian 360° xã Nghĩa Tá, huyện Định Hóa, tỉnh Thái Nguyên. Khám phá khu di tích lịch sử ATK Định Hóa, Thác Nàng Tiên và bản sắc văn hóa Tày, Nùng ngàn đời.",
 };

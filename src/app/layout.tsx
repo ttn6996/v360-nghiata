@@ -18,8 +18,8 @@ const beVietnamPro = Be_Vietnam_Pro({
 export const metadata: Metadata = {
   metadataBase: new URL("https://v360-nghiata.vn"),
   title: {
-    default: "V360 Nghĩa Tá — Khám Phá Di Sản & Cảnh Quan Định Hóa, Thái Nguyên",
-    template: "%s | V360 Nghĩa Tá",
+    default: "Nghĩa Tá — Khám Phá Di Sản & Cảnh Quan Định Hóa, Thái Nguyên",
+    template: "%s | Nghĩa Tá · Định Hóa",
   },
   description:
     "Khám phá không gian 360° và di sản văn hóa lịch sử của xã Nghĩa Tá, huyện Định Hóa, tỉnh Thái Nguyên — vùng đất căn cứ địa cách mạng ATK và thắng cảnh thiên nhiên hùng vĩ.",
@@ -39,26 +39,26 @@ export const metadata: Metadata = {
     "Hát Then Đàn Tính",
   ],
   authors: [{ name: "UBND Xã Nghĩa Tá, Định Hóa, Thái Nguyên" }],
-  creator: "V360 Nghĩa Tá",
+  creator: "UBND Xã Nghĩa Tá, Định Hóa, Thái Nguyên",
   openGraph: {
     type: "website",
     locale: "vi_VN",
-    title: "V360 Nghĩa Tá — Khám Phá Di Sản & Cảnh Quan Định Hóa, Thái Nguyên",
+    title: "Nghĩa Tá — Khám Phá Di Sản & Cảnh Quan Định Hóa, Thái Nguyên",
     description:
       "Hành trình khám phá không gian 360° và di sản văn hóa lịch sử xã Nghĩa Tá, huyện Định Hóa, tỉnh Thái Nguyên.",
-    siteName: "V360 Nghĩa Tá",
+    siteName: "Du Lịch Nghĩa Tá",
     images: [
       {
         url: "/images/hero/hero-nghia-ta.jpg",
         width: 1200,
         height: 630,
-        alt: "V360 Nghĩa Tá, Định Hóa, Thái Nguyên",
+        alt: "Nghĩa Tá, Định Hóa, Thái Nguyên",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "V360 Nghĩa Tá — Khám Phá Di Sản Định Hóa, Thái Nguyên",
+    title: "Nghĩa Tá — Khám Phá Di Sản Định Hóa, Thái Nguyên",
     description: "Tour ảo 360° và bản đồ di sản văn hóa Nghĩa Tá, Định Hóa, Thái Nguyên.",
     images: ["/images/hero/hero-nghia-ta.jpg"],
   },
