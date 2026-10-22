@@ -16,6 +16,8 @@ import {
   Mic,
   ChevronUp,
   ChevronDown,
+  ChevronsUp,
+  Footprints,
   Layers,
   ArrowLeft,
   Eye,
@@ -77,13 +79,13 @@ export default function InteractivePanoramaViewer({
   >([]);
 
   // Features modeled directly after Hong Gai 360 (bandosohonggai.gov.vn)
-  const [showMinimap, setShowMinimap] = useState<boolean>(true);
+  const [showMinimap, setShowMinimap] = useState<boolean>(false);
   const [showAudioGuide, setShowAudioGuide] = useState<boolean>(isStandalonePage);
   const [showInfoModal, setShowInfoModal] = useState<boolean>(false);
   const [showHelpModal, setShowHelpModal] = useState<boolean>(false);
   const [showIntroSplash, setShowIntroSplash] = useState<boolean>(isStandalonePage);
   const [modalDefaultTab, setModalDefaultTab] = useState<"info" | "gallery" | "guide">("info");
-  const [showThumbnails, setShowThumbnails] = useState<boolean>(showSceneThumbnails);
+  const [showThumbnails, setShowThumbnails] = useState<boolean>(false);
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
   const [hoveredHotspot, setHoveredHotspot] = useState<PanoramaHotspot | null>(null);
 
@@ -134,6 +136,90 @@ export default function InteractivePanoramaViewer({
       setFov(targetScene.initialFov || 75);
     }
   }, [scenes]);
+
+  // Animated Walkthrough to Scene (KrPano / Street View Style)
+  const [isWalking, setIsWalking] = useState<boolean>(false);
+  const [walkingDestination, setWalkingDestination] = useState<string>("");
+
+  const walkToScene = useCallback(
+    (targetSceneId: string, targetHsYaw?: number, targetHsPitch?: number, destinationName?: string) => {
+      const targetScene = scenes.find((s) => s.id === targetSceneId);
+      if (!targetScene || isWalking) return;
+
+      setIsWalking(true);
+      if (destinationName) setWalkingDestination(destinationName);
+      setAutoRotate(false);
+      setHoveredHotspot(null);
+
+      const startFov = fovRef.current;
+      const targetFovZoom = 38;
+      const startYaw = yawRef.current;
+      const startPitch = pitchRef.current;
+
+      const destYaw = targetHsYaw !== undefined ? targetHsYaw : startYaw;
+      const destPitch =
+        targetHsPitch !== undefined ? Math.max(-25, Math.min(10, targetHsPitch)) : startPitch;
+
+      const durationStepIn = 360;
+      const startTime = performance.now();
+
+      const stepIn = (now: number) => {
+        const elapsed = now - startTime;
+        const progress = Math.min(1, elapsed / durationStepIn);
+        const ease = progress * progress;
+
+        fovRef.current = startFov - (startFov - targetFovZoom) * ease;
+        yawRef.current = startYaw + (destYaw - startYaw) * ease;
+        pitchRef.current = startPitch + (destPitch - startPitch) * ease;
+        setFov(fovRef.current);
+        setYaw(yawRef.current);
+        setPitch(pitchRef.current);
+
+        if (progress < 1) {
+          requestAnimationFrame(stepIn);
+        } else {
+          // Switch to new scene at zoomed-in FOV
+          setActiveSceneId(targetSceneId);
+          setVisitedScenes((prev) =>
+            prev.includes(targetSceneId) ? prev : [...prev, targetSceneId]
+          );
+
+          yawRef.current = targetScene.initialYaw;
+          pitchRef.current = targetScene.initialPitch;
+          fovRef.current = 42;
+          setYaw(targetScene.initialYaw);
+          setPitch(targetScene.initialPitch);
+          setFov(42);
+
+          const durationStepOut = 360;
+          const outStartTime = performance.now();
+          const finalFov = targetScene.initialFov || 75;
+
+          const stepOut = (t: number) => {
+            const outElapsed = t - outStartTime;
+            const outProgress = Math.min(1, outElapsed / durationStepOut);
+            const outEase = 1 - (1 - outProgress) * (1 - outProgress);
+
+            fovRef.current = 42 + (finalFov - 42) * outEase;
+            setFov(fovRef.current);
+
+            if (outProgress < 1) {
+              requestAnimationFrame(stepOut);
+            } else {
+              fovRef.current = finalFov;
+              setFov(finalFov);
+              setIsWalking(false);
+              setWalkingDestination("");
+            }
+          };
+          requestAnimationFrame(stepOut);
+        }
+      };
+
+      requestAnimationFrame(stepIn);
+    },
+    [scenes, isWalking]
+  );
 
   // Auto-Guided Tour effect (run_auto_guild: cycles through scenes automatically every 25s)
   useEffect(() => {
@@ -539,7 +625,7 @@ export default function InteractivePanoramaViewer({
   // Hotspot click handler
   const handleHotspotClick = (hs: PanoramaHotspot) => {
     if (hs.linkedSceneId) {
-      switchScene(hs.linkedSceneId);
+      walkToScene(hs.linkedSceneId, hs.yaw, hs.pitch, hs.label);
     } else {
       setModalDefaultTab("info");
       setShowInfoModal(true);
@@ -691,17 +777,15 @@ export default function InteractivePanoramaViewer({
           ) : null}
 
           <div className="flex flex-col">
-            <div className="flex items-center gap-2">
-              <span className="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-[#1c382b] text-[#dca354] border border-[#dca354]/40">
-                {t.clusterTitle}
-              </span>
-              <span className="text-[11px] font-medium text-white/70 hidden md:inline">
-                {t.clusterSubtitle}
-              </span>
-            </div>
+            <span className="text-[11px] font-semibold uppercase tracking-wider text-[#dca354] drop-shadow">
+              Cụm Di Tích Lịch Sử & Thắng Cảnh Nghĩa Tá
+            </span>
             <h2 className="font-display text-sm sm:text-base md:text-lg font-bold text-[#fbf9f5] truncate drop-shadow max-w-xs sm:max-w-md">
               {activeScene.title}
             </h2>
+            <span className="text-[11px] text-[#a9a69b] hidden sm:inline">
+              Xã Nghĩa Tá · Định Hóa · Thái Nguyên
+            </span>
           </div>
         </div>
 
@@ -849,77 +933,131 @@ export default function InteractivePanoramaViewer({
       )}
 
       {/* ======================================================
-          INTERACTIVE 3D HOTSPOTS ON CANVAS (Callout Style)
+          INTERACTIVE 3D HOTSPOTS ON CANVAS (Ground Navigation & POIs)
          ====================================================== */}
       <div className="absolute inset-0 pointer-events-none z-20">
         {hotspotPositions.map(({ hotspot, x, y, visible }) => {
           if (!visible) return null;
 
+          const isWalkNav = hotspot.iconType === "walk" || Boolean(hotspot.linkedSceneId);
+
           return (
             <div
               key={hotspot.id}
-              className="absolute -translate-x-1/2 -translate-y-1/2 pointer-events-auto"
+              className="absolute -translate-x-1/2 -translate-y-1/2 pointer-events-auto select-none"
               style={{ left: `${x}px`, top: `${y}px` }}
               onMouseEnter={() => setHoveredHotspot(hotspot)}
               onMouseLeave={() => setHoveredHotspot(null)}
             >
-              {/* Hotspot Radar Pulse Ring */}
-              <div
-                className="relative group cursor-pointer"
-                onClick={() => handleHotspotClick(hotspot)}
-              >
-                <span className="absolute -inset-2 rounded-full bg-[#dca354] opacity-50 radar-ring pointer-events-none" />
-
-                {/* Callout Pill (matching Hong Gai ht_callout) */}
-                <div className="relative flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#0e1713]/90 border border-[#dca354] shadow-2xl backdrop-blur-md text-white transition-all group-hover:scale-110 group-hover:bg-[#1c382b]">
-                  <div className="w-4 h-4 rounded-full bg-[#dca354]/20 flex items-center justify-center flex-shrink-0">
-                    {getHotspotIcon(hotspot.iconType)}
-                  </div>
-                  <span className="text-xs font-bold whitespace-nowrap text-[#f5f4ef]">
-                    {hotspot.label}
-                  </span>
-                  {hotspot.distance && (
-                    <span className="text-[10px] text-[#dca354] font-mono px-1 rounded bg-black/50">
-                      {hotspot.distance}
+              {isWalkNav ? (
+                /* ===================================================
+                   3D GROUND DIRECTIONAL NAVIGATION ARROW (KrPano / Street View Style)
+                   =================================================== */
+                <div
+                  className="flex flex-col items-center group cursor-pointer"
+                  onClick={() => handleHotspotClick(hotspot)}
+                  title={`Đi tiếp tới: ${hotspot.label}`}
+                >
+                  {/* Floating Destination Billboard */}
+                  <div className="mb-2 px-3 py-1.5 rounded-full bg-[#0b0f0d]/90 hover:bg-[#1c382b] border border-[#dca354]/90 shadow-2xl backdrop-blur-md flex items-center gap-2 transition-all duration-200 group-hover:scale-105 group-hover:border-[#dca354] group-hover:shadow-[0_0_20px_rgba(220,163,84,0.45)]">
+                    <span className="w-5 h-5 rounded-full bg-[#dca354] text-[#0b0f0d] flex items-center justify-center font-bold text-xs shadow">
+                      ↑
                     </span>
-                  )}
-                </div>
-
-                {/* Hotspot Hover Tooltip Card */}
-                {hoveredHotspot?.id === hotspot.id && (
-                  <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-56 rounded-xl bg-[#0b0f0d]/95 border border-[#dca354]/50 p-2.5 shadow-2xl backdrop-blur-xl animate-in fade-in duration-150 z-30">
-                    {hotspot.thumbnailUrl && (
-                      <div className="relative h-24 w-full rounded-lg overflow-hidden mb-2">
-                        <Image
-                          src={hotspot.thumbnailUrl}
-                          alt={hotspot.label}
-                          fill
-                          className="object-cover"
-                          sizes="224px"
-                        />
-                      </div>
-                    )}
-                    <h5 className="font-display font-bold text-xs text-[#f5f4ef] mb-1">
+                    <span className="text-xs font-bold text-[#f5f4ef] whitespace-nowrap">
                       {hotspot.label}
-                    </h5>
-                    {hotspot.description && (
-                      <p className="text-[11px] text-[#a9a69b] leading-snug mb-2">
-                        {hotspot.description}
-                      </p>
-                    )}
-                    <div className="text-[10px] font-bold text-[#dca354] flex items-center justify-between">
-                      <span>
-                        {hotspot.linkedSceneId ? "➔ Chuyển góc nhìn" : "➔ Xem tư liệu"}
+                    </span>
+                    {hotspot.distance && (
+                      <span className="text-[10px] font-mono text-[#dca354] bg-black/60 px-1.5 py-0.5 rounded font-bold">
+                        {hotspot.distance}
                       </span>
-                      {hotspot.distance && <span>{hotspot.distance}</span>}
+                    )}
+                  </div>
+
+                  {/* Ground Directional Arrow Disc */}
+                  <div className="relative w-16 h-16 flex items-center justify-center">
+                    {/* Concentric radar wave */}
+                    <span className="absolute inset-0 rounded-full border-2 border-[#dca354] animate-ping opacity-75" />
+                    <span className="absolute inset-2 rounded-full border border-[#dca354]/40 bg-[#dca354]/10" />
+
+                    {/* Central navigation disc */}
+                    <div className="relative w-12 h-12 rounded-full bg-[#0b0f0d]/90 border-2 border-[#dca354] shadow-[0_0_20px_rgba(220,163,84,0.35)] flex items-center justify-center text-[#dca354] group-hover:bg-[#dca354] group-hover:text-[#0b0f0d] group-hover:scale-110 transition-all duration-200">
+                      <ChevronsUp size={24} className="stroke-[2.5] -translate-y-0.5 animate-pulse" />
                     </div>
                   </div>
-                )}
-              </div>
+                </div>
+              ) : (
+                /* ===================================================
+                   POINT OF INTEREST (POI) LANDMARK PIN
+                   =================================================== */
+                <div
+                  className="relative group cursor-pointer"
+                  onClick={() => handleHotspotClick(hotspot)}
+                >
+                  <span className="absolute -inset-2 rounded-full bg-[#dca354] opacity-50 radar-ring pointer-events-none" />
+
+                  {/* Callout Pill */}
+                  <div className="relative flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#0e1713]/90 border border-[#dca354] shadow-2xl backdrop-blur-md text-white transition-all group-hover:scale-110 group-hover:bg-[#1c382b]">
+                    <div className="w-4 h-4 rounded-full bg-[#dca354]/20 flex items-center justify-center flex-shrink-0">
+                      {getHotspotIcon(hotspot.iconType)}
+                    </div>
+                    <span className="text-xs font-bold whitespace-nowrap text-[#f5f4ef]">
+                      {hotspot.label}
+                    </span>
+                    {hotspot.distance && (
+                      <span className="text-[10px] text-[#dca354] font-mono px-1 rounded bg-black/50">
+                        {hotspot.distance}
+                      </span>
+                    )}
+                  </div>
+
+                  {/* Hotspot Hover Tooltip Card */}
+                  {hoveredHotspot?.id === hotspot.id && (
+                    <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-56 rounded-xl bg-[#0b0f0d]/95 border border-[#dca354]/50 p-2.5 shadow-2xl backdrop-blur-xl animate-in fade-in duration-150 z-30">
+                      {hotspot.thumbnailUrl && (
+                        <div className="relative h-24 w-full rounded-lg overflow-hidden mb-2">
+                          <Image
+                            src={hotspot.thumbnailUrl}
+                            alt={hotspot.label}
+                            fill
+                            className="object-cover"
+                            sizes="224px"
+                          />
+                        </div>
+                      )}
+                      <h5 className="font-display font-bold text-xs text-[#f5f4ef] mb-1">
+                        {hotspot.label}
+                      </h5>
+                      {hotspot.description && (
+                        <p className="text-[11px] text-[#a9a69b] leading-snug mb-2">
+                          {hotspot.description}
+                        </p>
+                      )}
+                      <div className="text-[10px] font-bold text-[#dca354] flex items-center justify-between">
+                        <span>➔ Xem tư liệu di tích</span>
+                        {hotspot.distance && <span>{hotspot.distance}</span>}
+                      </div>
+                    </div>
+                  )}
+                </div>
+              )}
             </div>
           );
         })}
       </div>
+
+      {/* Walkthrough Motion Step Indicator */}
+      {isWalking && (
+        <div className="absolute inset-0 z-30 pointer-events-none flex items-center justify-center bg-black/20 backdrop-blur-[1px] animate-in fade-in duration-150">
+          <div className="px-5 py-2.5 rounded-full bg-[#0b0f0d]/90 border border-[#dca354] shadow-2xl backdrop-blur-md flex items-center gap-2.5 text-xs font-bold text-[#f5f4ef]">
+            <Footprints size={17} className="text-[#dca354] animate-bounce" />
+            <span>
+              {walkingDestination
+                ? `Đang di chuyển: ${walkingDestination}...`
+                : "Đang di chuyển đến điểm tiếp theo..."}
+            </span>
+          </div>
+        </div>
+      )}
 
       {/* ======================================================
           RADAR MINIMAP OVERLAY (Bottom-Left)

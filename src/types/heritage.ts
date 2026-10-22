@@ -51,7 +51,7 @@ export interface PanoramaHotspot {
   linkedSceneId?: string;
   thumbnailUrl?: string;
   distance?: string;
-  iconType?: "monument" | "waterfall" | "village" | "forest" | "scroll" | "info" | "viewpoint";
+  iconType?: "monument" | "waterfall" | "village" | "forest" | "scroll" | "info" | "viewpoint" | "walk";
 }
 
 export interface PanoramaScene {
