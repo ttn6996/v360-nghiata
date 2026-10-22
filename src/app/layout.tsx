@@ -1,5 +1,19 @@
 import type { Metadata } from "next";
+import { Playfair_Display, Be_Vietnam_Pro } from "next/font/google";
 import "./globals.css";
+
+const playfair = Playfair_Display({
+  subsets: ["vietnamese", "latin"],
+  variable: "--font-display",
+  display: "swap",
+});
+
+const beVietnamPro = Be_Vietnam_Pro({
+  weight: ["300", "400", "500", "600", "700"],
+  subsets: ["vietnamese", "latin"],
+  variable: "--font-body",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://v360-nghiata.vn"),
@@ -61,15 +75,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="vi" data-scroll-behavior="smooth">
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin="anonymous"
-        />
-      </head>
-      <body>{children}</body>
+      <body className={`${playfair.variable} ${beVietnamPro.variable}`}>
+        {children}
+      </body>
     </html>
   );
 }
