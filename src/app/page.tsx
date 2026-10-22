@@ -33,7 +33,7 @@ import {
 export const metadata: Metadata = {
   title: "Nghĩa Tá — Khám Phá Di Sản & Cảnh Quan Du Lịch Định Hóa, Thái Nguyên",
   description:
-    "Cổng thông tin du lịch và tour không gian 360° xã Nghĩa Tá, huyện Định Hóa, tỉnh Thái Nguyên. Khám phá khu di tích lịch sử ATK Định Hóa, Thác Nàng Tiên và bản sắc văn hóa Tày, Nùng ngàn đời.",
+    "Cổng thông tin du lịch và Khám phá toàn cảnh không gian 360° xã Nghĩa Tá, huyện Định Hóa, tỉnh Thái Nguyên. Khám phá khu di tích lịch sử ATK Định Hóa, Thác Nàng Tiên và bản sắc văn hóa Tày, Nùng ngàn đời.",
 };
 
 export default function HomePage() {
@@ -93,8 +93,9 @@ export default function HomePage() {
 
               {/* Subtitle */}
               <p className="font-body text-base sm:text-lg md:text-xl text-white/90 leading-relaxed font-normal mb-8 max-w-2xl drop-shadow">
-                Hành trình đưa bạn khám phá không gian 360° vùng đất cội nguồn cách mạng ATK Định Hóa,
-                ngắm dải lụa trắng Thác Nàng Tiên và hòa mình vào nếp nhà sàn thanh bình của đồng bào Tày, Nùng.
+                Hành trình đưa bạn khám phá không gian 360° vùng đất cội nguồn
+                cách mạng ATK Định Hóa, ngắm dải lụa trắng Thác Nàng Tiên và hòa
+                mình vào nếp nhà sàn thanh bình của đồng bào Tày, Nùng.
               </p>
 
               {/* Quick Discovery Search Bar */}
@@ -127,7 +128,7 @@ export default function HomePage() {
                   className="px-6 py-3.5 rounded-xl bg-[#dca354] hover:bg-[#edb86e] text-[#0b0f0d] font-bold text-base flex items-center justify-center gap-2.5 shadow-xl shadow-[#dca354]/25 transition-all hover:scale-105 active:scale-95"
                 >
                   <Camera size={19} strokeWidth={2} />
-                  <span>Trải Nghiệm Tour 360°</span>
+                  <span>Trải Nghiệm Khám phá toàn cảnh</span>
                 </Link>
 
                 <Link
@@ -147,8 +148,12 @@ export default function HomePage() {
                   <Landmark size={20} />
                 </div>
                 <div>
-                  <span className="block font-bold text-sm text-white">ATK Định Hóa</span>
-                  <span className="text-xs text-white/70">Thủ đô kháng chiến</span>
+                  <span className="block font-bold text-sm text-white">
+                    ATK Định Hóa
+                  </span>
+                  <span className="text-xs text-white/70">
+                    Thủ đô kháng chiến
+                  </span>
                 </div>
               </div>
 
@@ -157,8 +162,12 @@ export default function HomePage() {
                   <TreePine size={20} />
                 </div>
                 <div>
-                  <span className="block font-bold text-sm text-white">Thác Nàng Tiên</span>
-                  <span className="text-xs text-white/70">Hồ ngọc giữa núi đá</span>
+                  <span className="block font-bold text-sm text-white">
+                    Thác Nàng Tiên
+                  </span>
+                  <span className="text-xs text-white/70">
+                    Hồ ngọc giữa núi đá
+                  </span>
                 </div>
               </div>
 
@@ -167,8 +176,12 @@ export default function HomePage() {
                   <Users size={20} />
                 </div>
                 <div>
-                  <span className="block font-bold text-sm text-white">Bản Làng Tày</span>
-                  <span className="text-xs text-white/70">Nhà sàn gỗ cổ truyền</span>
+                  <span className="block font-bold text-sm text-white">
+                    Bản Làng Tày
+                  </span>
+                  <span className="text-xs text-white/70">
+                    Nhà sàn gỗ cổ truyền
+                  </span>
                 </div>
               </div>
 
@@ -177,8 +190,12 @@ export default function HomePage() {
                   <Sparkles size={20} />
                 </div>
                 <div>
-                  <span className="block font-bold text-sm text-white">Hát Then Đàn Tính</span>
-                  <span className="text-xs text-white/70">Di sản nhân loại</span>
+                  <span className="block font-bold text-sm text-white">
+                    Hát Then Đàn Tính
+                  </span>
+                  <span className="text-xs text-white/70">
+                    Di sản nhân loại
+                  </span>
                 </div>
               </div>
             </div>
@@ -206,8 +223,9 @@ export default function HomePage() {
                   Khám Phá Nghĩa Tá Qua Góc Nhìn 360°
                 </h2>
                 <p className="text-sm md:text-base text-[#a9a69b] max-w-2xl mt-2 font-body">
-                  Kéo chuột để xoay quanh 360 độ, cuộn để phóng to chi tiết và nhấp vào các điểm chạm (hotspots)
-                  để khám phá những thắng cảnh biểu tượng của xã Nghĩa Tá, huyện Định Hóa, tỉnh Thái Nguyên.
+                  Kéo chuột để xoay quanh 360 độ, cuộn để phóng to chi tiết và
+                  nhấp vào các điểm chạm (hotspots) để khám phá những thắng cảnh
+                  biểu tượng của xã Nghĩa Tá, huyện Định Hóa, tỉnh Thái Nguyên.
                 </p>
               </div>
 
@@ -268,7 +286,10 @@ export default function HomePage() {
                 className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#b37322] hover:text-[#965f1a] transition-colors group"
               >
                 <span>Xem Tất Cả Điểm Đến</span>
-                <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+                <ArrowRight
+                  size={16}
+                  className="group-hover:translate-x-1 transition-transform"
+                />
               </Link>
             </div>
 
@@ -312,12 +333,10 @@ export default function HomePage() {
                   <div className="pt-4 border-t border-[var(--border-subtle)] flex items-center justify-between">
                     <div className="flex items-center gap-4 text-xs text-[var(--text-muted)] font-mono">
                       <span className="flex items-center gap-1.5">
-                        <Clock size={14} className="text-[#b37322]" />
-                        2 - 3 giờ
+                        <Clock size={14} className="text-[#b37322]" />2 - 3 giờ
                       </span>
                       <span className="flex items-center gap-1.5">
-                        <Car size={14} className="text-[#b37322]" />
-                        Ô tô, xe máy
+                        <Car size={14} className="text-[#b37322]" />Ô tô, xe máy
                       </span>
                     </div>
 
@@ -326,7 +345,10 @@ export default function HomePage() {
                       className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#b37322] hover:text-[#965f1a] group/btn"
                     >
                       <span>Khám phá chi tiết</span>
-                      <ArrowRight size={14} className="group-hover/btn:translate-x-1 transition-transform" />
+                      <ArrowRight
+                        size={14}
+                        className="group-hover/btn:translate-x-1 transition-transform"
+                      />
                     </Link>
                   </div>
                 </div>
@@ -352,7 +374,9 @@ export default function HomePage() {
                     <div className="flex-1 flex flex-col justify-between py-1">
                       <div>
                         <span className="text-[11px] font-semibold text-[#b37322] uppercase tracking-wider block mb-1">
-                          {site.category === "thang-canh-tu-nhien" ? "Thắng Cảnh" : "Bản Làng"}
+                          {site.category === "thang-canh-tu-nhien"
+                            ? "Thắng Cảnh"
+                            : "Bản Làng"}
                         </span>
                         <h4 className="font-display font-bold text-base sm:text-lg text-[var(--text-primary)] group-hover:text-[#b37322] transition-colors line-clamp-1">
                           {site.title}
@@ -407,7 +431,10 @@ export default function HomePage() {
                 className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#b37322] hover:text-[#965f1a] transition-colors group"
               >
                 <span>Xem Tất Cả Bài Viết</span>
-                <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+                <ArrowRight
+                  size={16}
+                  className="group-hover:translate-x-1 transition-transform"
+                />
               </Link>
             </div>
 
@@ -482,8 +509,9 @@ export default function HomePage() {
                 Gợi Ý Lịch Trình Khám Phá Nghĩa Tá
               </h2>
               <p className="text-sm sm:text-base text-[#a9a69b]">
-                Những lộ trình được thiết kế chu đáo giúp bạn cảm nhận trọn vẹn bề dày lịch sử kháng chiến
-                và không gian sinh thái hoang sơ của vùng đất Định Hóa, Thái Nguyên.
+                Những lộ trình được thiết kế chu đáo giúp bạn cảm nhận trọn vẹn
+                bề dày lịch sử kháng chiến và không gian sinh thái hoang sơ của
+                vùng đất Định Hóa, Thái Nguyên.
               </p>
             </div>
 
@@ -498,7 +526,9 @@ export default function HomePage() {
                       <span className="px-3 py-1 rounded-full text-xs font-semibold bg-[#dca354]/20 text-[#dca354] border border-[#dca354]/40">
                         {itinerary.duration}
                       </span>
-                      <span className="text-xs text-[#a9a69b]">Tuyến số 0{idx + 1}</span>
+                      <span className="text-xs text-[#a9a69b]">
+                        Tuyến số 0{idx + 1}
+                      </span>
                     </div>
 
                     <h3 className="font-display text-2xl font-bold text-white mb-2">
@@ -516,7 +546,9 @@ export default function HomePage() {
                           <span className="w-5 h-5 rounded-full bg-[#1c382b] border border-[#dca354] text-[#dca354] text-xs font-bold flex items-center justify-center flex-shrink-0 mt-0.5">
                             {i + 1}
                           </span>
-                          <span className="text-sm text-white/85 leading-relaxed">{stop}</span>
+                          <span className="text-sm text-white/85 leading-relaxed">
+                            {stop}
+                          </span>
                         </div>
                       ))}
                     </div>
@@ -526,7 +558,7 @@ export default function HomePage() {
                     href="/kham-pha"
                     className="w-full py-3 rounded-xl bg-white/10 hover:bg-[#dca354] hover:text-[#0b0f0d] border border-white/20 text-center text-sm font-semibold transition-all active:scale-95"
                   >
-                    Bắt Đầu Chuyến Đi 360°
+                    Bắt Đầu Chuyến Đi
                   </Link>
                 </div>
               ))}

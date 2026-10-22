@@ -26,7 +26,7 @@ export default function DiTichPage() {
         >
           <div className="absolute inset-0 opacity-25 pointer-events-none">
             <Image
-              src="/hero_nghia_ta_1792659715500.jpg"
+              src="/images/hero/hero-nghia-ta.jpg"
               alt="Cảnh quan di tích Nghĩa Tá"
               fill
               className="object-cover"

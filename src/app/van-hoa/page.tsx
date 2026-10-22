@@ -28,7 +28,7 @@ export default function VanHoaPage() {
         >
           <div className="absolute inset-0 opacity-25 pointer-events-none">
             <Image
-              src="/ban_lang_tay_1792659809809.jpg"
+              src="/images/destinations/ban-lang-tay.jpg"
               alt="Văn hóa bản làng Nghĩa Tá"
               fill
               className="object-cover"

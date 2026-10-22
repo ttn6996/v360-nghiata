@@ -54,7 +54,7 @@ export default function PanoramaMinimap({
       {!isCollapsed && (
         <div className="p-3">
           <div className="relative w-full h-44 rounded-lg overflow-hidden bg-[#16231d] border border-white/10 shadow-inner">
-            {/* Stylized Topographic Contour Lines & River Background */}
+            {/* Stylized Topographic ConKhám phá toàn cảnhLines & River Background */}
             <svg
               className="absolute inset-0 w-full h-full opacity-35"
               viewBox="0 0 200 150"
@@ -98,7 +98,12 @@ export default function PanoramaMinimap({
                 transformOrigin: "center center",
               }}
             >
-              <svg width="120" height="120" viewBox="0 0 120 120" className="overflow-visible">
+              <svg
+                width="120"
+                height="120"
+                viewBox="0 0 120 120"
+                className="overflow-visible"
+              >
                 <defs>
                   <radialGradient id="fovConeGrad" cx="50%" cy="50%" r="50%">
                     <stop offset="0%" stopColor="#dca354" stopOpacity="0.8" />

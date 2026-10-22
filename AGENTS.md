@@ -48,7 +48,7 @@
   - Do not invent historical facts, battle chronologies, landmark names, coordinates, or ethnic traditions.
   - Clearly distinguish between **verified local facts** and **project assumptions or placeholders**.
 - **Transparency on 360° Assets:**
-  - Never claim a real interactive 360° tour is complete when only placeholder equirectangular panoramas or mock coordinates are in use.
+  - Never claim a real interactive 360° Khám phá toàn cảnhis complete when only placeholder equirectangular panoramas or mock coordinates are in use.
   - Mark placeholder assets clearly in code and development UI with an explicit badge: `[DEMO / PLACEHOLDER ASSET]`.
 - **Authentic & Licensed Media:**
   - Use authentic, properly licensed imagery or high-craft SVG compositions. Avoid broken stock photo links (`via.placeholder.com` or broken Unsplash URLs).

@@ -94,7 +94,7 @@ export default function PanoramaHelpModal({
               <h3 className="font-display text-lg md:text-xl font-bold text-[#fbf9f5]">
                 {isEn
                   ? "How to Explore 360° Virtual Tour"
-                  : "Hướng Dẫn Trải Nghiệm Tour Ảo 360°"}
+                  : "Hướng Dẫn Trải Nghiệm Khám phá toàn cảnh"}
               </h3>
             </div>
           </div>

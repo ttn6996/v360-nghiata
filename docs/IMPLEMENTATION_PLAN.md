@@ -3,7 +3,7 @@
 **Project:** V360 Nghĩa Tá (Định Hóa, Thái Nguyên)  
 **Document Status:** Phased Engineering Roadmap  
 **Target Architecture:** Next.js App Router, TypeScript, Tailwind CSS  
-**Version:** 1.0.0  
+**Version:** 1.0.0
 
 ---
 
@@ -36,6 +36,7 @@ gantt
 ## 2. Phase-by-Phase Execution Breakdown
 
 ### Phase 1: Project Scaffolding & Design Token Setup
+
 - **Goal:** Initialize clean, production-ready Next.js App Router project with TypeScript and Tailwind CSS.
 - **Tasks:**
   1. Initialize Next.js in repository root with TypeScript, ESLint, and Tailwind CSS.
@@ -44,6 +45,7 @@ gantt
   4. Verify project rules in `AGENTS.md` and installed skills in `.agents/skills/`.
 
 ### Phase 2: Base Layout & Interactive Primitives
+
 - **Goal:** Build the global application shell and tactile UI primitives.
 - **Tasks:**
   1. Root layout with metadata, `<html lang="vi">`, semantic `<header>`, `<main>`, and `<footer>`.
@@ -52,6 +54,7 @@ gantt
   4. Ensure all primitives support the 8-state interactive feedback cycle.
 
 ### Phase 3: Content Schemas & Structured Datasets
+
 - **Goal:** Define typed data structures for Points of Interest (POIs), 360 scenes, and cultural stories.
 - **Tasks:**
   1. Define TypeScript interfaces:
@@ -63,6 +66,7 @@ gantt
      - Use high-fidelity local or CC0 demo panorama assets.
 
 ### Phase 4: Cinematic Landing Page (`/`)
+
 - **Goal:** Deliver an emotional, high-craft editorial entrance to Nghĩa Tá.
 - **Tasks:**
   1. Hero section: Atmospheric landscape presentation, typography scale, primary CTA into `/kham-pha`.
@@ -71,7 +75,8 @@ gantt
   4. Transparent Data Declaration banner.
 
 ### Phase 5: 360° Panorama Viewer Evaluation & Integration (`/kham-pha`)
-- **Goal:** Provide a smooth, touch-friendly 360° virtual tour shell.
+
+- **Goal:** Provide a smooth, touch-friendly 360° virtual Khám phá toàn cảnhshell.
 - **Evaluation Mandate:**
   - Evaluate **Pannellum** vs. **Marzipano** based on bundle weight, mobile touch performance, WebGL fallback, and React integration.
   - Wrap the viewer in a client-only component loaded via `next/dynamic` (`ssr: false`) to keep initial page loads instant.
@@ -81,6 +86,7 @@ gantt
   3. Implement bottom thumbnail drawer for scene switching.
 
 ### Phase 6: Directory, Detail & Cultural Archive (`/di-tich`, `/van-hoa`)
+
 - **Goal:** Complete content routes and deep-dive pages.
 - **Tasks:**
   1. `/di-tich`: Grid with category tabs and verification status filter.
@@ -89,6 +95,7 @@ gantt
   4. `/gioi-thieu`: About page detailing methodology and data attribution.
 
 ### Phase 7: Accessibility Audit, Performance Optimization & Verification
+
 - **Goal:** Verify compliance with all performance, accessibility, and anti-slop standards.
 - **Tasks:**
   1. Run WCAG 2.2 AA audit using `.agents/skills/accessibility-audit/SKILL.md`.
@@ -100,22 +107,23 @@ gantt
 
 ## 3. Dependency Evaluation Matrix
 
-| Dependency | Category | Proposed Role | Status | Evaluation Criteria |
-| :--- | :--- | :--- | :--- | :--- |
-| **`next`** | Core | Framework (App Router) | **Approved** | Industry standard for Server Components & SEO |
-| **`react` & `react-dom`** | Core | UI Library | **Approved** | React 19 / 18 LTS |
-| **`typescript`** | Core | Type safety | **Approved** | Strict mode enabled |
-| **`tailwindcss`** | Styling | Utility CSS & Token mapping | **Approved** | Zero-runtime CSS |
-| **`lucide-react`** | Icons | SVG Vector Icons | **Approved** | Clean, consistent 1.5px/2px vector stroke |
-| **`pannellum`** or **`marzipano`** | 360 Viewer | Equirectangular 360 sphere rendering | **Pending Phase 5** | Evaluate bundle size, WebGL touch stability, and mobile memory usage |
-| **`motion` (Motion for React)** | Animation | Scroll storytelling & micro-interactions | **Pending Phase 4** | Evaluate whether native CSS transitions suffice before adding JS library |
-| **Mapbox / Leaflet** | Map | Spatial exploration | **Deferred** | Only needed if verified GIS/vector data is supplied by local authorities |
+| Dependency                         | Category   | Proposed Role                            | Status              | Evaluation Criteria                                                      |
+| :--------------------------------- | :--------- | :--------------------------------------- | :------------------ | :----------------------------------------------------------------------- |
+| **`next`**                         | Core       | Framework (App Router)                   | **Approved**        | Industry standard for Server Components & SEO                            |
+| **`react` & `react-dom`**          | Core       | UI Library                               | **Approved**        | React 19 / 18 LTS                                                        |
+| **`typescript`**                   | Core       | Type safety                              | **Approved**        | Strict mode enabled                                                      |
+| **`tailwindcss`**                  | Styling    | Utility CSS & Token mapping              | **Approved**        | Zero-runtime CSS                                                         |
+| **`lucide-react`**                 | Icons      | SVG Vector Icons                         | **Approved**        | Clean, consistent 1.5px/2px vector stroke                                |
+| **`pannellum`** or **`marzipano`** | 360 Viewer | Equirectangular 360 sphere rendering     | **Pending Phase 5** | Evaluate bundle size, WebGL touch stability, and mobile memory usage     |
+| **`motion` (Motion for React)**    | Animation  | Scroll storytelling & micro-interactions | **Pending Phase 4** | Evaluate whether native CSS transitions suffice before adding JS library |
+| **Mapbox / Leaflet**               | Map        | Spatial exploration                      | **Deferred**        | Only needed if verified GIS/vector data is supplied by local authorities |
 
 ---
 
 ## 4. Acceptance Criteria & Quality Gates
 
 Before declaring any phase complete:
+
 1. **Compilation & Type Check:**
    - `npx tsc --noEmit` must pass with **0 errors**.
 2. **Linting Standards:**

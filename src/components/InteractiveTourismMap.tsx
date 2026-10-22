@@ -288,7 +288,7 @@ export default function InteractiveTourismMap({ sites }: Props) {
                     className="w-full sm:flex-1 py-3 px-4 rounded-xl bg-[var(--accent-forest)] hover:bg-[#256a42] text-white font-medium text-sm flex items-center justify-center gap-2 shadow-md transition-all active:scale-95"
                   >
                     <Eye size={16} />
-                    <span>Trải Nghiệm 360°</span>
+                    <span>Trải Nghiệm Toàn cảnh</span>
                   </Link>
                 );
               })()}

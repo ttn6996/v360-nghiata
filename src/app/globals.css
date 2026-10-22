@@ -1,9 +1,6 @@
 @import "tailwindcss";
 
 
-/* ============================================================
-   V360 NGHĨA TÁ — DESIGN SYSTEM TOKENS (LIGHT / EDITORIAL)
-   ============================================================ */
 :root {
   /* Surface & Canvas */
   --bg-canvas: #fbf9f5;

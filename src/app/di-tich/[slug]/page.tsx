@@ -48,7 +48,9 @@ export default async function DiTichDetailPage({ params }: Props) {
 
   if (!site) notFound();
 
-  const relatedSites = heritageSites.filter((s) => s.id !== site.id).slice(0, 3);
+  const relatedSites = heritageSites
+    .filter((s) => s.id !== site.id)
+    .slice(0, 3);
 
   return (
     <>
@@ -82,8 +84,8 @@ export default async function DiTichDetailPage({ params }: Props) {
                 {site.category === "lich-su-cach-mang"
                   ? "Di Tích Lịch Sử Kháng Chiến"
                   : site.category === "thang-canh-tu-nhien"
-                  ? "Thắng Cảnh Sinh Thái"
-                  : "Bản Làng Văn Hóa"}
+                    ? "Thắng Cảnh Sinh Thái"
+                    : "Bản Làng Văn Hóa"}
               </span>
             </div>
 
@@ -195,18 +197,23 @@ export default async function DiTichDetailPage({ params }: Props) {
                     Khám Phá Không Gian 360°
                   </h3>
                   <p className="text-xs text-[#a9a69b] leading-relaxed mb-5">
-                    Trải nghiệm tương tác xoay đa chiều toàn cảnh {site.title} ngay trên thiết bị của bạn.
+                    Trải nghiệm tương tác xoay đa chiều toàn cảnh {site.title}{" "}
+                    ngay trên thiết bị của bạn.
                   </p>
                   {(() => {
-                    const linkedScene = panoramaScenes.find((p) => p.linkedSiteSlug === site.slug);
-                    const panoUrl = linkedScene ? `/kham-pha?scene=${linkedScene.id}` : "/kham-pha";
+                    const linkedScene = panoramaScenes.find(
+                      (p) => p.linkedSiteSlug === site.slug,
+                    );
+                    const panoUrl = linkedScene
+                      ? `/kham-pha?scene=${linkedScene.id}`
+                      : "/kham-pha";
                     return (
                       <Link
                         href={panoUrl}
                         className="w-full py-3 px-4 rounded-xl bg-[#dca354] hover:bg-[#edb86e] text-[#0b0f0d] font-bold text-sm flex items-center justify-center gap-2 shadow-lg transition-all"
                       >
                         <Eye size={16} />
-                        <span>Mở Tour 360°</span>
+                        <span>Khám phá toàn cảnh</span>
                       </Link>
                     );
                   })()}
@@ -245,7 +252,9 @@ export default async function DiTichDetailPage({ params }: Props) {
                       </div>
                       {site.travelTips.ticket && (
                         <div>
-                          <span className="text-[var(--text-muted)] block mb-1">Vé tham quan:</span>
+                          <span className="text-[var(--text-muted)] block mb-1">
+                            Vé tham quan:
+                          </span>
                           <span className="font-semibold text-[var(--text-primary)] text-sm">
                             {site.travelTips.ticket}
                           </span>
@@ -267,10 +276,13 @@ export default async function DiTichDetailPage({ params }: Props) {
 
                 {/* Contact support */}
                 <div className="p-5 rounded-2xl bg-[var(--bg-subtle)] text-xs text-[var(--text-secondary)]">
-                  <p className="font-bold text-[var(--text-primary)] mb-1">Ủy ban Nhân dân Xã Nghĩa Tá</p>
+                  <p className="font-bold text-[var(--text-primary)] mb-1">
+                    Ủy ban Nhân dân Xã Nghĩa Tá
+                  </p>
                   <p className="mb-2">Huyện Định Hóa, Tỉnh Thái Nguyên</p>
                   <p className="text-[11px] text-[var(--text-muted)]">
-                    Thông tin cẩm nang du lịch được bảo tồn và chia sẻ phục vụ du khách và đồng bào.
+                    Thông tin cẩm nang du lịch được bảo tồn và chia sẻ phục vụ
+                    du khách và đồng bào.
                   </p>
                 </div>
               </aside>
@@ -302,8 +314,8 @@ export default async function DiTichDetailPage({ params }: Props) {
                         {rel.category === "lich-su-cach-mang"
                           ? "Lịch Sử"
                           : rel.category === "thang-canh-tu-nhien"
-                          ? "Thắng Cảnh"
-                          : "Bản Làng"}
+                            ? "Thắng Cảnh"
+                            : "Bản Làng"}
                       </span>
                       <h4 className="font-display font-bold text-base text-[var(--text-primary)] group-hover:text-[#b37322] transition-colors line-clamp-1">
                         {rel.title}

@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     "du lịch Thái Nguyên",
     "di sản văn hóa",
     "360 độ",
-    "tour ảo 360",
+    "Khám phá toàn cảnh",
     "Tày",
     "Nùng",
     "nhà sàn",
@@ -59,7 +59,8 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Nghĩa Tá — Khám Phá Di Sản Định Hóa, Thái Nguyên",
-    description: "Tour ảo 360° và bản đồ di sản văn hóa Nghĩa Tá, Định Hóa, Thái Nguyên.",
+    description:
+      "Khám phá toàn cảnh và bản đồ di sản văn hóa Nghĩa Tá, Định Hóa, Thái Nguyên.",
     images: ["/images/hero/hero-nghia-ta.jpg"],
   },
   robots: {

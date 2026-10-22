@@ -3,12 +3,21 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState, useEffect, useRef } from "react";
-import { Menu, X, Map, BookOpen, Camera, Info, ChevronRight, Compass } from "lucide-react";
+import {
+  Menu,
+  X,
+  Map,
+  BookOpen,
+  Camera,
+  Info,
+  ChevronRight,
+  Compass,
+} from "lucide-react";
 import AmbientAudioPlayer from "@/components/AmbientAudioPlayer";
 
 const NAV_LINKS = [
   { href: "/", label: "Trang Chủ", icon: Compass },
-  { href: "/kham-pha", label: "Tour 360°", icon: Camera },
+  { href: "/kham-pha", label: "Khám phá toàn cảnh", icon: Camera },
   { href: "/di-tich", label: "Điểm Đến", icon: Map },
   { href: "/van-hoa", label: "Văn Hóa", icon: BookOpen },
   { href: "/gioi-thieu", label: "Giới Thiệu", icon: Info },
@@ -45,8 +54,6 @@ export default function SiteHeader() {
     };
   }, [isDrawerOpen]);
 
-
-
   return (
     <>
       <header
@@ -80,9 +87,7 @@ export default function SiteHeader() {
             >
               {NAV_LINKS.map(({ href, label }) => {
                 const isActive =
-                  href === "/"
-                    ? pathname === "/"
-                    : pathname.startsWith(href);
+                  href === "/" ? pathname === "/" : pathname.startsWith(href);
 
                 return (
                   <Link
@@ -109,7 +114,7 @@ export default function SiteHeader() {
                 className="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-1.5 md:py-2 rounded-xl bg-gradient-to-r from-[#dca354] via-[#edb86e] to-[#dca354] text-[#0b0f0d] text-xs font-bold shadow-md shadow-[#dca354]/20 transition-all hover:brightness-110 active:scale-95 whitespace-nowrap flex-shrink-0"
               >
                 <Camera size={14} strokeWidth={2.2} />
-                <span>Khám Phá 360°</span>
+                <span>Khám Phá</span>
               </Link>
 
               <button
@@ -169,9 +174,7 @@ export default function SiteHeader() {
               <nav className="space-y-1.5" aria-label="Menu di động">
                 {NAV_LINKS.map(({ href, label, icon: Icon }) => {
                   const isActive =
-                    href === "/"
-                      ? pathname === "/"
-                      : pathname.startsWith(href);
+                    href === "/" ? pathname === "/" : pathname.startsWith(href);
 
                   return (
                     <Link
@@ -188,7 +191,9 @@ export default function SiteHeader() {
                         {Icon && (
                           <Icon
                             size={16}
-                            className={isActive ? "text-[#dca354]" : "text-white/50"}
+                            className={
+                              isActive ? "text-[#dca354]" : "text-white/50"
+                            }
                           />
                         )}
                         <span>{label}</span>
@@ -207,7 +212,7 @@ export default function SiteHeader() {
                 className="w-full py-3 px-4 rounded-xl bg-gradient-to-r from-[#dca354] to-[#edb86e] text-[#0b0f0d] font-bold text-sm flex items-center justify-center gap-2 shadow-lg"
               >
                 <Camera size={16} />
-                <span>Mở Tour Ảo 360°</span>
+                <span>Khám phá toàn cảnh</span>
               </Link>
 
               <div className="text-[11px] text-[#a9a69b] text-center">

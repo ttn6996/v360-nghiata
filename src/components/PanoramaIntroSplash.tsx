@@ -216,10 +216,13 @@ export default function PanoramaIntroSplash({
         <button
           onClick={() => handleLaunch()}
           className="group relative px-8 sm:px-10 py-3 sm:py-3.5 rounded-full bg-gradient-to-r from-[#38bdf8] via-[#0284c7] to-[#0369a1] text-white font-extrabold text-sm sm:text-base tracking-wide shadow-[0_10px_30px_rgba(2,132,199,0.6)] border-2 border-white/90 hover:scale-105 active:scale-95 transition-all duration-200 flex items-center gap-2 animate-bounce-subtle cursor-pointer"
-          title="Nhấn để bắt đầu khám phá tour 360"
+          title="Nhấn để bắt đầu khám phá Khám phá toàn cảnh"
         >
           <span className="absolute -inset-1 rounded-full bg-sky-400 opacity-40 blur-md group-hover:opacity-75 transition-opacity pointer-events-none" />
-          <Sparkles size={18} className="text-amber-200 animate-spin-slow relative z-10" />
+          <Sparkles
+            size={18}
+            className="text-amber-200 animate-spin-slow relative z-10"
+          />
           <span className="relative z-10 drop-shadow">
             {selectedLang === "en" ? "Explore Now!" : "Khám Phá Ngay!"}
           </span>
@@ -239,7 +242,9 @@ export default function PanoramaIntroSplash({
             aria-label="Chọn Tiếng Việt"
           >
             <div className="w-full h-full bg-[#da251d] flex items-center justify-center">
-              <span className="text-amber-300 text-xs font-bold leading-none">★</span>
+              <span className="text-amber-300 text-xs font-bold leading-none">
+                ★
+              </span>
             </div>
           </button>
 
@@ -311,13 +316,7 @@ export default function PanoramaIntroSplash({
           })}
         </div>
 
-        {/* Helper Hint */}
-        <div className="mt-2 text-center">
-          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/30 backdrop-blur-md text-[11px] font-medium text-white/90 shadow">
-            <Globe size={12} className="text-sky-300" />
-            <span>Kéo xoay quả địa cầu hoặc bấm vào ảnh điểm đến để bay vào khám phá</span>
-          </span>
-        </div>
+        
       </footer>
     </div>
   );

@@ -221,7 +221,7 @@ export default function InteractivePanoramaViewer({
     [scenes, isWalking]
   );
 
-  // Auto-Guided Tour effect (run_auto_guild: cycles through scenes automatically every 25s)
+  // Auto-Guided Khám phá toàn cảnheffect (run_auto_guild: cycles through scenes automatically every 25s)
   useEffect(() => {
     if (!isAutoGuidedTour) return;
     const interval = setInterval(() => {
@@ -673,7 +673,7 @@ export default function InteractivePanoramaViewer({
       atk: "ATK Định Hóa",
       nature: "Thắng Cảnh",
       culture: "Bản Làng Tày",
-      autoTour: "Tour Tự Động",
+      autoTour: "Khám phá toàn cảnhTự Động",
       copied: "Đã chép link!",
     },
     en: {
@@ -908,7 +908,7 @@ export default function InteractivePanoramaViewer({
           <button
             onClick={handleShare}
             className="w-9 h-9 rounded-xl bg-black/60 hover:bg-black/80 border border-white/20 hover:border-[#dca354] backdrop-blur-md flex items-center justify-center text-white/90 transition-all active:scale-95 relative"
-            title="Chia sẻ tour ảo"
+            title="Chia sẻ Khám phá toàn cảnhảo"
           >
             {copiedShareLink ? <Check size={15} className="text-emerald-400" /> : <Share2 size={15} />}
           </button>
@@ -1074,7 +1074,7 @@ export default function InteractivePanoramaViewer({
       )}
 
       {/* ======================================================
-          VIRTUAL TOUR GUIDE AI MC (Thuyết Minh Viên Ảo Góc Màn Hình)
+          VIRTUAL Khám phá toàn cảnhGUIDE AI MC (Thuyết Minh Viên Ảo Góc Màn Hình)
          ====================================================== */}
       {showAudioGuide && activeScene.audioNarration && (
         <div className="absolute bottom-20 right-4 sm:bottom-24 sm:right-16 md:right-20 z-30 pointer-events-none animate-in fade-in slide-in-from-bottom-4">
@@ -1134,7 +1134,7 @@ export default function InteractivePanoramaViewer({
           <RotateCw size={17} className={autoRotate ? "animate-spin" : ""} />
         </button>
 
-        {/* Auto Guided Tour (run_auto_guild) */}
+        {/* Auto Guided Khám phá toàn cảnh(run_auto_guild) */}
         <button
           onClick={() => {
             const nextState = !isAutoGuidedTour;

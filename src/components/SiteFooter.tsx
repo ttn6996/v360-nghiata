@@ -56,7 +56,7 @@ export default function SiteFooter() {
                   href="/kham-pha"
                   className="text-[#a9a69b] hover:text-white transition-colors flex items-center gap-1.5"
                 >
-                  <span>Tour Toàn Cảnh 360°</span>
+                  <span>Khám phá toàn cảnhToàn Cảnh</span>
                 </Link>
               </li>
               <li>
