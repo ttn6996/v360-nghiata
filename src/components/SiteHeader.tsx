@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useState, useEffect, useRef } from "react";
-import { Menu, X, Map, BookOpen, Camera, Info, Compass, ChevronRight } from "lucide-react";
+import { Menu, X, Map, BookOpen, Camera, Info, ChevronRight } from "lucide-react";
 
 const NAV_LINKS = [
   { href: "/", label: "Trang Chủ" },

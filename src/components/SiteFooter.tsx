@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { MapPin, Mail, Phone, Compass, ExternalLink } from "lucide-react";
+import { MapPin, Mail } from "lucide-react";
 
 export default function SiteFooter() {
   return (
