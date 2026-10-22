@@ -1,176 +1,127 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Camera, AlertTriangle, Expand, ArrowLeft } from "lucide-react";
+import { ArrowLeft, Compass, Eye, MapPin, Sparkles, Info } from "lucide-react";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
-import { panoramaScenes } from "@/data/mockData";
+import InteractivePanoramaViewer from "@/components/InteractivePanoramaViewer";
+import { panoramaScenes, heritageSites } from "@/data/mockData";
 
 export const metadata: Metadata = {
-  title: "Không Gian Khám Phá 360°",
+  title: "Tour Khám Phá 360° Không Gian Nghĩa Tá · Định Hóa",
   description:
-    "Trải nghiệm tour ảo 360° khám phá cảnh quan và di tích lịch sử Nghĩa Tá, Chợ Đồn, Bắc Kạn.",
+    "Trải nghiệm tour ảo 360° tương tác toàn cảnh di tích lịch sử ATK Định Hóa, Thác Nàng Tiên và bản làng truyền thống xã Nghĩa Tá, Định Hóa, Thái Nguyên.",
 };
 
 export default function KhamPhaPage() {
-  const firstScene = panoramaScenes[0];
-
   return (
     <>
       <SiteHeader />
-      <main className="pt-16">
-        {/* Hero */}
-        <section
-          aria-labelledby="khampha-heading"
-          className="py-12 md:py-16"
-          style={{ background: "var(--bg-canvas)" }}
-        >
+      <main className="min-h-screen bg-[#0b0f0d] text-white pt-20">
+        {/* Top Breadcrumb & Title */}
+        <section className="py-8 md:py-12 border-b border-white/10 bg-[#121a15]">
           <div className="container-editorial">
             <Link
               href="/"
-              className="link-muted inline-flex items-center gap-1.5 text-sm mb-6 focus-visible:outline-none focus-visible:underline"
+              className="inline-flex items-center gap-1.5 text-xs md:text-sm text-white/60 hover:text-white transition-colors mb-4"
             >
-              <ArrowLeft size={14} strokeWidth={1.75} aria-hidden="true" />
-              Trang chủ
+              <ArrowLeft size={14} />
+              <span>Quay lại Trang Chủ</span>
             </Link>
 
-            <p
-              className="text-caption uppercase tracking-widest mb-3"
-              style={{ color: "var(--accent-heritage)" }}
-            >
-              Tour Ảo Tương Tác
-            </p>
-            <h1
-              id="khampha-heading"
-              className="text-h1 mb-4"
-              style={{ color: "var(--text-primary)" }}
-            >
-              Không Gian Khám Phá 360°
-            </h1>
-            <p
-              className="text-body max-w-2xl mb-2"
-              style={{ color: "var(--text-secondary)" }}
-            >
-              Trải nghiệm toàn cảnh không gian rừng núi, bản làng và di tích lịch
-              sử Nghĩa Tá qua ống kính 360° tương tác.
-            </p>
-          </div>
-        </section>
-
-        {/* 360 Viewer Placeholder */}
-        <section
-          aria-label="Không gian xem 360°"
-          style={{
-            background: "var(--accent-river)",
-            minHeight: "60vh",
-            position: "relative",
-          }}
-        >
-          {/* Demo notice banner */}
-          <div
-            className="absolute top-0 inset-x-0 z-10 py-2 px-4 flex items-center justify-center gap-2"
-            style={{
-              background: "rgba(168,98,20,0.9)",
-              backdropFilter: "blur(4px)",
-            }}
-            role="alert"
-          >
-            <AlertTriangle size={14} strokeWidth={1.75} style={{ color: "#fff" }} aria-hidden="true" />
-            <p className="text-xs font-medium" style={{ color: "#fff" }}>
-              [DEMO / PLACEHOLDER ASSET] — Trình xem 360° thực tế đang được phát triển. Ảnh toàn cảnh dưới đây là tài sản thử nghiệm.
-            </p>
-          </div>
-
-          {/* Placeholder viewer canvas */}
-          <div
-            className="flex items-center justify-center"
-            style={{ minHeight: "60vh", paddingTop: "48px" }}
-          >
-            <div className="text-center max-w-md px-6">
-              <div
-                className="w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6"
-                style={{
-                  background: "rgba(255,255,255,0.08)",
-                  border: "1px solid rgba(255,255,255,0.12)",
-                }}
-                aria-hidden="true"
-              >
-                <Camera size={32} strokeWidth={1.25} style={{ color: "#dca354" }} />
+            <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
+              <div>
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#1c382b] border border-[#dca354]/40 text-xs font-semibold uppercase tracking-wider text-[#dca354] mb-3">
+                  <Compass size={13} />
+                  <span>Không Gian Khám Phá Toàn Cảnh</span>
+                </div>
+                <h1 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-[#fbf9f5] tracking-tight">
+                  Tour Ảo 360° Xã Nghĩa Tá
+                </h1>
+                <p className="font-body text-sm md:text-base text-[#a9a69b] max-w-2xl mt-2">
+                  Xã Nghĩa Tá, Huyện Định Hóa, Tỉnh Thái Nguyên — Khám phá chiều sâu di sản và cảnh quan thiên nhiên qua góc nhìn thực tế ảo trực quan.
+                </p>
               </div>
-              <h2 className="text-h2 mb-3" style={{ color: "#f5f4ef" }}>
-                {firstScene.title}
-              </h2>
-              <p className="text-sm mb-1" style={{ color: "#a9a69b" }}>
-                {firstScene.subtitle}
-              </p>
-              <p className="text-sm leading-relaxed mb-6" style={{ color: "#737066" }}>
-                Trình xem 360° (Pannellum / Marzipano) sẽ được tích hợp tại đây
-                sau khi ảnh toàn cảnh thực tế từ Nghĩa Tá được chụp và xử lý.
-                Đang đánh giá thư viện dựa trên kích thước bundle, hiệu suất
-                cảm ứng và khả năng tương thích WebGL.
-              </p>
-              <div
-                className="inline-flex items-center gap-2 px-4 py-2 rounded text-sm"
-                style={{
-                  background: "rgba(220,163,84,0.15)",
-                  border: "1px solid rgba(220,163,84,0.3)",
-                  color: "#dca354",
-                }}
-              >
-                <Expand size={14} strokeWidth={1.75} aria-hidden="true" />
-                360° Viewer — Giai đoạn Phase 5
+
+              <div className="flex items-center gap-3 text-xs text-[#dca354] bg-white/5 border border-white/10 px-4 py-2.5 rounded-xl">
+                <Eye size={16} />
+                <span>Kéo thả để quan sát mọi hướng</span>
               </div>
             </div>
           </div>
         </section>
 
-        {/* Scene List */}
-        <section
-          aria-labelledby="scenes-heading"
-          className="py-12 md:py-16"
-          style={{ background: "var(--bg-surface-elevated)" }}
-        >
+        {/* Full-width 360 Exploration Canvas */}
+        <section className="py-6 md:py-10">
           <div className="container-editorial">
-            <h2
-              id="scenes-heading"
-              className="text-h2 mb-6"
-              style={{ color: "var(--text-primary)" }}
-            >
-              Danh sách Cảnh quan
-            </h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {panoramaScenes.map((scene) => (
-                <div
-                  key={scene.id}
-                  className="flex items-center gap-4 p-4 rounded"
-                  style={{
-                    background: "var(--bg-surface)",
-                    border: "1px solid var(--border-subtle)",
-                  }}
-                >
+            <InteractivePanoramaViewer
+              scenes={panoramaScenes}
+              height="75vh"
+              showSceneThumbnails={true}
+              className="border border-white/15"
+            />
+          </div>
+        </section>
+
+        {/* Destination Guide Cards below viewer */}
+        <section className="py-12 md:py-16 bg-[#101713] border-t border-white/10">
+          <div className="container-editorial">
+            <div className="mb-8">
+              <span className="text-xs font-semibold uppercase tracking-widest text-[#dca354] block mb-1">
+                Các Điểm Đến Trong Tour
+              </span>
+              <h2 className="font-display text-2xl md:text-3xl font-bold text-white">
+                Thông Tin Chi Tiết Điểm Khám Phá
+              </h2>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {panoramaScenes.map((scene) => {
+                const linkedSite = heritageSites.find(
+                  (s) => s.slug === scene.linkedSiteSlug
+                );
+
+                return (
                   <div
-                    className="w-12 h-12 rounded-sm flex items-center justify-center flex-shrink-0"
-                    style={{ background: "var(--accent-river)" }}
-                    aria-hidden="true"
+                    key={scene.id}
+                    className="p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-[#dca354]/50 transition-all flex flex-col justify-between"
                   >
-                    <Camera size={18} strokeWidth={1.5} style={{ color: "#dca354" }} />
+                    <div>
+                      <div className="flex items-center justify-between text-xs text-[#dca354] mb-2 font-mono">
+                        <span className="flex items-center gap-1">
+                          <MapPin size={12} />
+                          {scene.location.split(",")[0]}
+                        </span>
+                        <span>{scene.hotspots.length} Điểm Chạm</span>
+                      </div>
+
+                      <h3 className="font-display text-xl font-bold text-white mb-2">
+                        {scene.title}
+                      </h3>
+                      <p className="text-xs text-[#a9a69b] leading-relaxed mb-4">
+                        {scene.subtitle}
+                      </p>
+
+                      <div className="space-y-1.5 mb-6 text-xs text-white/80">
+                        {scene.hotspots.map((hs) => (
+                          <div key={hs.id} className="flex items-center gap-2">
+                            <span className="w-1.5 h-1.5 rounded-full bg-[#dca354]" />
+                            <span>{hs.label}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    {linkedSite && (
+                      <Link
+                        href={`/di-tich/${linkedSite.slug}`}
+                        className="w-full py-2.5 rounded-lg bg-[#1c382b] hover:bg-[#256a42] text-xs font-semibold text-center text-white transition-colors"
+                      >
+                        Đọc Cẩm Nang Di Tích ➔
+                      </Link>
+                    )}
                   </div>
-                  <div className="flex-1 min-w-0">
-                    <h3 className="text-h3 truncate" style={{ color: "var(--text-primary)" }}>
-                      {scene.title}
-                    </h3>
-                    <span className="badge-demo mt-1">
-                      <AlertTriangle size={9} aria-hidden="true" />
-                      Tài sản thử nghiệm
-                    </span>
-                  </div>
-                  <span
-                    className="text-caption flex-shrink-0"
-                    style={{ color: "var(--text-muted)" }}
-                  >
-                    {scene.hotspots.length} điểm nóng
-                  </span>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
         </section>

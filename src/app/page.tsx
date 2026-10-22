@@ -1,439 +1,503 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import {
   Camera,
-  Map,
-  BookOpen,
-  ArrowRight,
-  AlertTriangle,
-  CheckCircle,
+  MapPin,
   Compass,
-  TreePine,
+  ArrowRight,
+  Eye,
+  Calendar,
+  Sparkles,
+  ChevronRight,
   Landmark,
+  TreePine,
   Users,
-  type LucideIcon,
+  Clock,
+  Car,
 } from "lucide-react";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
-import { heritageSites, culturalArticles } from "@/data/mockData";
-import type { HeritageSiteCategory } from "@/types/heritage";
+import InteractivePanoramaViewer from "@/components/InteractivePanoramaViewer";
+import InteractiveTourismMap from "@/components/InteractiveTourismMap";
+import {
+  heritageSites,
+  panoramaScenes,
+  culturalArticles,
+  travelItineraries,
+} from "@/data/mockData";
 
 export const metadata: Metadata = {
-  title: "Trang Chủ — Khám Phá Di Sản Nghĩa Tá",
+  title: "V360 Nghĩa Tá — Khám Phá Di Sản & Cảnh Quan Du Lịch Định Hóa, Thái Nguyên",
   description:
-    "Hành trình khám phá không gian 360° và di sản văn hóa lịch sử xã Nghĩa Tá, Chợ Đồn, Bắc Kạn — vùng đất ATK cách mạng và văn hóa Tày, Nùng.",
-};
-
-const categoryLabel: Record<HeritageSiteCategory, string> = {
-  "lich-su-cach-mang": "Lịch sử Cách mạng",
-  "thang-canh-tu-nhien": "Thắng cảnh Tự nhiên",
-  "van-hoa-ban-lang": "Văn hóa Bản làng",
-};
-
-const categoryIcon: Record<HeritageSiteCategory, LucideIcon> = {
-  "lich-su-cach-mang": Landmark,
-  "thang-canh-tu-nhien": TreePine,
-  "van-hoa-ban-lang": Users,
+    "Cổng thông tin du lịch và tour không gian 360° xã Nghĩa Tá, huyện Định Hóa, tỉnh Thái Nguyên. Khám phá khu di tích lịch sử ATK Định Hóa, Thác Nàng Tiên và bản sắc văn hóa Tày, Nùng ngàn đời.",
 };
 
 export default function HomePage() {
+  const featuredSite = heritageSites[0]; // ATK Định Hóa
+  const secondarySites = heritageSites.slice(1);
+
   return (
     <>
       <SiteHeader />
-      <main>
+      <main className="min-h-screen bg-[var(--bg-canvas)] text-[var(--text-primary)]">
         {/* ======================================================
-            SECTION 1: CINEMATIC HERO
+            SECTION 1: CINEMATIC VISUAL HERO
            ====================================================== */}
         <section
-          aria-labelledby="hero-heading"
-          className="relative min-h-screen flex flex-col justify-end overflow-hidden"
-          style={{ background: "var(--accent-forest)" }}
+          aria-label="Cảnh sắc Nghĩa Tá"
+          className="relative min-h-[92vh] lg:min-h-screen flex items-center justify-center overflow-hidden"
         >
-          {/* Layered atmospheric gradient */}
-          <div
-            className="absolute inset-0"
-            aria-hidden="true"
-            style={{
-              background: `
-                radial-gradient(ellipse 70% 50% at 30% 60%, rgba(28,56,43,0.9) 0%, transparent 70%),
-                radial-gradient(ellipse 80% 60% at 80% 30%, rgba(34,53,66,0.7) 0%, transparent 65%),
-                linear-gradient(180deg, rgba(11,15,13,0.3) 0%, rgba(11,15,13,0.85) 100%)
-              `,
-            }}
-          />
-
-          {/* Topographic texture */}
-          <div
-            className="absolute inset-0 opacity-[0.04]"
-            aria-hidden="true"
-            style={{
-              backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%23ffffff' stroke-width='0.5'%3E%3Cellipse cx='30' cy='30' rx='28' ry='12'/%3E%3Cellipse cx='30' cy='30' rx='20' ry='8'/%3E%3Cellipse cx='30' cy='30' rx='12' ry='5'/%3E%3C/g%3E%3C/svg%3E")`,
-              backgroundSize: "60px 60px",
-            }}
-          />
-
-          {/* Decorative coordinate */}
-          <div
-            className="absolute top-24 right-6 md:right-12 text-right"
-            aria-hidden="true"
-          >
-            <p className="font-mono text-[0.625rem] tracking-widest opacity-50" style={{ color: "#a9a69b" }}>
-              22°09′22″N
-            </p>
-            <p className="font-mono text-[0.625rem] tracking-widest opacity-50" style={{ color: "#a9a69b" }}>
-              105°36′49″E
-            </p>
+          {/* Hero Background Image */}
+          <div className="absolute inset-0 z-0">
+            <Image
+              src="/images/hero/hero-nghia-ta.jpg"
+              alt="Toàn cảnh thung lũng Nghĩa Tá, Định Hóa, Thái Nguyên trong sương sớm"
+              fill
+              priority
+              quality={90}
+              className="object-cover object-center scale-105 animate-in fade-in duration-1000"
+              sizes="100vw"
+            />
+            {/* Cinematic Gradients for Readability */}
+            <div className="absolute inset-0 bg-gradient-to-t from-[#0b0f0d] via-[#0b0f0d]/40 to-black/40" />
+            <div className="absolute inset-0 bg-gradient-to-r from-[#0b0f0d]/80 via-transparent to-black/30" />
           </div>
 
           {/* Hero Content */}
-          <div className="container-editorial relative z-10 pb-16 pt-32 md:pb-24 md:pt-40">
-            <div className="max-w-2xl">
-              {/* Eyebrow */}
-              <div className="inline-flex items-center gap-2 mb-6 animate-fade-up" aria-hidden="true">
-                <span className="block w-8 h-px" style={{ background: "var(--accent-heritage)" }} />
-                <span className="text-caption uppercase tracking-widest" style={{ color: "var(--accent-heritage)" }}>
-                  Nghĩa Tá · Chợ Đồn · Bắc Kạn
+          <div className="container-editorial relative z-10 pt-28 pb-20 md:py-36 text-white">
+            <div className="max-w-3xl">
+              {/* Destination Tag */}
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#1c382b]/90 border border-[#dca354]/40 backdrop-blur-md mb-6 shadow-lg">
+                <Compass size={14} className="text-[#dca354]" />
+                <span className="text-xs font-semibold tracking-wider uppercase text-[#dca354]">
+                  Xã Nghĩa Tá · Định Hóa · Thái Nguyên
                 </span>
               </div>
 
-              {/* Main headline */}
-              <h1
-                id="hero-heading"
-                className="text-display mb-5 animate-fade-up delay-100"
-                style={{ color: "#f5f4ef" }}
-              >
-                Khám Phá{" "}
-                <span className="font-display italic" style={{ color: "#dca354" }}>
-                  Di Sản
-                </span>{" "}
-                &amp; Thiên Nhiên Nghĩa Tá
+              {/* Headline */}
+              <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.08] mb-6 drop-shadow-xl text-[#fbf9f5]">
+                Hồn Thiêng Chiến Khu, <br className="hidden sm:block" />
+                Kỳ Quan Đại Ngàn
               </h1>
 
-              {/* Lead paragraph */}
-              <p
-                className="text-body-lg mb-8 max-w-xl animate-fade-up delay-200"
-                style={{ color: "#a9a69b", lineHeight: 1.7 }}
-              >
-                Hành trình số vào vùng đất cách mạng ATK và rừng núi đại ngàn
-                Bắc Kạn — nơi lịch sử kháng chiến, văn hóa Tày, Nùng và thiên
-                nhiên nguyên sinh giao thoa qua từng thế hệ.
+              {/* Subtitle */}
+              <p className="font-body text-base sm:text-lg md:text-xl text-white/90 leading-relaxed font-normal mb-8 max-w-2xl drop-shadow">
+                Hành trình đưa bạn khám phá không gian 360° vùng đất cội nguồn cách mạng ATK Định Hóa,
+                ngắm dải lụa trắng Thác Nàng Tiên và hòa mình vào nếp nhà sàn thanh bình của đồng bào Tày, Nùng.
               </p>
 
-              {/* CTAs */}
-              <div className="flex flex-wrap items-center gap-3 animate-fade-up delay-300">
-                <Link href="/kham-pha" className="btn-heritage">
-                  <Camera size={16} strokeWidth={1.75} aria-hidden="true" />
-                  Khám Phá Toàn Cảnh 360°
+              {/* Dual Action CTAs */}
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
+                <Link
+                  href="/kham-pha"
+                  className="px-6 py-3.5 rounded-xl bg-[#dca354] hover:bg-[#edb86e] text-[#0b0f0d] font-bold text-base flex items-center justify-center gap-2.5 shadow-xl shadow-[#dca354]/25 transition-all hover:scale-105 active:scale-95"
+                >
+                  <Camera size={19} strokeWidth={2} />
+                  <span>Trải Nghiệm Tour 360°</span>
                 </Link>
-                <Link href="/di-tich" className="btn-outline-dark">
-                  <Map size={16} strokeWidth={1.75} aria-hidden="true" />
-                  Xem Di Tích &amp; Thắng Cảnh
+
+                <Link
+                  href="#ban-do-du-lich"
+                  className="px-6 py-3.5 rounded-xl bg-black/40 hover:bg-black/60 border border-white/25 hover:border-white/50 backdrop-blur-md text-white font-medium text-base flex items-center justify-center gap-2 transition-all"
+                >
+                  <MapPin size={18} className="text-[#dca354]" />
+                  <span>Bản Đồ Điểm Đến</span>
                 </Link>
               </div>
             </div>
-          </div>
 
-          {/* Scroll indicator */}
-          <div
-            className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-fade-in delay-500"
-            aria-hidden="true"
-          >
-            <span className="text-caption uppercase tracking-widest text-[0.5625rem]" style={{ color: "#737066" }}>
-              Cuộn xuống
-            </span>
-            <div
-              className="w-px h-8"
-              style={{
-                background: "linear-gradient(to bottom, var(--accent-heritage), transparent)",
-              }}
+            {/* Quick Destination Highlights Bar */}
+            <div className="mt-14 sm:mt-20 pt-6 border-t border-white/15 grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-xl bg-white/10 backdrop-blur-md flex items-center justify-center text-[#dca354]">
+                  <Landmark size={20} />
+                </div>
+                <div>
+                  <span className="block font-bold text-sm text-white">ATK Định Hóa</span>
+                  <span className="text-xs text-white/70">Thủ đô kháng chiến</span>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-xl bg-white/10 backdrop-blur-md flex items-center justify-center text-emerald-400">
+                  <TreePine size={20} />
+                </div>
+                <div>
+                  <span className="block font-bold text-sm text-white">Thác Nàng Tiên</span>
+                  <span className="text-xs text-white/70">Hồ ngọc giữa núi đá</span>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-xl bg-white/10 backdrop-blur-md flex items-center justify-center text-amber-300">
+                  <Users size={20} />
+                </div>
+                <div>
+                  <span className="block font-bold text-sm text-white">Bản Làng Tày</span>
+                  <span className="text-xs text-white/70">Nhà sàn gỗ cổ truyền</span>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-xl bg-white/10 backdrop-blur-md flex items-center justify-center text-sky-400">
+                  <Sparkles size={20} />
+                </div>
+                <div>
+                  <span className="block font-bold text-sm text-white">Hát Then Đàn Tính</span>
+                  <span className="text-xs text-white/70">Di sản nhân loại</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ======================================================
+            SECTION 2: REAL 360° PANORAMA SHOWCASE (Điểm Nhấn Trung Tâm)
+           ====================================================== */}
+        <section
+          aria-labelledby="pano-showcase-heading"
+          className="py-16 md:py-24 bg-[#0e1713] text-white relative"
+        >
+          <div className="container-editorial">
+            <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
+              <div>
+                <div className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-[#dca354] mb-2">
+                  <Camera size={15} />
+                  <span>Trải Nghiệm Toàn Cảnh Tương Tác</span>
+                </div>
+                <h2
+                  id="pano-showcase-heading"
+                  className="font-display text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-[#fbf9f5]"
+                >
+                  Khám Phá Nghĩa Tá Qua Góc Nhìn 360°
+                </h2>
+                <p className="text-sm md:text-base text-[#a9a69b] max-w-2xl mt-2 font-body">
+                  Kéo chuột để xoay quanh 360 độ, cuộn để phóng to chi tiết và nhấp vào các điểm chạm (hotspots)
+                  để khám phá những thắng cảnh biểu tượng của Nghĩa Tá, Định Hóa.
+                </p>
+              </div>
+
+              <Link
+                href="/kham-pha"
+                className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white/10 hover:bg-[#1c382b] border border-white/20 text-sm font-semibold text-white transition-all hover:border-[#dca354]"
+              >
+                <span>Mở Phòng Chiếu Toàn Màn Hình</span>
+                <ArrowRight size={15} />
+              </Link>
+            </div>
+
+            {/* Embedded Live 360 Viewer */}
+            <InteractivePanoramaViewer
+              scenes={panoramaScenes}
+              height="580px"
+              showSceneThumbnails={true}
             />
           </div>
         </section>
 
         {/* ======================================================
-            SECTION 2: CURATED EXPLORER PREVIEW
+            SECTION 3: KHÁM PHÁ ĐIỂM ĐẾN (Asymmetric Magazine Layout)
            ====================================================== */}
         <section
-          aria-labelledby="explore-heading"
-          className="py-16 md:py-24"
-          style={{ background: "var(--bg-canvas)" }}
+          aria-labelledby="destinations-heading"
+          className="py-16 md:py-24 bg-[var(--bg-canvas)]"
         >
           <div className="container-editorial">
-            <header className="mb-10 md:mb-14 max-w-lg">
-              <p className="text-caption uppercase tracking-widest mb-3" style={{ color: "var(--accent-heritage)" }}>
-                Điểm Đến Nổi Bật
-              </p>
-              <h2 id="explore-heading" className="text-h1" style={{ color: "var(--text-primary)" }}>
-                Bản Đồ Điểm Chạm
-              </h2>
-              <p className="text-body mt-3" style={{ color: "var(--text-secondary)" }}>
-                Các địa danh di sản và thắng cảnh tiêu biểu của Nghĩa Tá,
-                được phân loại theo lịch sử, thiên nhiên và văn hóa.
-              </p>
-            </header>
+            {/* Header */}
+            <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-12 gap-4">
+              <div>
+                <span className="text-xs font-semibold uppercase tracking-widest text-[#b37322] block mb-2">
+                  Danh lam & Di tích
+                </span>
+                <h2
+                  id="destinations-heading"
+                  className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-[var(--text-primary)]"
+                >
+                  Những Điểm Đến Không Thể Bỏ Lỡ
+                </h2>
+              </div>
+              <Link
+                href="/di-tich"
+                className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#b37322] hover:text-[#965f1a] transition-colors group"
+              >
+                <span>Xem Tất Cả Điểm Đến</span>
+                <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+              </Link>
+            </div>
 
-            {/* Heritage Site Cards */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5">
-              {heritageSites.map((site, idx) => {
-                const Icon = categoryIcon[site.category];
-                return (
-                  <article
-                    key={site.id}
-                    className={`relative group rounded overflow-hidden flex flex-col ${
-                      idx === 0 ? "sm:col-span-2 sm:row-span-2" : ""
-                    }`}
-                    style={{
-                      background: "var(--bg-surface-elevated)",
-                      border: "1px solid var(--border-subtle)",
-                      minHeight: idx === 0 ? "320px" : "200px",
-                    }}
-                  >
-                    {/* Color block header */}
-                    <div
-                      className="relative flex-shrink-0 flex items-end p-4"
-                      style={{
-                        background: `linear-gradient(135deg, ${site.thumbnailColor} 0%, color-mix(in srgb, ${site.thumbnailColor} 60%, #0b0f0d) 100%)`,
-                        height: idx === 0 ? "180px" : "110px",
-                      }}
-                    >
-                      <div
-                        className="absolute top-3 left-3 w-8 h-8 rounded-sm flex items-center justify-center"
-                        style={{ background: "rgba(0,0,0,0.25)", backdropFilter: "blur(4px)" }}
-                        aria-hidden="true"
-                      >
-                        <Icon size={16} strokeWidth={1.75} style={{ color: "rgba(255,255,255,0.8)" }} />
-                      </div>
-                      <div className="absolute top-3 right-3">
-                        {site.status === "verified" ? (
-                          <span className="badge-verified">
-                            <CheckCircle size={10} aria-hidden="true" />
-                            Đã xác minh
-                          </span>
-                        ) : (
-                          <span className="badge-demo">
-                            <AlertTriangle size={10} aria-hidden="true" />
-                            Thử nghiệm
-                          </span>
-                        )}
-                      </div>
-                      <span className="text-caption" style={{ color: "rgba(255,255,255,0.6)" }}>
-                        {categoryLabel[site.category]}
+            {/* Asymmetrical Grid: 1 Large Hero Card + 3 Secondary Cards */}
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 md:gap-8">
+              {/* Featured Landmark Hero Card (7 Cols) */}
+              <div className="lg:col-span-7 group relative rounded-2xl overflow-hidden bg-[var(--bg-surface)] border border-[var(--border-subtle)] shadow-lg flex flex-col justify-between">
+                <div className="relative h-72 sm:h-96 w-full overflow-hidden">
+                  <Image
+                    src={featuredSite.imageUrl}
+                    alt={featuredSite.title}
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-700"
+                    sizes="(max-width: 1024px) 100vw, 60vw"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent" />
+                  <div className="absolute top-4 left-4">
+                    <span className="px-3 py-1.5 rounded-full text-xs font-semibold bg-[#1c382b]/90 text-[#dca354] border border-[#dca354]/30 backdrop-blur-md">
+                      Di Tích Lịch Sử Quốc Gia
+                    </span>
+                  </div>
+                  <div className="absolute bottom-4 left-4 right-4 text-white">
+                    <p className="text-xs font-medium text-[#dca354] mb-1">
+                      {featuredSite.locationName}
+                    </p>
+                    <h3 className="font-display text-2xl sm:text-3xl font-bold mb-1">
+                      {featuredSite.title}
+                    </h3>
+                    <p className="text-xs sm:text-sm text-white/80 line-clamp-1">
+                      {featuredSite.subtitle}
+                    </p>
+                  </div>
+                </div>
+
+                <div className="p-6 md:p-8 flex-1 flex flex-col justify-between">
+                  <p className="text-sm text-[var(--text-secondary)] leading-relaxed mb-6">
+                    {featuredSite.description}
+                  </p>
+
+                  <div className="pt-4 border-t border-[var(--border-subtle)] flex items-center justify-between">
+                    <div className="flex items-center gap-4 text-xs text-[var(--text-muted)]">
+                      <span className="flex items-center gap-1.5">
+                        <Clock size={14} className="text-[#b37322]" />
+                        2 - 3 giờ
+                      </span>
+                      <span className="flex items-center gap-1.5">
+                        <Car size={14} className="text-[#b37322]" />
+                        Ô tô, xe máy
                       </span>
                     </div>
 
-                    {/* Card body */}
-                    <div className="flex flex-col flex-1 p-4">
-                      <h3
-                        className="text-h3 mb-1.5 group-hover:text-[var(--accent-heritage)] transition-colors duration-150"
-                        style={{ color: "var(--text-primary)" }}
-                      >
-                        {site.title}
-                      </h3>
-                      <p className="text-sm leading-relaxed flex-1 mb-4" style={{ color: "var(--text-secondary)" }}>
-                        {site.description.slice(0, idx === 0 ? 180 : 90)}
-                        {site.description.length > (idx === 0 ? 180 : 90) ? "…" : ""}
-                      </p>
-                      {site.coordinates && (
-                        <p className="text-caption mb-3" style={{ color: "var(--text-muted)" }}>
-                          <Compass size={11} strokeWidth={1.75} className="inline mr-1" aria-hidden="true" />
-                          {site.coordinates.lat.toFixed(4)}°N, {site.coordinates.lng.toFixed(4)}°E
+                    <Link
+                      href={`/di-tich/${featuredSite.slug}`}
+                      className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#b37322] hover:text-[#965f1a]"
+                    >
+                      <span>Khám phá</span>
+                      <ArrowRight size={14} />
+                    </Link>
+                  </div>
+                </div>
+              </div>
+
+              {/* Secondary Cards Stack (5 Cols) */}
+              <div className="lg:col-span-5 flex flex-col gap-6">
+                {secondarySites.map((site) => (
+                  <article
+                    key={site.id}
+                    className="group rounded-2xl overflow-hidden bg-[var(--bg-surface)] border border-[var(--border-subtle)] p-4 flex gap-4 hover:border-[#b37322]/40 shadow-sm transition-all hover:shadow-md"
+                  >
+                    <div className="relative w-32 sm:w-40 h-28 sm:h-32 rounded-xl overflow-hidden flex-shrink-0">
+                      <Image
+                        src={site.imageUrl}
+                        alt={site.title}
+                        fill
+                        className="object-cover group-hover:scale-105 transition-transform duration-500"
+                        sizes="160px"
+                      />
+                    </div>
+
+                    <div className="flex-1 flex flex-col justify-between py-1">
+                      <div>
+                        <span className="text-[11px] font-semibold text-[#b37322] uppercase tracking-wider block mb-1">
+                          {site.category === "thang-canh-tu-nhien" ? "Thắng Cảnh" : "Bản Làng"}
+                        </span>
+                        <h4 className="font-display font-bold text-base sm:text-lg text-[var(--text-primary)] group-hover:text-[#b37322] transition-colors line-clamp-1">
+                          {site.title}
+                        </h4>
+                        <p className="text-xs text-[var(--text-secondary)] line-clamp-2 mt-1">
+                          {site.subtitle}
                         </p>
-                      )}
-                      <Link
-                        href={`/di-tich/${site.slug}`}
-                        className="link-heritage inline-flex items-center gap-1.5 text-sm font-medium focus-visible:outline-none focus-visible:underline"
-                        aria-label={`Xem chi tiết: ${site.title}`}
-                      >
-                        Khám phá thêm
-                        <ArrowRight
-                          size={14}
-                          strokeWidth={1.75}
-                          className="group-hover:translate-x-0.5 transition-transform duration-150"
-                          aria-hidden="true"
-                        />
-                      </Link>
+                      </div>
+
+                      <div className="flex items-center justify-between pt-2">
+                        <span className="text-[11px] text-[var(--text-muted)]">
+                          {site.locationName.split(",")[0]}
+                        </span>
+                        <Link
+                          href={`/di-tich/${site.slug}`}
+                          className="text-xs font-semibold text-[#b37322] flex items-center gap-1"
+                        >
+                          <span>Chi tiết</span>
+                          <ChevronRight size={12} />
+                        </Link>
+                      </div>
                     </div>
                   </article>
-                );
-              })}
-            </div>
-
-            <div className="mt-8 text-center">
-              <Link href="/di-tich" className="btn-outline">
-                Xem toàn bộ danh mục di tích
-                <ArrowRight size={15} strokeWidth={1.75} aria-hidden="true" />
-              </Link>
+                ))}
+              </div>
             </div>
           </div>
         </section>
 
         {/* ======================================================
-            SECTION 3: HISTORICAL NARRATIVE
+            SECTION 4: BẢN ĐỒ DU LỊCH SỐ TƯƠNG TÁC
            ====================================================== */}
         <section
-          aria-labelledby="history-heading"
-          className="py-16 md:py-24"
-          style={{ background: "var(--bg-surface-elevated)" }}
+          id="ban-do-du-lich"
+          aria-labelledby="tourism-map-heading"
+          className="py-16 md:py-24 bg-[var(--bg-subtle)]/40 scroll-mt-20"
         >
           <div className="container-editorial">
-            <div className="divider mb-12" aria-hidden="true" />
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-center">
-              {/* Text column */}
-              <div>
-                <p className="text-caption uppercase tracking-widest mb-3" style={{ color: "var(--accent-heritage)" }}>
-                  Dòng Chảy Lịch Sử
-                </p>
-                <h2 id="history-heading" className="text-h1 mb-5" style={{ color: "var(--text-primary)" }}>
-                  Vùng Đất ATK &amp; Ký Ức Kháng Chiến
-                </h2>
-                <p className="text-body-lg mb-4" style={{ color: "var(--text-secondary)", lineHeight: 1.7 }}>
-                  Trong những năm kháng chiến chống thực dân Pháp (1946–1954),
-                  các cánh rừng già Chợ Đồn — trong đó có Nghĩa Tá — trở thành
-                  vùng An Toàn Khu (ATK) che chở cho nhiều cơ quan đầu não của
-                  chính phủ kháng chiến Việt Nam.
-                </p>
-                <p className="text-body mb-6" style={{ color: "var(--text-secondary)" }}>
-                  Địa hình núi đá vôi hiểm trở, rừng đại ngàn dày đặc và sự
-                  che chở của đồng bào các dân tộc Tày, Nùng đã tạo nên lá
-                  chắn tự nhiên vô giá trong suốt cuộc trường kỳ kháng chiến.
-                </p>
-                <div
-                  className="flex items-start gap-3 p-4 rounded"
-                  style={{ background: "var(--bg-subtle)", border: "1px solid var(--border-subtle)" }}
-                >
-                  <AlertTriangle
-                    size={15}
-                    strokeWidth={1.75}
-                    style={{ color: "var(--status-pending)", marginTop: "2px", flexShrink: 0 }}
-                    aria-hidden="true"
-                  />
-                  <p className="text-sm" style={{ color: "var(--text-muted)" }}>
-                    <strong style={{ color: "var(--text-secondary)" }}>[DỮ LIỆU THỬ NGHIỆM]:</strong>{" "}
-                    Nội dung lịch sử trên trang này được tổng hợp từ tài liệu
-                    công khai và cần được xác minh bởi nhà nghiên cứu lịch sử
-                    địa phương trước khi công bố chính thức.
-                  </p>
-                </div>
-              </div>
-
-              {/* Visual column — Abstract ATK map */}
-              <div className="relative" aria-hidden="true">
-                <div
-                  className="relative rounded overflow-hidden"
-                  style={{ background: "var(--accent-river)", aspectRatio: "4/3" }}
-                >
-                  <svg viewBox="0 0 400 300" className="absolute inset-0 w-full h-full" preserveAspectRatio="xMidYMid slice">
-                    <path d="M0 250 L60 150 L90 180 L140 90 L180 130 L220 60 L260 100 L300 70 L340 110 L380 80 L400 120 L400 300 Z" fill="rgba(28,56,43,0.6)" />
-                    <path d="M0 300 L0 200 L50 190 L100 220 L150 160 L200 200 L250 170 L300 210 L350 175 L400 200 L400 300 Z" fill="rgba(28,56,43,0.9)" />
-                    <path d="M30 250 Q80 230 130 245 Q180 260 230 240 Q280 220 340 235 Q370 242 400 230" fill="none" stroke="rgba(100,160,200,0.4)" strokeWidth="2" />
-                    {[0, 1, 2, 3].map((i) => (
-                      <ellipse key={i} cx="220" cy="100" rx={60 + i * 30} ry={25 + i * 12} fill="none" stroke="rgba(255,255,255,0.12)" strokeWidth="1" />
-                    ))}
-                    <circle cx="220" cy="100" r="4" fill="#dca354" opacity="0.9" />
-                    <circle cx="220" cy="100" r="8" fill="none" stroke="#dca354" strokeWidth="1" opacity="0.5" />
-                    <circle cx="220" cy="100" r="14" fill="none" stroke="#dca354" strokeWidth="0.5" opacity="0.3" />
-                  </svg>
-                  <div className="absolute bottom-4 left-4">
-                    <p className="text-caption uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.5)" }}>ATK Chợ Đồn</p>
-                    <p className="font-mono text-xs" style={{ color: "rgba(220,163,84,0.8)" }}>22.1561°N · 105.6137°E</p>
-                  </div>
-                  <div className="absolute top-3 right-3">
-                    <span className="badge-demo"><AlertTriangle size={9} />Tọa độ thử nghiệm</span>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <InteractiveTourismMap sites={heritageSites} />
           </div>
         </section>
 
         {/* ======================================================
-            SECTION 4: CULTURAL HIGHLIGHT
+            SECTION 5: VĂN HÓA & NẾP SỐNG BẢN ĐỊA (Editorial Magazine)
            ====================================================== */}
         <section
           aria-labelledby="culture-heading"
-          className="py-16 md:py-24"
-          style={{ background: "var(--bg-canvas)" }}
+          className="py-16 md:py-24 bg-[var(--bg-canvas)]"
         >
           <div className="container-editorial">
-            <header className="mb-10 md:mb-14 max-w-lg">
-              <p className="text-caption uppercase tracking-widest mb-3" style={{ color: "var(--accent-heritage)" }}>
-                Âm Vang Rừng Đại Ngàn
-              </p>
-              <h2 id="culture-heading" className="text-h1" style={{ color: "var(--text-primary)" }}>
-                Di Sản Văn Hóa Bản Địa
-              </h2>
-              <p className="text-body mt-3" style={{ color: "var(--text-secondary)" }}>
-                Khám phá nếp sống, nghệ thuật và lễ hội của đồng bào Tày, Nùng
-                tại Nghĩa Tá — những ký ức văn hóa được lưu truyền qua nhiều thế hệ.
-              </p>
-            </header>
+            <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-12 gap-4">
+              <div>
+                <span className="text-xs font-semibold uppercase tracking-widest text-[#b37322] block mb-2">
+                  Bản Sắc Truyền Thống
+                </span>
+                <h2
+                  id="culture-heading"
+                  className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-[var(--text-primary)]"
+                >
+                  Câu Chuyện Văn Hóa Người Tày — Nùng
+                </h2>
+              </div>
+              <Link
+                href="/van-hoa"
+                className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#b37322] hover:text-[#965f1a] transition-colors group"
+              >
+                <span>Xem Tất Cả Bài Viết</span>
+                <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+              </Link>
+            </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {culturalArticles.map((article) => (
                 <article
                   key={article.id}
-                  className="group rounded overflow-hidden flex flex-col"
-                  style={{ background: "var(--bg-surface)", border: "1px solid var(--border-subtle)" }}
+                  className="group rounded-2xl overflow-hidden bg-[var(--bg-surface)] border border-[var(--border-subtle)] flex flex-col justify-between shadow-sm hover:shadow-xl transition-all duration-300"
                 >
-                  <div
-                    className="px-5 py-6 flex-shrink-0"
-                    style={{
-                      background: `linear-gradient(160deg, ${article.thumbnailColor} 0%, color-mix(in srgb, ${article.thumbnailColor} 50%, #0b0f0d) 100%)`,
-                      borderBottom: "1px solid rgba(0,0,0,0.1)",
-                    }}
-                  >
-                    <span className="text-caption uppercase tracking-wider" style={{ color: "rgba(255,255,255,0.6)" }}>
-                      {article.category}
-                    </span>
-                    <h3 className="font-display text-base font-semibold mt-2 leading-snug" style={{ color: "#f5f4ef" }}>
-                      {article.title}
-                    </h3>
-                  </div>
-                  <div className="flex flex-col flex-1 p-5">
-                    <p className="text-sm leading-relaxed flex-1 mb-4" style={{ color: "var(--text-secondary)" }}>
-                      {article.excerpt}
-                    </p>
-                    <div className="flex items-center justify-between pt-4" style={{ borderTop: "1px solid var(--border-subtle)" }}>
-                      <div className="flex items-center gap-2">
-                        <span className="badge-demo">
-                          <AlertTriangle size={9} aria-hidden="true" />
-                          Demo
-                        </span>
-                        <span className="text-caption" style={{ color: "var(--text-muted)" }}>
-                          {article.readTime} phút đọc
+                  <div>
+                    {/* Article Thumbnail */}
+                    <div className="relative h-56 w-full overflow-hidden">
+                      <Image
+                        src={article.imageUrl}
+                        alt={article.title}
+                        fill
+                        className="object-cover group-hover:scale-105 transition-transform duration-700"
+                        sizes="(max-width: 768px) 100vw, 33vw"
+                      />
+                      <div className="absolute top-4 left-4">
+                        <span className="px-3 py-1 rounded-full text-xs font-semibold bg-black/60 text-white backdrop-blur-md">
+                          {article.category}
                         </span>
                       </div>
-                      <Link
-                        href={`/van-hoa/${article.slug}`}
-                        className="link-heritage inline-flex items-center gap-1 text-sm font-medium focus-visible:outline-none focus-visible:underline"
-                        aria-label={`Đọc bài: ${article.title}`}
-                      >
-                        <BookOpen size={13} strokeWidth={1.75} aria-hidden="true" />
-                        Đọc bài
-                      </Link>
                     </div>
+
+                    <div className="p-6">
+                      <h3 className="font-display text-xl font-bold text-[var(--text-primary)] group-hover:text-[#b37322] transition-colors mb-3 leading-snug">
+                        {article.title}
+                      </h3>
+                      <p className="text-sm text-[var(--text-secondary)] leading-relaxed line-clamp-3">
+                        {article.excerpt}
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="px-6 pb-6 pt-4 border-t border-[var(--border-subtle)] flex items-center justify-between">
+                    <span className="text-xs text-[var(--text-muted)] flex items-center gap-1">
+                      <Calendar size={13} />
+                      {article.readTime} phút đọc
+                    </span>
+                    <Link
+                      href={`/van-hoa/${article.slug}`}
+                      className="text-xs font-semibold text-[#b37322] hover:text-[#965f1a] flex items-center gap-1"
+                    >
+                      <span>Đọc tiếp</span>
+                      <ArrowRight size={13} />
+                    </Link>
                   </div>
                 </article>
               ))}
             </div>
-
-            <div className="mt-8 text-center">
-              <Link href="/van-hoa" className="btn-outline">
-                Xem toàn bộ kho tàng văn hóa
-                <ArrowRight size={15} strokeWidth={1.75} aria-hidden="true" />
-              </Link>
-            </div>
           </div>
         </section>
 
         {/* ======================================================
-            SECTION 5: DATA TRANSPARENCY DECLARATION
+            SECTION 6: GỢI Ý HÀNH TRÌNH DU LỊCH (Travel Itineraries)
            ====================================================== */}
         <section
-          aria-labelledby="transparency-heading"
-          style={{ background: "var(--accent-forest)", borderTop: "1px solid rgba(255,255,255,0.06)" }}
+          aria-labelledby="itinerary-heading"
+          className="py-16 md:py-24 bg-[#14231b] text-white"
         >
+          <div className="container-editorial">
+            <div className="text-center max-w-2xl mx-auto mb-14">
+              <span className="text-xs font-semibold uppercase tracking-widest text-[#dca354] block mb-2">
+                Hành Trình Gợi Ý
+              </span>
+              <h2
+                id="itinerary-heading"
+                className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-[#fbf9f5] mb-4"
+              >
+                Gợi Ý Lịch Trình Khám Phá Nghĩa Tá
+              </h2>
+              <p className="text-sm sm:text-base text-[#a9a69b]">
+                Những lộ trình được thiết kế chu đáo giúp bạn cảm nhận trọn vẹn bề dày lịch sử kháng chiến
+                và không gian sinh thái hoang sơ của vùng đất Định Hóa.
+              </p>
+            </div>
 
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {travelItineraries.map((itinerary, idx) => (
+                <div
+                  key={itinerary.id}
+                  className="rounded-2xl p-6 md:p-8 bg-white/5 border border-white/10 backdrop-blur-md flex flex-col justify-between"
+                >
+                  <div>
+                    <div className="flex items-center justify-between gap-2 mb-4">
+                      <span className="px-3 py-1 rounded-full text-xs font-semibold bg-[#dca354]/20 text-[#dca354] border border-[#dca354]/40">
+                        {itinerary.duration}
+                      </span>
+                      <span className="text-xs text-[#a9a69b]">Tuyến số 0{idx + 1}</span>
+                    </div>
+
+                    <h3 className="font-display text-2xl font-bold text-white mb-2">
+                      {itinerary.title}
+                    </h3>
+
+                    <p className="text-xs text-[#a9a69b] mb-6 flex items-center gap-1.5">
+                      <Users size={13} className="text-[#dca354]" />
+                      <span>Phù hợp: {itinerary.suitable}</span>
+                    </p>
+
+                    <div className="space-y-3 mb-6">
+                      {itinerary.stops.map((stop, i) => (
+                        <div key={i} className="flex items-start gap-3">
+                          <span className="w-5 h-5 rounded-full bg-[#1c382b] border border-[#dca354] text-[#dca354] text-xs font-bold flex items-center justify-center flex-shrink-0 mt-0.5">
+                            {i + 1}
+                          </span>
+                          <span className="text-sm text-white/85 leading-relaxed">{stop}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  <Link
+                    href="/kham-pha"
+                    className="w-full py-3 rounded-xl bg-white/10 hover:bg-[#dca354] hover:text-[#0b0f0d] border border-white/20 text-center text-sm font-semibold transition-all"
+                  >
+                    Bắt Đầu Chuyến Đi 360°
+                  </Link>
+                </div>
+              ))}
+            </div>
+          </div>
         </section>
       </main>
       <SiteFooter />

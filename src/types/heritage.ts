@@ -1,19 +1,25 @@
 // ============================================================
 // V360 NGHĨA TÁ — TypeScript Data Models
-// All heritage data must be verified or clearly labeled as demo.
+// Xã Nghĩa Tá, Huyện Định Hóa, Tỉnh Thái Nguyên
 // ============================================================
 
-export type VerificationStatus = "verified" | "demo";
-
 export type HeritageSiteCategory =
-  | "lich-su-cach-mang"   // Lịch sử Cách mạng (ATK)
+  | "lich-su-cach-mang"   // Di tích Lịch sử Cách mạng (ATK Định Hóa)
   | "thang-canh-tu-nhien" // Danh lam Thắng cảnh Tự nhiên
-  | "van-hoa-ban-lang";   // Không gian Văn hóa Bản làng
+  | "van-hoa-ban-lang";   // Bản sắc Văn hóa Bản làng Tày - Nùng
 
 export interface GpsCoordinates {
   lat: number;
   lng: number;
-  altitude?: number; // meters above sea level, if known
+  altitude?: number;
+}
+
+export interface TravelTips {
+  bestTime: string;
+  duration: string;
+  transportation: string;
+  ticket?: string;
+  preparation?: string;
 }
 
 export interface HeritageSite {
@@ -22,35 +28,41 @@ export interface HeritageSite {
   title: string;
   subtitle: string;
   category: HeritageSiteCategory;
-  status: VerificationStatus;
+  locationName: string;
   coordinates?: GpsCoordinates;
   description: string;
   historicalContext?: string;
-  thumbnailColor: string; // CSS color used for placeholder gradient
-  panoramaSceneId?: string; // Links to PanoramaScene.id
+  imageUrl: string;
+  gallery?: string[];
+  thumbnailColor: string;
+  panoramaSceneId?: string;
   visitingNotes?: string;
-  readTime?: number; // minutes
+  travelTips?: TravelTips;
+  highlights?: string[];
+  readTime?: number;
 }
 
 export interface PanoramaHotspot {
   id: string;
-  yaw: number;   // degrees
-  pitch: number; // degrees
+  yaw: number;   // degrees (-180 to 180)
+  pitch: number; // degrees (-90 to 90)
   label: string;
   description?: string;
   linkedSceneId?: string;
+  thumbnailUrl?: string;
 }
 
 export interface PanoramaScene {
   id: string;
   title: string;
   subtitle?: string;
-  status: VerificationStatus;
-  equirectangularImageUrl: string; // placeholder URL or real asset path
-  initialYaw: number;   // default view yaw
-  initialPitch: number; // default view pitch
+  location: string;
+  equirectangularImageUrl: string;
+  initialYaw: number;
+  initialPitch: number;
+  initialFov?: number;
   hotspots: PanoramaHotspot[];
-  linkedSiteId?: string;
+  linkedSiteSlug?: string;
 }
 
 export interface CulturalArticle {
@@ -58,12 +70,16 @@ export interface CulturalArticle {
   slug: string;
   title: string;
   category: string;
+  locationName: string;
   excerpt: string;
-  contentTeaser: string; // First paragraph or representative text
+  contentTeaser: string;
+  fullContent?: string[];
   author: string;
-  source: string; // e.g. "Tổng hợp dữ liệu cộng đồng địa phương"
-  readTime: number; // minutes
-  status: VerificationStatus;
+  source: string;
+  readTime: number;
   publishedYear?: number;
+  imageUrl: string;
   thumbnailColor: string;
+  quote?: string;
+  relatedSites?: string[];
 }

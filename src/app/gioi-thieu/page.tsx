@@ -1,266 +1,143 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
-import { ArrowLeft, AlertTriangle, CheckCircle, Mail, Globe } from "lucide-react";
+import { ArrowLeft, MapPin, Compass, Mail, Phone, Heart, Users, Sparkles } from "lucide-react";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
 
 export const metadata: Metadata = {
-  title: "Về Dự Án V360 Nghĩa Tá",
+  title: "Giới Thiệu Vùng Đất Nghĩa Tá · Định Hóa, Thái Nguyên",
   description:
-    "Giới thiệu dự án V360 Nghĩa Tá: mục tiêu bảo tồn di sản số, phương pháp thu thập dữ liệu, và cam kết minh bạch dữ liệu.",
+    "Cẩm nang giới thiệu về cảnh sắc, con người, lịch sử cách mạng hào hùng và nét đẹp văn hóa Tày, Nùng tại xã Nghĩa Tá, huyện Định Hóa, tỉnh Thái Nguyên.",
 };
-
-const PRINCIPLES = [
-  {
-    icon: CheckCircle,
-    title: "Trung thực về Dữ liệu",
-    description:
-      "Mọi nội dung di sản được gắn nhãn rõ ràng theo trạng thái xác minh: [ĐÃ XÁC MINH] hoặc [DỮ LIỆU THỬ NGHIỆM]. Chúng tôi không phát tán thông tin chưa được kiểm chứng như sự thật đã xác nhận.",
-    color: "var(--status-verified)",
-  },
-  {
-    icon: AlertTriangle,
-    title: "Minh Bạch về Hạn Chế",
-    description:
-      "Dự án đang trong giai đoạn phát triển. Ảnh 360° và bản đồ địa lý là tài sản thử nghiệm. Không sử dụng cho mục đích pháp lý, hành chính, hoặc học thuật trước khi có xác nhận chính thức.",
-    color: "var(--status-pending)",
-  },
-  {
-    icon: Globe,
-    title: "Mục tiêu Bảo Tồn",
-    description:
-      "V360 Nghĩa Tá là dự án phi lợi nhuận nhằm số hóa và lưu truyền di sản văn hóa, lịch sử của xã Nghĩa Tá cho các thế hệ sau — không vì mục đích thương mại.",
-    color: "var(--accent-heritage)",
-  },
-];
 
 export default function GioiThieuPage() {
   return (
     <>
       <SiteHeader />
-      <main className="pt-16">
-        {/* Hero */}
-        <section
-          aria-labelledby="about-heading"
-          className="py-12 md:py-16"
-          style={{
-            background: "var(--accent-forest)",
-            borderBottom: "1px solid rgba(255,255,255,0.06)",
-          }}
-        >
+      <main className="min-h-screen bg-[var(--bg-canvas)] pt-20">
+        {/* Scenic Header */}
+        <section className="py-14 md:py-20 bg-[#121d17] text-white border-b border-white/10">
           <div className="container-editorial">
             <Link
               href="/"
-              className="link-dark-muted inline-flex items-center gap-1.5 text-sm mb-6 focus-visible:outline-none focus-visible:underline focus-visible:decoration-[rgba(255,255,255,0.6)]"
+              className="inline-flex items-center gap-1.5 text-xs sm:text-sm text-white/60 hover:text-white transition-colors mb-6"
             >
-              <ArrowLeft size={14} strokeWidth={1.75} aria-hidden="true" />
-              Trang chủ
+              <ArrowLeft size={14} />
+              <span>Quay lại Trang Chủ</span>
             </Link>
-            <p
-              className="text-caption uppercase tracking-widest mb-3"
-              style={{ color: "#dca354" }}
-            >
-              Về Chúng Tôi
-            </p>
-            <h1
-              id="about-heading"
-              className="text-h1 mb-4"
-              style={{ color: "#f5f4ef" }}
-            >
-              Về Dự Án V360 Nghĩa Tá
-            </h1>
-            <p
-              className="text-body-lg max-w-2xl"
-              style={{ color: "#a9a69b", lineHeight: 1.7 }}
-            >
-              Dự án số hóa di sản và khuyến khích khám phá văn hóa, lịch sử
-              xã Nghĩa Tá, huyện Chợ Đồn, tỉnh Bắc Kạn — vùng đất ATK cách
-              mạng và cội nguồn văn hóa Tày, Nùng.
-            </p>
-          </div>
-        </section>
 
-        {/* Mission */}
-        <section
-          aria-labelledby="mission-heading"
-          className="py-12 md:py-16"
-          style={{ background: "var(--bg-canvas)" }}
-        >
-          <div className="container-editorial">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-start">
-              <div>
-                <h2
-                  id="mission-heading"
-                  className="text-h2 mb-5"
-                  style={{ color: "var(--text-primary)" }}
-                >
-                  Sứ Mệnh Của Chúng Tôi
-                </h2>
-                <p
-                  className="text-body-lg leading-relaxed mb-4"
-                  style={{ color: "var(--text-secondary)" }}
-                >
-                  V360 Nghĩa Tá ra đời từ mong muốn bảo tồn và lan tỏa vẻ đẹp
-                  văn hóa, thiên nhiên và lịch sử của một vùng đất còn ít được
-                  biết đến — xã Nghĩa Tá thuộc huyện Chợ Đồn, tỉnh Bắc Kạn.
-                </p>
-                <p
-                  className="text-body leading-relaxed"
-                  style={{ color: "var(--text-secondary)" }}
-                >
-                  Thông qua công nghệ ảnh toàn cảnh 360°, hồ sơ di sản số và
-                  kho tư liệu văn hóa, chúng tôi xây dựng cầu nối giữa cộng
-                  đồng địa phương và những người có mong muốn tìm hiểu về
-                  vùng đất này — từ khắp nơi trong và ngoài nước.
-                </p>
+            <div className="max-w-3xl">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#1c382b] border border-[#dca354]/40 text-xs font-semibold uppercase tracking-wider text-[#dca354] mb-3">
+                <Compass size={13} />
+                <span>Cẩm Nang Giới Thiệu Địa Phương</span>
               </div>
-
-              {/* Principles */}
-              <div className="space-y-4">
-                {PRINCIPLES.map(({ icon: Icon, title, description, color }) => (
-                  <div
-                    key={title}
-                    className="flex items-start gap-4 p-5 rounded"
-                    style={{
-                      background: "var(--bg-surface)",
-                      border: "1px solid var(--border-subtle)",
-                    }}
-                  >
-                    <div
-                      className="w-9 h-9 rounded-sm flex items-center justify-center flex-shrink-0 mt-0.5"
-                      style={{
-                        background: `color-mix(in srgb, ${color} 12%, transparent)`,
-                        border: `1px solid color-mix(in srgb, ${color} 30%, transparent)`,
-                      }}
-                      aria-hidden="true"
-                    >
-                      <Icon
-                        size={16}
-                        strokeWidth={1.75}
-                        style={{ color }}
-                      />
-                    </div>
-                    <div>
-                      <h3
-                        className="text-h3 mb-1.5"
-                        style={{ color: "var(--text-primary)" }}
-                      >
-                        {title}
-                      </h3>
-                      <p className="text-sm" style={{ color: "var(--text-secondary)" }}>
-                        {description}
-                      </p>
-                    </div>
-                  </div>
-                ))}
-              </div>
+              <h1 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-[#fbf9f5] tracking-tight leading-tight">
+                Về Vùng Đất Nghĩa Tá
+              </h1>
+              <p className="font-body text-base md:text-lg text-[#a9a69b] mt-3 leading-relaxed">
+                Nghĩa Tá — Xã vùng cao thuộc huyện Định Hóa, tỉnh Thái Nguyên. Nơi giao hòa giữa thiên nhiên
+                đá vôi nguyên sơ, chiến khu An Toàn Khu (ATK) lịch sử và tấm lòng nhân hậu của đồng bào các dân tộc.
+              </p>
             </div>
           </div>
         </section>
 
-        {/* Methodology */}
-        <section
-          aria-labelledby="methodology-heading"
-          className="py-12 md:py-16"
-          style={{
-            background: "var(--bg-surface-elevated)",
-            borderTop: "1px solid var(--border-subtle)",
-          }}
-        >
-          <div className="container-editorial max-w-2xl">
-            <h2
-              id="methodology-heading"
-              className="text-h2 mb-5"
-              style={{ color: "var(--text-primary)" }}
-            >
-              Phương Pháp Thu Thập Dữ Liệu
-            </h2>
-            <div className="space-y-4">
-              {[
-                {
-                  step: "01",
-                  label: "Khảo sát thực địa",
-                  detail:
-                    "Nhóm thực hiện khảo sát trực tiếp tại các địa điểm, phỏng vấn người dân địa phương và ghi chép thực tế.",
-                },
-                {
-                  step: "02",
-                  label: "Chụp ảnh 360° toàn cảnh",
-                  detail:
-                    "Sử dụng máy ảnh chuyên dụng equirectangular để thu thập ảnh toàn cảnh tại các điểm di sản.",
-                },
-                {
-                  step: "03",
-                  label: "Xác minh thông tin",
-                  detail:
-                    "Đối chiếu với tài liệu lịch sử công khai, tham vấn nhà nghiên cứu địa phương và cộng đồng.",
-                },
-                {
-                  step: "04",
-                  label: "Công bố có ghi chú",
-                  detail:
-                    "Mọi dữ liệu được gắn nhãn trạng thái xác minh rõ ràng trước khi xuất bản trên website.",
-                },
-              ].map(({ step, label, detail }) => (
-                <div
-                  key={step}
-                  className="flex items-start gap-5"
-                  style={{ borderBottom: "1px solid var(--border-subtle)", paddingBottom: "1rem" }}
-                >
-                  <span
-                    className="font-mono text-xl font-light flex-shrink-0"
-                    style={{ color: "var(--accent-heritage)" }}
-                    aria-hidden="true"
-                  >
-                    {step}
-                  </span>
-                  <div>
-                    <h3
-                      className="text-h3 mb-1"
-                      style={{ color: "var(--text-primary)" }}
-                    >
-                      {label}
-                    </h3>
-                    <p className="text-sm" style={{ color: "var(--text-secondary)" }}>
-                      {detail}
-                    </p>
+        {/* Introduction Narrative with Scenic Image */}
+        <section className="py-12 md:py-16">
+          <div className="container-editorial">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center mb-16">
+              <div className="lg:col-span-7 space-y-4 text-base text-[var(--text-secondary)] leading-relaxed font-body">
+                <h2 className="font-display text-2xl sm:text-3xl font-bold text-[var(--text-primary)] leading-snug">
+                  Mảnh Đất Chiến Khu Hào Hùng & Non Nước Hữu Tình
+                </h2>
+                <p>
+                  Tọa lạc tại vùng núi phía Tây huyện Định Hóa, xã Nghĩa Tá được thiên nhiên ưu ái ban tặng
+                  những dãy núi đá vôi kỳ vĩ, những thung lũng lúa trù phú và cánh rừng nhiệt đới bạt ngàn.
+                  Nơi đây từng là một trong những phên dậu kiên cố của vùng ATK Định Hóa trong thời kỳ kháng chiến chống Pháp.
+                </p>
+                <p>
+                  Đến với Nghĩa Tá hôm nay, du khách không chỉ được viếng thăm những di tích lịch sử cách mạng thiêng liêng,
+                  chiêm ngưỡng dải thác Nàng Tiên buông lụa giữa thung lũng xanh, mà còn được đắm mình trong nếp sống
+                  chân phương của đồng bào Tày, Nùng bên nếp nhà sàn gỗ cổ truyền.
+                </p>
+                <div className="p-4 rounded-xl bg-white border border-[var(--border-subtle)] flex items-center gap-4 text-xs">
+                  <div className="flex items-center gap-1.5 font-semibold text-[var(--text-primary)]">
+                    <MapPin size={15} className="text-[#b37322]" />
+                    <span>Xã Nghĩa Tá, Huyện Định Hóa, Tỉnh Thái Nguyên</span>
                   </div>
                 </div>
-              ))}
-            </div>
-          </div>
-        </section>
+              </div>
 
-        {/* Contact CTA */}
-        <section
-          aria-labelledby="contact-heading"
-          className="py-12 md:py-16"
-          style={{ background: "var(--bg-canvas)" }}
-        >
-          <div className="container-editorial text-center max-w-lg">
-            <h2
-              id="contact-heading"
-              className="text-h2 mb-4"
-              style={{ color: "var(--text-primary)" }}
-            >
-              Đóng Góp &amp; Liên Hệ
-            </h2>
-            <p
-              className="text-body mb-6"
-              style={{ color: "var(--text-secondary)" }}
-            >
-              Bạn là nhà nghiên cứu lịch sử, người dân địa phương, hay chuyên
-              gia văn hóa? Chúng tôi rất trân trọng mọi đóng góp để làm phong
-              phú và chính xác hóa dữ liệu di sản Nghĩa Tá.
-            </p>
-            <a
-              href="mailto:v360.nghiata@gmail.com"
-              className="btn-heritage"
-              aria-label="Gửi email đến v360.nghiata@gmail.com"
-            >
-              <Mail size={16} strokeWidth={1.75} aria-hidden="true" />
-              v360.nghiata@gmail.com
-            </a>
+              <div className="lg:col-span-5 relative h-80 sm:h-96 rounded-2xl overflow-hidden shadow-xl">
+                <Image
+                  src="/images/hero/hero-nghia-ta.jpg"
+                  alt="Thung lũng Nghĩa Tá, Định Hóa, Thái Nguyên"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 1024px) 100vw, 40vw"
+                />
+              </div>
+            </div>
+
+            {/* Core Tourism Values */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+              <div className="p-6 md:p-8 rounded-2xl bg-white border border-[var(--border-subtle)] shadow-sm">
+                <div className="w-10 h-10 rounded-xl bg-[var(--accent-forest)] text-[#dca354] flex items-center justify-center mb-4">
+                  <Sparkles size={20} />
+                </div>
+                <h3 className="font-display text-xl font-bold text-[var(--text-primary)] mb-2">
+                  Trải Nghiệm Sinh Thái
+                </h3>
+                <p className="text-sm text-[var(--text-secondary)] leading-relaxed">
+                  Tắm thác mát lành, dạo bước dưới tán rừng nhiệt đới nguyên sinh và hít thở bầu không khí trong lành của núi rừng Định Hóa.
+                </p>
+              </div>
+
+              <div className="p-6 md:p-8 rounded-2xl bg-white border border-[var(--border-subtle)] shadow-sm">
+                <div className="w-10 h-10 rounded-xl bg-[var(--accent-forest)] text-[#dca354] flex items-center justify-center mb-4">
+                  <Heart size={20} />
+                </div>
+                <h3 className="font-display text-xl font-bold text-[var(--text-primary)] mb-2">
+                  Về Nguồn Lịch Sử
+                </h3>
+                <p className="text-sm text-[var(--text-secondary)] leading-relaxed">
+                  Tìm hiểu truyền thống kiên cường của vùng An Toàn Khu (ATK), tri ân thế hệ cha ông đã dựng lán cứu nước giữa rừng già.
+                </p>
+              </div>
+
+              <div className="p-6 md:p-8 rounded-2xl bg-white border border-[var(--border-subtle)] shadow-sm">
+                <div className="w-10 h-10 rounded-xl bg-[var(--accent-forest)] text-[#dca354] flex items-center justify-center mb-4">
+                  <Users size={20} />
+                </div>
+                <h3 className="font-display text-xl font-bold text-[var(--text-primary)] mb-2">
+                  Văn Hóa Bản Địa
+                </h3>
+                <p className="text-sm text-[var(--text-secondary)] leading-relaxed">
+                  Ngủ nhà sàn gỗ, thưởng thức cơm lam cá suối, lắng nghe tiếng đàn Tính và câu hát Then mượt mà của đồng bào Tày, Nùng.
+                </p>
+              </div>
+            </div>
+
+            {/* Travel Assistance Contact Card */}
+            <div className="rounded-2xl bg-[#121c17] text-white p-8 md:p-12 text-center max-w-2xl mx-auto shadow-xl">
+              <h3 className="font-display text-2xl font-bold text-[#fbf9f5] mb-2">
+                Thông Tin Hỗ Trợ Du Khách
+              </h3>
+              <p className="text-xs sm:text-sm text-[#a9a69b] mb-6">
+                UBND Xã Nghĩa Tá luôn chào đón du khách đến tham quan, nghiên cứu và trải nghiệm du lịch cộng đồng.
+              </p>
+              <div className="inline-flex flex-col sm:flex-row items-center justify-center gap-4 text-xs text-[#dca354]">
+                <div className="flex items-center gap-2 px-4 py-2 rounded-xl bg-white/10 border border-white/15">
+                  <MapPin size={14} />
+                  <span>Xã Nghĩa Tá, Định Hóa, Thái Nguyên</span>
+                </div>
+                <div className="flex items-center gap-2 px-4 py-2 rounded-xl bg-white/10 border border-white/15">
+                  <Mail size={14} />
+                  <span>dulich.nghiata@thainguyen.gov.vn</span>
+                </div>
+              </div>
+            </div>
           </div>
         </section>
       </main>
