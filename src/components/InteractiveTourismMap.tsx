@@ -14,6 +14,7 @@ import {
   Sparkles,
 } from "lucide-react";
 import type { HeritageSite, HeritageSiteCategory } from "@/types/heritage";
+import { panoramaScenes } from "@/data/mockData";
 
 interface Props {
   sites: HeritageSite[];
@@ -278,13 +279,19 @@ export default function InteractiveTourismMap({ sites }: Props) {
 
             {/* Action Buttons */}
             <div className="flex flex-col sm:flex-row items-center gap-2.5 pt-2">
-              <Link
-                href="/kham-pha"
-                className="w-full sm:flex-1 py-3 px-4 rounded-xl bg-[var(--accent-forest)] hover:bg-[#256a42] text-white font-medium text-sm flex items-center justify-center gap-2 shadow-md transition-all active:scale-95"
-              >
-                <Eye size={16} />
-                <span>Trải Nghiệm 360°</span>
-              </Link>
+              {(() => {
+                const linkedScene = panoramaScenes.find((p) => p.linkedSiteSlug === activeSite.slug);
+                const panoUrl = linkedScene ? `/kham-pha?scene=${linkedScene.id}` : "/kham-pha";
+                return (
+                  <Link
+                    href={panoUrl}
+                    className="w-full sm:flex-1 py-3 px-4 rounded-xl bg-[var(--accent-forest)] hover:bg-[#256a42] text-white font-medium text-sm flex items-center justify-center gap-2 shadow-md transition-all active:scale-95"
+                  >
+                    <Eye size={16} />
+                    <span>Trải Nghiệm 360°</span>
+                  </Link>
+                );
+              })()}
               <Link
                 href={`/di-tich/${activeSite.slug}`}
                 className="w-full sm:flex-1 py-3 px-4 rounded-xl border border-[var(--border-strong)] hover:border-[var(--accent-heritage)] bg-white text-[var(--text-primary)] font-medium text-sm flex items-center justify-center gap-2 transition-all hover:bg-[var(--bg-canvas)]"

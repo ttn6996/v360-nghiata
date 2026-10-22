@@ -135,4 +135,35 @@ npm run start
 ```
 
 ---
+
+## 7. PHÂN TÍCH KỸ THUẬT NGHỊCH ĐẢO (REVERSE ENGINEERING) CỤM DI TÍCH HỒNG GAI & HIỆN THỰC HÓA V360 NGHĨA TÁ
+
+### 7.1. Phương pháp phân tích (REA Methodology)
+Áp dụng phương pháp phân tích kỹ thuật nghịch đảo trên cổng số di sản văn hóa Hồng Gai (`https://bandosohonggai.gov.vn/`):
+- **Cấu trúc lõi Pano2VR 7.1.11:** Trích xuất và giải mã gói `pano.xml` (1.05MB) và `skin.js` (423KB - skin `skin_dt_hong_gai.ggsk`).
+- **Phát hiện cấu trúc biến trạng thái:**
+  - `Start`: Trạng thái màn hình chào đón (intro splash).
+  - `Show_map`: Bật/tắt bản đồ radar số thu nhỏ.
+  - `Show_list_category` & `Show_list_scenes`: Phân cấp danh mục và dải thumbnail di tích.
+  - `sound` & `voice`: Tách biệt âm thanh môi trường và giọng thuyết minh di sản.
+  - `run_auto_guild`: Chế độ tour hướng dẫn tự động xoay và chuyển điểm.
+  - `Show_popup`: Hộp thoại chi tiết lịch sử và thư viện ảnh.
+  - `ht_callout`: Điểm chạm tương tác 3D trong không gian hiển thị cự ly (distance tags).
+
+### 7.2. Các thành phần được tái cấu trúc và hoàn thiện tại V360 Nghĩa Tá
+
+| Thành phần Hồng Gai (`ggId`) | Thành phần V360 Nghĩa Tá | Chi tiết giải pháp & tính năng |
+|---|---|---|
+| `intro_screen` / `bt_start` | `PanoramaIntroSplash.tsx` | Màn hình chào mừng sang trọng với huy hiệu di sản, mô tả điểm đến và nút **"BẮT ĐẦU TRẢI NGHIỆM TOUR 360°"**. |
+| `ht_callout` | Hotspot Callout Projection (`InteractivePanoramaViewer.tsx`) | Điểm chạm 3D tính toán theo tọa độ cầu $(yaw, pitch)$, vòng radar xung kích, hiển thị cự ly thực địa (`499m`, `712m`) và thẻ xem nhanh hình ảnh. |
+| `map_screen` / `Ban_do_so` | `PanoramaMinimap.tsx` | Bản đồ radar thu nhỏ với đường bình độ địa hình, dòng suối Nghĩa Tá, các điểm ghim di tích và **chùm quét sáng 65° xoay theo thời gian thực** theo góc nhìn camera. |
+| `voice_container` / `Seekbar_element` | `PanoramaAudioGuide.tsx` | Trình phát thuyết minh âm thanh di sản tự động với giọng đọc tiếng Việt truyền cảm, sóng equalizer và thanh tiến trình thời lượng. |
+| `Help center` / `Thaotac` | `PanoramaHelpModal.tsx` | Bảng hướng dẫn tương tác toàn diện: xoay 360°, thu phóng, điểm chạm cự ly, bản đồ radar và chế độ VR. |
+| `thumbnail_menu` / `scroll_scenes` | Khay Thumbnail Đáy Drawer | Thanh trượt phân cảnh với các tab lọc (`Tất Cả`, `ATK Định Hóa`, `Thắng Cảnh`, `Bản Làng`), ảnh thu nhỏ và huy hiệu đã tham quan (`visited_icon`). |
+| `Vrmode` / `vr_icon` | Chế độ Thực Tế Ảo VR | Mô phỏng chia đôi màn hình đôi mắt (Stereoscopic dual-eye) tương thích kính VR Cardboard trên điện thoại di động. |
+| `bg_tool_control` & Gimbal | Thanh Điều Khiển & La Bàn Số | La bàn góc phương vị trực tiếp (0°–360°), các nút thu phóng, tự động xoay, tour tự động và đặt lại góc nhìn mặc định. |
+| `/kham-pha` Full-Screen App | Next.js 16 Partial Prerendering | Chế độ hiển thị 100vh toàn màn hình, đọc tham số `?scene=...` để nhảy trực tiếp vào di tích từ bản đồ hay thẻ bài viết. |
+
+---
+
 *Báo cáo được lưu trữ chính thức tại `docs/report/BAO_CAO_CHI_TIET_DU_AN.md`.*

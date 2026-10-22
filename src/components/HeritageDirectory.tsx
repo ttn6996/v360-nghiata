@@ -16,6 +16,7 @@ import {
   Sparkles,
 } from "lucide-react";
 import type { HeritageSite } from "@/types/heritage";
+import { panoramaScenes } from "@/data/mockData";
 
 interface Props {
   initialSites: HeritageSite[];
@@ -190,14 +191,20 @@ export default function HeritageDirectory({ initialSites }: Props) {
                   <ArrowRight size={14} />
                 </Link>
 
-                <Link
-                  href="/kham-pha"
-                  className="py-2.5 px-3.5 rounded-xl border border-[var(--border-strong)] hover:border-[#b37322] hover:bg-[var(--bg-subtle)] text-xs font-semibold text-[var(--text-primary)] flex items-center gap-1.5 transition-colors"
-                  title="Xem trong không gian 360°"
-                >
-                  <Eye size={14} className="text-[#b37322]" />
-                  <span>360°</span>
-                </Link>
+                {(() => {
+                  const linkedScene = panoramaScenes.find((p) => p.linkedSiteSlug === site.slug);
+                  const panoUrl = linkedScene ? `/kham-pha?scene=${linkedScene.id}` : "/kham-pha";
+                  return (
+                    <Link
+                      href={panoUrl}
+                      className="py-2.5 px-3.5 rounded-xl border border-[var(--border-strong)] hover:border-[#b37322] hover:bg-[var(--bg-subtle)] text-xs font-semibold text-[var(--text-primary)] flex items-center gap-1.5 transition-colors"
+                      title="Xem trong không gian 360°"
+                    >
+                      <Eye size={14} className="text-[#b37322]" />
+                      <span>360°</span>
+                    </Link>
+                  );
+                })()}
               </div>
             </article>
           ))}

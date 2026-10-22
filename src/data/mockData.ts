@@ -159,14 +159,36 @@ export const heritageSites: HeritageSite[] = [
 export const panoramaScenes: PanoramaScene[] = [
   {
     id: "scene-atk-forest",
-    title: "Toàn Cảnh Non Nước & Rừng ATK Định Hóa",
-    subtitle: "Góc nhìn 360° từ đỉnh đèo ngắm thung lũng Nghĩa Tá",
+    title: "Khu Di Tích Lịch Sử ATK Định Hóa",
+    subtitle: "Thủ đô kháng chiến — Điểm chỉ huy lịch sử giữa lòng đại ngàn",
     location: "Xã Nghĩa Tá, Huyện Định Hóa, Tỉnh Thái Nguyên",
+    category: "Di Tích Lịch Sử Cách Mạng",
     equirectangularImageUrl: "/images/panoramas/pano-atk.jpg",
     initialYaw: 15,
     initialPitch: -5,
     initialFov: 75,
     linkedSiteSlug: "atk-dinh-hoa",
+    mapCoords: { x: 32, y: 38 },
+    audioNarration: {
+      title: "Lời Thuyết Minh Di Tích ATK Định Hóa",
+      speaker: "Ban Quản Lý Di Tích Lịch Sử Định Hóa",
+      duration: "02:45",
+      script:
+        "Kính chào quý khách đến với quần thể di tích lịch sử An Toàn Khu Định Hóa, xã Nghĩa Tá, tỉnh Thái Nguyên. Nơi đây từng là Trung tâm chỉ huy đầu não của Trung ương Đảng và Bác Hồ trong suốt những năm tháng kháng chiến chống thực dân Pháp. Dưới những tán rừng đại ngàn rợp bóng và sự chở che kiên trung của đồng bào Tày, Nùng, nhiều quyết sách lịch sử mang tầm thời đại đã ra đời, đỉnh cao là chiến thắng Điện Biên Phủ lẫy lừng năm 1954.",
+    },
+    gallery: [
+      "/images/destinations/atk-dinh-hoa.jpg",
+      "/images/hero/hero-nghia-ta.jpg",
+      "/images/destinations/rung-nghia-ta.jpg",
+    ],
+    historicalDetails: {
+      overview:
+        "ATK Định Hóa được xếp hạng Di tích Quốc gia đặc biệt. Vị trí xã Nghĩa Tá nằm ở cửa ngõ tiếp giáp các căn cứ trọng yếu, giữ vai trò huyết mạch giao liên, nơi cất giấu tài liệu mật và tiếp đón các đoàn cán bộ Trung ương.",
+      significance:
+        "Khẳng định tinh thần đoàn kết quân dân một lòng, thể hiện tầm nhìn quân sự thiên tài của Chủ tịch Hồ Chí Minh trong việc lựa chọn địa bàn 'tiến khả dĩ công, thoái khả dĩ thủ'.",
+      visitingGuide:
+        "Mở cửa từ 7h30 đến 17h00 hàng ngày. Khuyên dùng trang phục lịch sự khi thắp hương tưởng niệm tại lán di tích.",
+    },
     hotspots: [
       {
         id: "hs-dinh-hoa-valley",
@@ -175,35 +197,63 @@ export const panoramaScenes: PanoramaScene[] = [
         label: "Thung lũng Nghĩa Tá",
         description: "Dải thung lũng trù phú uốn lượn theo dòng suối và những nương lúa vàng óng.",
         thumbnailUrl: "/images/hero/hero-nghia-ta.jpg",
+        distance: "450 m",
+        iconType: "viewpoint",
       },
       {
         id: "hs-forest-trail",
         yaw: -75,
         pitch: -8,
-        label: "Lối mòn xuyên rừng ATK",
+        label: "Lối mòn xuyên rừng sang Thác Nàng Tiên",
         description: "Tuyến đường tuần tra và giao liên huyền thoại giữa rừng già Việt Bắc.",
-        thumbnailUrl: "/images/destinations/atk-dinh-hoa.jpg",
+        thumbnailUrl: "/images/destinations/thac-nang-tien.jpg",
         linkedSceneId: "scene-thac-tien",
+        distance: "720 m",
+        iconType: "waterfall",
       },
       {
         id: "hs-karst-peak",
         yaw: 135,
         pitch: 18,
-        label: "Đỉnh núi đá vôi kỳ vĩ",
-        description: "Dãy núi đá vôi điệp trùng che chở cho thủ đô kháng chiến.",
+        label: "Dãy núi đá vôi căn cứ",
+        description: "Dãy núi đá vôi hiểm trở chở che cho căn cứ địa kháng chiến ATK Định Hóa.",
+        distance: "1.2 km",
+        iconType: "monument",
       },
     ],
   },
   {
     id: "scene-thac-tien",
-    title: "Không Gian Thác Nàng Tiên 360°",
-    subtitle: "Dòng thác mát lành và hồ nước ngọc bích giữa hẻm đá",
+    title: "Thắng Cảnh Sinh Thái Thác Nàng Tiên",
+    subtitle: "Dải lụa trắng và hồ nước ngọc bích giữa hẻm vực đá vôi",
     location: "Thác Nàng Tiên, Nghĩa Tá, Định Hóa, Thái Nguyên",
+    category: "Thắng Cảnh Tự Nhiên",
     equirectangularImageUrl: "/images/panoramas/pano-thac-tien.jpg",
     initialYaw: 0,
     initialPitch: 0,
     initialFov: 75,
     linkedSiteSlug: "thac-nang-tien",
+    mapCoords: { x: 68, y: 25 },
+    audioNarration: {
+      title: "Thuyết Minh Thắng Cảnh Thác Nàng Tiên",
+      speaker: "Hướng Dẫn Viên Du Lịch Sinh Thái Nghĩa Tá",
+      duration: "02:15",
+      script:
+        "Thác Nàng Tiên là một kỳ quan thiên nhiên ẩn mình giữa đại ngàn xã Nghĩa Tá, huyện Định Hóa. Bắt nguồn từ các mạch nước ngầm tinh khiết trên núi đá vôi, dòng thác đổ xuống qua nhiều tầng đá tạo thành các vụng nước màu xanh ngọc bích quanh năm mát lạnh. Theo truyền thuyết dân gian người Tày, đây là nơi các nàng tiên giáng trần thưởng ngoạn cảnh sắc non nước thanh bình.",
+    },
+    gallery: [
+      "/images/destinations/thac-nang-tien.jpg",
+      "/images/destinations/rung-nghia-ta.jpg",
+      "/images/panoramas/pano-thac-tien.jpg",
+    ],
+    historicalDetails: {
+      overview:
+        "Thác Nàng Tiên cao hơn 25 mét với 3 tầng thác uốn lượn. Bao quanh thác là thảm thực vật rừng ẩm nhiệt đới nguyên sinh với hàng trăm loài dương xỉ cổ và phong lan rừng rực rỡ.",
+      significance:
+        "Điểm đến du lịch sinh thái và nghỉ dưỡng dã ngoại hàng đầu của Định Hóa, mang lại không khí mát lành và trải nghiệm ngâm mình trong dòng suối thanh khiết.",
+      visitingGuide:
+        "Nên mang theo giày leo núi chống trơn trượt. Hãy giữ gìn vệ sinh chung, không xả rác và không bẻ cành hái hoa rừng.",
+    },
     hotspots: [
       {
         id: "hs-waterfall-head",
@@ -212,6 +262,8 @@ export const panoramaScenes: PanoramaScene[] = [
         label: "Tầng thác chính Nàng Tiên",
         description: "Dòng nước đổ từ độ cao hơn 25 mét tung bọt trắng xóa quanh năm.",
         thumbnailUrl: "/images/destinations/thac-nang-tien.jpg",
+        distance: "80 m",
+        iconType: "waterfall",
       },
       {
         id: "hs-emerald-lagoon",
@@ -219,35 +271,73 @@ export const panoramaScenes: PanoramaScene[] = [
         pitch: -20,
         label: "Vụng nước ngọc bích",
         description: "Vụng tắm tự nhiên trong veo nhìn thấu tận đáy sỏi cuội.",
+        distance: "40 m",
+        iconType: "waterfall",
       },
       {
-        id: "hs-canyon-cliffs",
+        id: "hs-to-atk",
         yaw: 90,
         pitch: 5,
-        label: "Vách đá hẻm vực rêu phong",
-        description: "Hệ thống vách đá vôi phủ kín dương xỉ nhiệt đới xanh mướt.",
+        label: "Đường về Khu Di Tích ATK Định Hóa",
+        description: "Tuyến đường nối thắng cảnh thác nước về trung tâm di tích cách mạng.",
         linkedSceneId: "scene-atk-forest",
+        distance: "850 m",
+        iconType: "monument",
+      },
+      {
+        id: "hs-to-village",
+        yaw: 175,
+        pitch: -8,
+        label: "Đường về Bản Làng Nhà Sàn Tày",
+        description: "Đi xuôi theo suối ngàn về thăm nếp nhà sàn gỗ truyền thống.",
+        linkedSceneId: "scene-ban-lang",
+        distance: "600 m",
+        iconType: "village",
       },
     ],
   },
   {
     id: "scene-ban-lang",
     title: "Không Gian Bản Làng & Nhà Sàn Tày",
-    subtitle: "Khuôn viên nhà sàn gỗ cổ truyền và đồng lúa trù phú",
-    location: "Bản Tày, Nghĩa Tá, Định Hóa, Thái Nguyên",
+    subtitle: "Khuôn viên nhà sàn gỗ cổ truyền lưu giữ nếp sống bản địa",
+    location: "Bản Làng Tày, Xã Nghĩa Tá, Định Hóa, Thái Nguyên",
+    category: "Văn Hóa Bản Làng",
     equirectangularImageUrl: "/images/destinations/ban-lang-tay.jpg",
     initialYaw: -10,
     initialPitch: -2,
     initialFov: 75,
     linkedSiteSlug: "ban-lang-tay-nung",
+    mapCoords: { x: 44, y: 62 },
+    audioNarration: {
+      title: "Thuyết Minh Bản Làng Tày — Nùng Nghĩa Tá",
+      speaker: "Nghệ Nhân Văn Hóa Dân Gian Xã Nghĩa Tá",
+      duration: "03:10",
+      script:
+        "Chào mừng quý khách ghé thăm bản làng người Tày, người Nùng tại xã Nghĩa Tá. Quý khách đang chiêm ngưỡng những nếp nhà sàn gỗ cổ truyền 4 đến 5 gian lợp ngói âm dương, tựa lưng vào sườn núi và trông ra cánh đồng lúa bậc thang. Đây là không gian nuôi dưỡng những làn điệu Hát Then, tiếng đàn Tính và bếp lửa ấm cúng - nơi gắn kết tình làng nghĩa xóm qua bao thế hệ.",
+    },
+    gallery: [
+      "/images/destinations/ban-lang-tay.jpg",
+      "/images/culture/nha-san-tay.jpg",
+      "/images/culture/hat-then-dan-tinh.jpg",
+    ],
+    historicalDetails: {
+      overview:
+        "Bản làng hiện có hơn 40 nếp nhà sàn gỗ cổ, bảo tồn trọn vẹn tập quán sinh hoạt, nghề dệt thổ cẩm nhuộm chàm và các lễ hội cầu mùa của đồng bào Tày, Nùng Định Hóa.",
+      significance:
+        "Là bảo tàng văn hóa sống động, nơi du khách có thể lưu trú homestay, cùng nấu ăn và hòa mình vào đêm giao lưu văn nghệ Then bên bếp lửa hồng.",
+      visitingGuide:
+        "Khi lên nhà sàn, quý khách vui lòng cởi giày ở cầu thang, không ngồi quay lưng vào gian thờ tổ tiên và xin phép trước khi chụp ảnh người già trong bản.",
+    },
     hotspots: [
       {
         id: "hs-ancient-house",
         yaw: -15,
         pitch: 0,
-        label: "Nhà sàn gỗ cổ truyền",
-        description: "Kiến trúc 5 gian bề thế lợp ngói âm dương trên trăm năm tuổi.",
+        label: "Nhà sàn gỗ cổ truyền 5 gian",
+        description: "Kiến trúc cột gỗ lim bề thế lợp ngói âm dương trên trăm năm tuổi.",
         thumbnailUrl: "/images/culture/nha-san-tay.jpg",
+        distance: "25 m",
+        iconType: "village",
       },
       {
         id: "hs-stone-bridge",
@@ -255,6 +345,73 @@ export const panoramaScenes: PanoramaScene[] = [
         pitch: -18,
         label: "Cầu đá qua suối bản",
         description: "Cây cầu đá mộc mạc nối liền các ngõ xóm trù phú của bản làng.",
+        distance: "120 m",
+        iconType: "viewpoint",
+      },
+      {
+        id: "hs-to-waterfall",
+        yaw: -120,
+        pitch: 6,
+        label: "Lối đi bộ lên Thác Nàng Tiên",
+        description: "Tuyến đường trekking dã ngoại xuyên thung lũng đá vôi.",
+        linkedSceneId: "scene-thac-tien",
+        distance: "600 m",
+        iconType: "waterfall",
+      },
+    ],
+  },
+  {
+    id: "scene-rung-dai-ngan",
+    title: "Rừng Nguyên Sinh Đại Ngàn Nghĩa Tá",
+    subtitle: "Kỳ quan sinh thái trên núi đá vôi cổ và suối đầu nguồn",
+    location: "Rừng Đầu Nguồn Nghĩa Tá, Định Hóa, Thái Nguyên",
+    category: "Thắng Cảnh Tự Nhiên",
+    equirectangularImageUrl: "/images/destinations/rung-nghia-ta.jpg",
+    initialYaw: 45,
+    initialPitch: 10,
+    initialFov: 75,
+    linkedSiteSlug: "rung-nghia-ta",
+    mapCoords: { x: 75, y: 72 },
+    audioNarration: {
+      title: "Thuyết Minh Sinh Thái Rừng Đại Ngàn",
+      speaker: "Đội Tuần Tra & Bảo Vệ Rừng Xã Nghĩa Tá",
+      duration: "02:30",
+      script:
+        "Rừng nguyên sinh Nghĩa Tá trải rộng trên các dải núi đá vôi hiểm trở của huyện Định Hóa. Nơi đây quy tụ nhiều cây cổ thụ hàng trăm năm tuổi, với bộ rễ bạnh vè khổng lồ vươn dài bám chắc vào vách đá. Rừng đại ngàn không chỉ là bức thành lũy chở che an toàn cho căn cứ kháng chiến xưa kia, mà ngày nay còn là lá phổi xanh gìn giữ nguồn nước ngọt cho bà con nông dân trong vùng.",
+    },
+    gallery: [
+      "/images/destinations/rung-nghia-ta.jpg",
+      "/images/destinations/thac-nang-tien.jpg",
+      "/images/panoramas/pano-atk.jpg",
+    ],
+    historicalDetails: {
+      overview:
+        "Khu rừng có diện tích hơn 2.500 hecta thuộc hệ sinh thái rừng mưa nhiệt đới trên núi đá vôi, là nơi cư trú của nhiều loài động thực vật quý hiếm trong Sách Đỏ Việt Nam.",
+      significance:
+        "Bảo tồn đa dạng sinh học và giữ nguồn sinh thủy cho hệ thống suối và thác nước trong toàn huyện Định Hóa.",
+      visitingGuide:
+        "Yêu cầu có người hướng dẫn địa phương khi đi sâu vào rừng. Tuyệt đối không nhóm lửa và không săn bắt động vật hoang dã.",
+    },
+    hotspots: [
+      {
+        id: "hs-ancient-tree",
+        yaw: 40,
+        pitch: 15,
+        label: "Cây cổ thụ bạnh vè trăm tuổi",
+        description: "Cây nghiến cổ thụ sừng sững với bộ rễ khổng lồ ôm trọn tảng đá vôi.",
+        thumbnailUrl: "/images/destinations/rung-nghia-ta.jpg",
+        distance: "30 m",
+        iconType: "forest",
+      },
+      {
+        id: "hs-to-atk-center",
+        yaw: -110,
+        pitch: -5,
+        label: "Lối mòn về Khu Di Tích ATK",
+        description: "Đường mòn giao liên kháng chiến nối liền các trạm chỉ huy bí mật.",
+        linkedSceneId: "scene-atk-forest",
+        distance: "950 m",
+        iconType: "monument",
       },
     ],
   },

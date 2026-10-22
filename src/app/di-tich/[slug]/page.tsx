@@ -14,7 +14,7 @@ import {
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
 import FloatingTourismDock from "@/components/FloatingTourismDock";
-import { heritageSites } from "@/data/mockData";
+import { heritageSites, panoramaScenes } from "@/data/mockData";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -197,13 +197,19 @@ export default async function DiTichDetailPage({ params }: Props) {
                   <p className="text-xs text-[#a9a69b] leading-relaxed mb-5">
                     Trải nghiệm tương tác xoay đa chiều toàn cảnh {site.title} ngay trên thiết bị của bạn.
                   </p>
-                  <Link
-                    href="/kham-pha"
-                    className="w-full py-3 px-4 rounded-xl bg-[#dca354] hover:bg-[#edb86e] text-[#0b0f0d] font-bold text-sm flex items-center justify-center gap-2 shadow-lg transition-all"
-                  >
-                    <Eye size={16} />
-                    <span>Mở Tour 360°</span>
-                  </Link>
+                  {(() => {
+                    const linkedScene = panoramaScenes.find((p) => p.linkedSiteSlug === site.slug);
+                    const panoUrl = linkedScene ? `/kham-pha?scene=${linkedScene.id}` : "/kham-pha";
+                    return (
+                      <Link
+                        href={panoUrl}
+                        className="w-full py-3 px-4 rounded-xl bg-[#dca354] hover:bg-[#edb86e] text-[#0b0f0d] font-bold text-sm flex items-center justify-center gap-2 shadow-lg transition-all"
+                      >
+                        <Eye size={16} />
+                        <span>Mở Tour 360°</span>
+                      </Link>
+                    );
+                  })()}
                 </div>
 
                 {/* Travel Practical Details Card */}

@@ -50,6 +50,8 @@ export interface PanoramaHotspot {
   description?: string;
   linkedSceneId?: string;
   thumbnailUrl?: string;
+  distance?: string;
+  iconType?: "monument" | "waterfall" | "village" | "forest" | "scroll" | "info" | "viewpoint";
 }
 
 export interface PanoramaScene {
@@ -57,12 +59,26 @@ export interface PanoramaScene {
   title: string;
   subtitle?: string;
   location: string;
+  category?: string;
   equirectangularImageUrl: string;
   initialYaw: number;
   initialPitch: number;
   initialFov?: number;
   hotspots: PanoramaHotspot[];
   linkedSiteSlug?: string;
+  mapCoords?: { x: number; y: number };
+  audioNarration?: {
+    title: string;
+    speaker: string;
+    duration: string;
+    script: string;
+  };
+  gallery?: string[];
+  historicalDetails?: {
+    overview: string;
+    significance: string;
+    visitingGuide: string;
+  };
 }
 
 export interface CulturalArticle {
