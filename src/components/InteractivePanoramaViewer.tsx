@@ -34,7 +34,7 @@ import {
 } from "lucide-react";
 import type { PanoramaScene, PanoramaHotspot } from "@/types/heritage";
 import PanoramaMinimap from "@/components/PanoramaMinimap";
-import PanoramaAudioGuide from "@/components/PanoramaAudioGuide";
+import VirtualTourGuide from "@/components/VirtualTourGuide";
 import PanoramaInfoModal from "@/components/PanoramaInfoModal";
 import PanoramaHelpModal from "@/components/PanoramaHelpModal";
 import PanoramaIntroSplash from "@/components/PanoramaIntroSplash";
@@ -77,7 +77,7 @@ export default function InteractivePanoramaViewer({
 
   // Features modeled directly after Hong Gai 360 (bandosohonggai.gov.vn)
   const [showMinimap, setShowMinimap] = useState<boolean>(true);
-  const [showAudioGuide, setShowAudioGuide] = useState<boolean>(false);
+  const [showAudioGuide, setShowAudioGuide] = useState<boolean>(isStandalonePage);
   const [showInfoModal, setShowInfoModal] = useState<boolean>(false);
   const [showHelpModal, setShowHelpModal] = useState<boolean>(false);
   const [showIntroSplash, setShowIntroSplash] = useState<boolean>(isStandalonePage);
@@ -926,16 +926,17 @@ export default function InteractivePanoramaViewer({
       )}
 
       {/* ======================================================
-          AUDIO GUIDE PLAYER (Top-Right / Floating)
+          VIRTUAL TOUR GUIDE AI MC (Thuyết Minh Viên Ảo Góc Màn Hình)
          ====================================================== */}
       {showAudioGuide && activeScene.audioNarration && (
-        <div className="absolute right-4 top-20 z-30 pointer-events-none animate-in fade-in slide-in-from-top-4">
-          <PanoramaAudioGuide
+        <div className="absolute bottom-20 right-4 sm:bottom-24 sm:right-16 md:right-20 z-30 pointer-events-none animate-in fade-in slide-in-from-bottom-4">
+          <VirtualTourGuide
             title={activeScene.audioNarration.title}
             speaker={activeScene.audioNarration.speaker}
             duration={activeScene.audioNarration.duration}
             script={activeScene.audioNarration.script}
             autoPlay={true}
+            onClose={() => setShowAudioGuide(false)}
           />
         </div>
       )}
