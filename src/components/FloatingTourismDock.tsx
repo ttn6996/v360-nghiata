@@ -42,7 +42,7 @@ export default function FloatingTourismDock() {
           <div className="w-6 h-6 rounded-lg bg-[#dca354]/20 text-[#dca354] flex items-center justify-center group-hover:bg-[#dca354] group-hover:text-[#0e1713] transition-colors">
             <Camera size={14} />
           </div>
-          <span className="hidden sm:inline">Khám phá toàn cảnh360°</span>
+          <span className="hidden sm:inline">Tour 360°</span>
         </Link>
 
         <div className="w-px h-5 bg-white/15" />
