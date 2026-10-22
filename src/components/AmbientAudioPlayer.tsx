@@ -105,31 +105,31 @@ export default function AmbientAudioPlayer() {
     <button
       onClick={toggleSound}
       type="button"
-      className={`group relative flex items-center gap-2.5 px-3 py-1.5 rounded-full text-xs font-medium transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#dca354] active:scale-95 ${
+      className={`group relative flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#dca354] active:scale-95 whitespace-nowrap flex-shrink-0 ${
         isPlaying
           ? "bg-[#1c382b] text-[#dca354] border border-[#dca354]/50 shadow-md shadow-[#1c382b]/30"
-          : "bg-black/30 hover:bg-black/50 text-white/90 border border-white/20 backdrop-blur-md"
+          : "bg-black/40 hover:bg-black/60 text-white/90 border border-white/20 backdrop-blur-md"
       }`}
       aria-label={isPlaying ? "Tắt âm thanh thiên nhiên Nghĩa Tá" : "Bật âm thanh thiên nhiên Nghĩa Tá (suối ngàn & gió núi)"}
       title={isPlaying ? "Tắt âm thanh thiên nhiên" : "Bật âm thanh thiên nhiên Nghĩa Tá (suối ngàn & gió núi)"}
     >
       {isPlaying ? (
         <>
-          <div className="flex items-center gap-0.5 h-3.5">
+          <div className="flex items-center gap-0.5 h-3.5 flex-shrink-0">
             <span className="w-0.5 bg-[#dca354] rounded-full soundwave-bar-1" />
             <span className="w-0.5 bg-[#dca354] rounded-full soundwave-bar-2" />
             <span className="w-0.5 bg-[#dca354] rounded-full soundwave-bar-3" />
             <span className="w-0.5 bg-[#dca354] rounded-full soundwave-bar-4" />
           </div>
-          <span className="font-semibold tracking-wide">Suối ngàn</span>
-          <Volume2 size={13} className="text-[#dca354]" />
+          <span className="font-semibold tracking-wide whitespace-nowrap">Suối ngàn</span>
+          <Volume2 size={13} className="text-[#dca354] flex-shrink-0" />
         </>
       ) : (
         <>
-          <VolumeX size={13} className="text-white/70 group-hover:text-white" />
-          <span className="hidden sm:inline">Âm thanh đại ngàn</span>
+          <VolumeX size={13} className="text-white/70 group-hover:text-white flex-shrink-0" />
+          <span className="hidden xl:inline whitespace-nowrap">Âm thanh suối ngàn</span>
           {!hasInteracted && (
-            <span className="relative flex h-2 w-2">
+            <span className="relative flex h-2 w-2 flex-shrink-0">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#dca354] opacity-75" />
               <span className="relative inline-flex rounded-full h-2 w-2 bg-[#dca354]" />
             </span>

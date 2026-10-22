@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
-import { ArrowLeft, Compass, MapPin } from "lucide-react";
+import { ArrowLeft, MapPin, Landmark } from "lucide-react";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
 import FloatingTourismDock from "@/components/FloatingTourismDock";
@@ -17,40 +18,51 @@ export default function DiTichPage() {
   return (
     <>
       <SiteHeader />
-      <main className="min-h-screen bg-[var(--bg-canvas)] pt-20">
-        {/* Page Header */}
+      <main className="min-h-screen bg-[var(--bg-canvas)]">
+        {/* Editorial Atmospheric Hero */}
         <section
           aria-labelledby="ditich-heading"
-          className="py-12 md:py-16 border-b border-[var(--border-subtle)] bg-[var(--bg-surface)]"
+          className="relative pt-28 pb-16 md:pt-36 md:pb-20 bg-[#0c1410] text-white overflow-hidden border-b border-white/10"
         >
-          <div className="container-editorial">
+          <div className="absolute inset-0 opacity-25 pointer-events-none">
+            <Image
+              src="/hero_nghia_ta_1792659715500.jpg"
+              alt="Cảnh quan di tích Nghĩa Tá"
+              fill
+              className="object-cover"
+              priority
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#0c1410] via-[#0c1410]/80 to-transparent" />
+          </div>
+
+          <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <Link
               href="/"
-              className="inline-flex items-center gap-1.5 text-xs md:text-sm text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors mb-4"
+              className="inline-flex items-center gap-1.5 text-xs sm:text-sm text-white/70 hover:text-white transition-colors mb-4 whitespace-nowrap"
             >
               <ArrowLeft size={14} />
               <span>Quay lại Trang Chủ</span>
             </Link>
 
-            <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
-              <div>
-                <div className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-[#b37322] mb-2">
-                  <Compass size={13} />
+            <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+              <div className="max-w-3xl">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#1c382b] border border-[#dca354]/40 text-[#dca354] text-xs font-semibold uppercase tracking-wider mb-3">
+                  <Landmark size={13} />
                   <span>Cẩm Nang Điểm Đến Du Lịch</span>
                 </div>
                 <h1
                   id="ditich-heading"
-                  className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-[var(--text-primary)] tracking-tight"
+                  className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-[#fbf9f5] tracking-tight leading-tight"
                 >
                   Di Tích & Thắng Cảnh Nghĩa Tá
                 </h1>
-                <p className="font-body text-sm md:text-base text-[var(--text-secondary)] max-w-2xl mt-2">
-                  Xã Nghĩa Tá, Huyện Định Hóa, Tỉnh Thái Nguyên — Khám phá hành trình về nguồn hào hùng, những dòng thác nguyên sơ và nét đẹp bình dị của bản làng vùng cao.
+                <p className="font-body text-sm md:text-base text-[#a9a69b] max-w-2xl mt-3 leading-relaxed">
+                  Xã Nghĩa Tá, Huyện Định Hóa, Tỉnh Thái Nguyên — Khám phá cội nguồn di tích cách mạng ATK Định Hóa, dải lụa trắng Thác Nàng Tiên và nét thanh bình của bản làng vùng cao.
                 </p>
               </div>
 
-              <div className="flex items-center gap-1.5 text-xs font-medium text-[var(--text-muted)] bg-[var(--bg-canvas)] px-3.5 py-2 rounded-xl border border-[var(--border-subtle)]">
-                <MapPin size={13} className="text-[#b37322]" />
+              <div className="flex items-center gap-2 text-xs font-semibold text-[#dca354] bg-[#1c382b]/80 border border-[#dca354]/40 px-4 py-2.5 rounded-xl backdrop-blur-md whitespace-nowrap flex-shrink-0">
+                <MapPin size={14} />
                 <span>Định Hóa · Thái Nguyên</span>
               </div>
             </div>
@@ -59,7 +71,7 @@ export default function DiTichPage() {
 
         {/* Directory Section with Client Filter */}
         <section className="py-12 md:py-16">
-          <div className="container-editorial">
+          <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <HeritageDirectory initialSites={heritageSites} />
           </div>
         </section>

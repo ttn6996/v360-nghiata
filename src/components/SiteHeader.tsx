@@ -1,19 +1,21 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useState, useEffect, useRef } from "react";
-import { Menu, X, Map, BookOpen, Camera, Info, ChevronRight } from "lucide-react";
+import { Menu, X, Map, BookOpen, Camera, Info, ChevronRight, Compass } from "lucide-react";
 import AmbientAudioPlayer from "@/components/AmbientAudioPlayer";
 
 const NAV_LINKS = [
-  { href: "/", label: "Trang Chủ" },
+  { href: "/", label: "Trang Chủ", icon: Compass },
   { href: "/kham-pha", label: "Tour 360°", icon: Camera },
-  { href: "/di-tich", label: "Điểm Đến Di Tích", icon: Map },
-  { href: "/van-hoa", label: "Văn Hóa Bản Địa", icon: BookOpen },
-  { href: "/gioi-thieu", label: "Cẩm Nang & Giới Thiệu", icon: Info },
+  { href: "/di-tich", label: "Điểm Đến", icon: Map },
+  { href: "/van-hoa", label: "Văn Hóa", icon: BookOpen },
+  { href: "/gioi-thieu", label: "Giới Thiệu", icon: Info },
 ];
 
 export default function SiteHeader() {
+  const pathname = usePathname();
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const drawerRef = useRef<HTMLDivElement>(null);
@@ -43,96 +45,87 @@ export default function SiteHeader() {
     };
   }, [isDrawerOpen]);
 
+
+
   return (
     <>
       <header
         className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${
           isScrolled
-            ? "bg-[#fbf9f5]/95 backdrop-blur-md border-b border-[var(--border-subtle)] shadow-sm"
-            : "bg-gradient-to-b from-black/60 via-black/25 to-transparent text-white"
+            ? "bg-[#0b120e]/95 backdrop-blur-xl border-b border-white/10 shadow-xl shadow-black/30"
+            : "bg-gradient-to-b from-[#070d09]/95 via-[#070d09]/70 to-transparent border-b border-white/5"
         }`}
         role="banner"
       >
-        <div className="container-editorial">
-          <div className="flex items-center justify-between h-18 md:h-20">
+        <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-16 md:h-18">
             {/* Logo & Destination Brand */}
             <Link
               href="/"
-              className="flex items-center gap-3 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#dca354] rounded-lg p-1"
+              className="flex items-center gap-2.5 sm:gap-3 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#dca354] rounded-xl p-1 flex-shrink-0 whitespace-nowrap"
               aria-label="V360 Nghĩa Tá — Trang chủ"
             >
-              <div
-                className={`w-9 h-9 md:w-10 md:h-10 rounded-xl flex items-center justify-center font-bold font-display text-base shadow-md transition-transform group-hover:scale-105 ${
-                  isScrolled
-                    ? "bg-[var(--accent-forest)] text-[#dca354]"
-                    : "bg-[#1c382b] text-[#dca354] border border-[#dca354]/40"
-                }`}
-              >
+              <div className="w-9 h-9 md:w-10 md:h-10 rounded-xl bg-gradient-to-br from-[#1c382b] to-[#12241b] border border-[#dca354]/40 flex items-center justify-center font-bold font-display text-base text-[#dca354] shadow-md transition-transform group-hover:scale-105 flex-shrink-0">
                 V360
               </div>
               <div className="flex flex-col">
-                <span
-                  className={`font-display text-base md:text-lg font-bold tracking-tight leading-tight ${
-                    isScrolled ? "text-[var(--text-primary)]" : "text-white drop-shadow"
-                  }`}
-                >
+                <span className="font-display text-base md:text-lg font-bold tracking-tight leading-tight text-[#fbf9f5] group-hover:text-[#dca354] transition-colors whitespace-nowrap">
                   Nghĩa Tá
                 </span>
-                <span
-                  className={`text-[11px] font-medium tracking-wide ${
-                    isScrolled ? "text-[var(--text-muted)]" : "text-white/80"
-                  }`}
-                >
+                <span className="text-[10px] md:text-[11px] font-medium tracking-wide text-[#dca354]/80 whitespace-nowrap">
                   Định Hóa · Thái Nguyên
                 </span>
               </div>
             </Link>
 
-            {/* Desktop Navigation */}
+            {/* Desktop Navigation — strictly single-line, zero wrapping */}
             <nav
-              className="hidden md:flex items-center gap-1 lg:gap-2"
+              className="hidden lg:flex items-center gap-1 xl:gap-1.5"
               aria-label="Điều hướng chính"
             >
-              {NAV_LINKS.map(({ href, label }) => (
-                <Link
-                  key={href}
-                  href={href}
-                  className={`px-3.5 py-2 rounded-lg text-sm font-medium transition-all ${
-                    isScrolled
-                      ? "text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-subtle)]"
-                      : "text-white/85 hover:text-white hover:bg-white/10"
-                  }`}
-                >
-                  {label}
-                </Link>
-              ))}
+              {NAV_LINKS.map(({ href, label }) => {
+                const isActive =
+                  href === "/"
+                    ? pathname === "/"
+                    : pathname.startsWith(href);
+
+                return (
+                  <Link
+                    key={href}
+                    href={href}
+                    className={`px-3 py-1.5 xl:px-3.5 xl:py-2 rounded-xl text-xs xl:text-sm font-medium transition-all whitespace-nowrap flex-shrink-0 ${
+                      isActive
+                        ? "bg-[#1c382b] text-[#dca354] border border-[#dca354]/40 shadow-sm"
+                        : "text-white/80 hover:text-white hover:bg-white/10"
+                    }`}
+                  >
+                    {label}
+                  </Link>
+                );
+              })}
             </nav>
 
             {/* Right Action + Audio Player + Mobile Toggle */}
-            <div className="flex items-center gap-2.5 sm:gap-3">
+            <div className="flex items-center gap-2 sm:gap-3 flex-shrink-0">
               <AmbientAudioPlayer />
 
               <Link
                 href="/kham-pha"
-                className="hidden sm:inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#dca354] hover:bg-[#edb86e] text-[#0b0f0d] text-sm font-semibold shadow-lg shadow-[#dca354]/25 transition-all hover:scale-105 active:scale-95"
+                className="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-1.5 md:py-2 rounded-xl bg-gradient-to-r from-[#dca354] via-[#edb86e] to-[#dca354] text-[#0b0f0d] text-xs font-bold shadow-md shadow-[#dca354]/20 transition-all hover:brightness-110 active:scale-95 whitespace-nowrap flex-shrink-0"
               >
-                <Camera size={16} strokeWidth={2} />
-                <span>Trải Nghiệm 360°</span>
+                <Camera size={14} strokeWidth={2.2} />
+                <span>Khám Phá 360°</span>
               </Link>
 
               <button
                 ref={menuBtnRef}
-                className={`md:hidden flex items-center justify-center w-11 h-11 rounded-xl transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#dca354] ${
-                  isScrolled
-                    ? "text-[var(--text-primary)] hover:bg-[var(--bg-subtle)]"
-                    : "text-white hover:bg-white/10"
-                }`}
+                className="lg:hidden flex items-center justify-center w-10 h-10 rounded-xl bg-white/5 hover:bg-white/15 border border-white/15 text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#dca354]"
                 onClick={() => setIsDrawerOpen(!isDrawerOpen)}
                 aria-expanded={isDrawerOpen}
                 aria-controls="mobile-nav-drawer"
                 aria-label={isDrawerOpen ? "Đóng menu" : "Mở menu điều hướng"}
               >
-                {isDrawerOpen ? <X size={24} /> : <Menu size={24} />}
+                {isDrawerOpen ? <X size={20} /> : <Menu size={20} />}
               </button>
             </div>
           </div>
@@ -142,74 +135,89 @@ export default function SiteHeader() {
       {/* Mobile Navigation Drawer */}
       {isDrawerOpen && (
         <div
-          className="fixed inset-0 z-50 md:hidden animate-in fade-in duration-200"
+          className="fixed inset-0 z-50 lg:hidden animate-in fade-in duration-200"
           role="dialog"
           aria-modal="true"
         >
           {/* Backdrop */}
           <div
-            className="fixed inset-0 bg-black/60 backdrop-blur-sm"
+            className="absolute inset-0 bg-black/75 backdrop-blur-sm"
             onClick={() => setIsDrawerOpen(false)}
           />
 
-          {/* Drawer Panel */}
+          {/* Drawer Content */}
           <div
             ref={drawerRef}
-            className="fixed inset-y-0 right-0 w-full max-w-xs bg-[var(--bg-surface)] p-6 shadow-2xl flex flex-col justify-between"
+            className="absolute top-0 right-0 bottom-0 w-80 max-w-[85vw] bg-[#0c1410] border-l border-white/10 shadow-2xl p-6 flex flex-col justify-between overflow-y-auto animate-in slide-in-from-right duration-250"
           >
             <div>
-              <div className="flex items-center justify-between pb-6 border-b border-[var(--border-subtle)]">
+              {/* Header inside drawer */}
+              <div className="flex items-center justify-between pb-6 border-b border-white/10 mb-6">
                 <div className="flex items-center gap-2.5">
-                  <div className="w-8 h-8 rounded-lg bg-[var(--accent-forest)] text-[#dca354] flex items-center justify-center font-bold text-sm">
+                  <div className="w-8 h-8 rounded-xl bg-[#1c382b] border border-[#dca354]/40 flex items-center justify-center font-bold text-sm text-[#dca354]">
                     V360
                   </div>
-                  <div>
-                    <p className="font-display font-bold text-sm text-[var(--text-primary)]">
-                      Nghĩa Tá
-                    </p>
-                    <p className="text-[10px] text-[var(--text-muted)]">
-                      Định Hóa, Thái Nguyên
-                    </p>
-                  </div>
+                  <span className="font-display font-bold text-base text-[#fbf9f5]">
+                    Nghĩa Tá · Định Hóa
+                  </span>
                 </div>
                 <button
                   onClick={() => setIsDrawerOpen(false)}
-                  className="w-10 h-10 rounded-lg flex items-center justify-center text-[var(--text-muted)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-subtle)]"
+                  className="w-8 h-8 rounded-lg bg-white/5 hover:bg-white/15 flex items-center justify-center text-white/70 hover:text-white"
+                  aria-label="Đóng menu"
                 >
-                  <X size={20} />
+                  <X size={18} />
                 </button>
               </div>
 
-              <nav className="py-6 space-y-1" aria-label="Menu trên điện thoại">
-                {NAV_LINKS.map(({ href, label, icon: Icon }) => (
-                  <Link
-                    key={href}
-                    href={href}
-                    onClick={() => setIsDrawerOpen(false)}
-                    className="flex items-center justify-between px-3.5 py-3 rounded-xl text-sm font-medium text-[var(--text-primary)] hover:bg-[var(--bg-subtle)] transition-colors"
-                  >
-                    <div className="flex items-center gap-3">
-                      {Icon && <Icon size={17} className="text-[#b37322]" />}
-                      <span>{label}</span>
-                    </div>
-                    <ChevronRight size={15} className="text-[var(--text-muted)]" />
-                  </Link>
-                ))}
+              {/* Mobile Navigation Links */}
+              <nav className="space-y-1.5" aria-label="Menu di động">
+                {NAV_LINKS.map(({ href, label, icon: Icon }) => {
+                  const isActive =
+                    href === "/"
+                      ? pathname === "/"
+                      : pathname.startsWith(href);
+
+                  return (
+                    <Link
+                      key={href}
+                      href={href}
+                      onClick={() => setIsDrawerOpen(false)}
+                      className={`flex items-center justify-between p-3 rounded-xl text-sm font-medium transition-all ${
+                        isActive
+                          ? "bg-[#1c382b] text-[#dca354] border border-[#dca354]/40"
+                          : "text-white/80 hover:bg-white/5 hover:text-white"
+                      }`}
+                    >
+                      <div className="flex items-center gap-3">
+                        {Icon && (
+                          <Icon
+                            size={16}
+                            className={isActive ? "text-[#dca354]" : "text-white/50"}
+                          />
+                        )}
+                        <span>{label}</span>
+                      </div>
+                      <ChevronRight size={14} className="text-white/40" />
+                    </Link>
+                  );
+                })}
               </nav>
             </div>
 
-            <div className="pt-6 border-t border-[var(--border-subtle)]">
+            {/* Bottom Actions inside Drawer */}
+            <div className="pt-6 border-t border-white/10 space-y-3">
               <Link
                 href="/kham-pha"
-                onClick={() => setIsDrawerOpen(false)}
-                className="w-full py-3.5 px-4 rounded-xl bg-[#dca354] text-[#0b0f0d] font-semibold text-sm flex items-center justify-center gap-2 shadow-lg"
+                className="w-full py-3 px-4 rounded-xl bg-gradient-to-r from-[#dca354] to-[#edb86e] text-[#0b0f0d] font-bold text-sm flex items-center justify-center gap-2 shadow-lg"
               >
                 <Camera size={16} />
                 <span>Mở Tour Ảo 360°</span>
               </Link>
-              <p className="text-[11px] text-center text-[var(--text-muted)] mt-4">
-                UBND Xã Nghĩa Tá · Định Hóa · Thái Nguyên
-              </p>
+
+              <div className="text-[11px] text-[#a9a69b] text-center">
+                UBND Xã Nghĩa Tá, Huyện Định Hóa, Tỉnh Thái Nguyên
+              </div>
             </div>
           </div>
         </div>
