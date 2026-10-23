@@ -1,0 +1,378 @@
+================================================================================
+TÀI LIỆU HƯỚNG DẪN KỊCH BẢN QUAY CHỤP VÀ QUY CHUẨN ĐÓNG GÓI MEDIA V360 NGHĨA TÁ
+Địa bàn thực hiện: Xã Nghĩa Tá, Huyện Định Hóa, Tỉnh Thái Nguyên
+Mục đích: Cung cấp kịch bản chi tiết về góc máy, bối cảnh, thông số kỹ thuật
+và quy trình ghép dữ liệu vào nền tảng website thực tế ảo V360 Nghĩa Tá.
+================================================================================
+
+MỤC LỤC:
+1. TỔNG QUAN HỆ THỐNG VÀ NGUYÊN TẮC THỰC HIỆN
+2. BẢNG MÃ HÓA DANH MỤC FILE MEDIA VÀ VỊ TRÍ GHÉP TRÊN WEB
+3. CHI TIẾT KỊCH BẢN QUAY CHỤP THEO TỪNG MẪU (TEMPLATES)
+   - MẪU 1: Quả Địa Cầu 360° Trên Cao (Little Planet Splash Screen)
+   - MẪU 2: Ảnh Cầu 360° Tương Tác & Tuyến Bước Chân (Walkthrough Panoramas)
+     + Cảnh 2.1: Khu Di Tích Lịch Sử ATK Định Hóa
+     + Cảnh 2.2: Thắng Cảnh Sinh Thái Thác Nàng Tiên
+     + Cảnh 2.3: Không Gian Bản Làng & Nhà Sàn Gỗ Tày
+     + Cảnh 2.4: Rừng Nguyên Sinh Đại Ngàn Nghĩa Tá
+     + Kỹ thuật chụp bắt buộc cho Mũi Tên Điều Hướng Mặt Đường (Ground Arrows)
+   - MẪU 3: Thuyết Minh Viên Ảo Góc Màn Hình (Virtual Tour Guide MC)
+   - MẪU 4: Ảnh Bìa Toàn Cảnh Cinematic Hero (Trang Chủ)
+   - MẪU 5: Bộ Ảnh Điểm Đến Di Tích & Danh Thắng (Destinations & Gallery)
+   - MẪU 6: Bộ Ảnh Tư Liệu Văn Hóa Dân Tộc Tày - Nùng (Culture Articles)
+   - MẪU 7: File Âm Thanh Lời Thuyết Minh & Âm Thanh Môi Trường (Audio)
+4. HƯỚNG DẪN GHÉP NỐI VÀO MÃ NGUỒN WEBSITE (STEP-BY-STEP INTEGRATION)
+   - Quy hoạch thư mục public/
+   - Cấu hình file src/data/mockData.ts
+   - Cách xác định tọa độ góc nhìn Yaw / Pitch cho Mũi tên điều hướng
+5. CHECKLIST NGHIỆM THU CHẤT LƯỢNG TRƯỚC KHI ĐƯA LÊN WEB
+
+--------------------------------------------------------------------------------
+1. TỔNG QUAN HỆ THỐNG VÀ NGUYÊN TẮC THỰC HIỆN
+--------------------------------------------------------------------------------
+- Nền tảng V360 Nghĩa Tá là sản phẩm du lịch di sản số mang tính trải nghiệm
+  thực tế ảo cao cấp (tương đồng với mô hình chuẩn của Cụm di tích Phường Hồng Gai
+  - bandosohonggai.gov.vn).
+- Tuyệt đối KHÔNG sử dụng hình ảnh dựng AI giả lập mờ ảo, không đúng địa hình
+  thực tế. Toàn bộ hình ảnh cần được ghi hình trực tiếp tại xã Nghĩa Tá, huyện
+  Định Hóa, tỉnh Thái Nguyên.
+- Tinh thần mỹ thuật: Di sản hào hùng, thiên nhiên nguyên sơ, mộc mạc và chân thực.
+- Giữ vững tỷ lệ khung hình, định dạng tệp chuẩn để hệ thống web tải nhanh,
+  mượt mà, không bị giật lag và không bị vỡ ảnh.
+
+--------------------------------------------------------------------------------
+2. BẢNG MÃ HÓA DANH MỤC FILE MEDIA VÀ VỊ TRÍ GHÉP TRÊN WEB
+--------------------------------------------------------------------------------
+STT | Loại Media | Tên File Đích Trong Mã Nguồn          | Vị Trí Hiển Thị Trên Web
+----+-----------+---------------------------------------+------------------------------------------
+01  | Ảnh Cầu   | public/images/panoramas/little-planet-nghia-ta.jpg | Màn chào quả địa cầu xoay quanh Nghĩa Tá
+02  | Ảnh Cầu   | public/images/panoramas/pano-atk.jpg  | Toàn cảnh 360° Căn cứ lịch sử ATK
+03  | Ảnh Cầu   | public/images/panoramas/pano-thac-tien.jpg | Toàn cảnh 360° Thác Nàng Tiên
+04  | Ảnh Cầu   | public/images/destinations/ban-lang-tay.jpg | Toàn cảnh 360° Bản Làng Nhà Sàn
+05  | Ảnh Cầu   | public/images/destinations/rung-nghia-ta.jpg| Toàn cảnh 360° Rừng Nguyên Sinh
+06  | Video MC  | public/videos/virtual-guide.webm      | Video MC góc phải (nền trong suốt WebM/VP9)
+07  | Video MC  | public/videos/virtual-guide.mp4       | Video MC dự phòng (MP4 H.264)
+08  | Ảnh MC    | public/images/mc/guide-idle.png       | Ảnh tĩnh MC khi chưa bật thuyết minh
+09  | Ảnh MC    | public/images/mc/guide-speaking.webp  | Ảnh động MC nói khi phát thuyết minh
+10  | Ảnh Hero  | public/images/hero/hero-nghia-ta.jpg  | Ảnh nền trang chủ & banner chính
+11  | Ảnh Tĩnh  | public/images/destinations/atk-dinh-hoa.jpg | Thẻ di tích ATK & Thư viện ảnh
+12  | Ảnh Tĩnh  | public/images/destinations/thac-nang-tien.jpg | Thẻ thắng cảnh & Thư viện ảnh
+13  | Ảnh Tĩnh  | public/images/culture/nha-san-tay.jpg | Chuyên đề kiến trúc nhà sàn Tày
+14  | Ảnh Tĩnh  | public/images/culture/hat-then-dan-tinh.jpg | Chuyên đề Di sản Hát Then Đàn Tính
+15  | Ảnh Tĩnh  | public/images/culture/le-hoi-long-tong.jpg | Chuyên đề Lễ hội Lồng Tồng xuống đồng
+
+--------------------------------------------------------------------------------
+3. CHI TIẾT KỊCH BẢN QUAY CHỤP THEO TỪNG MẪU (TEMPLATES)
+--------------------------------------------------------------------------------
+
+================================================================================
+MẪU 1: QUẢ ĐỊA CẦU 360° TRÊN CAO (LITTLE PLANET SPLASH SCREEN)
+================================================================================
+* Mục đích sử dụng trên web:
+  - Xuất hiện ngay khi người dùng nhấn vào "Khám Phá Toàn Cảnh 360°".
+  - Một quả địa cầu mini xoay tròn giữa bầu trời xanh, bên trên hiển thị biển thư pháp
+    "CỤM DI TÍCH LỊCH SỬ & THẮNG CẢNH NGHĨA TÁ" cùng 4 thẻ ảnh Polaroid nổi bật.
+  - Khi bấm "Khám Phá Ngay!", camera lao xuống tâm quả cầu (Fly-in) để vào điểm tham quan.
+
+* Thiết bị khuyến nghị:
+  - Flycam chuyên dụng chụp Panorama 360° (DJI Mavic 3 Pro, Inspire 3, Mini 4 Pro chụp Sphere).
+
+* Kịch bản bay & Góc máy:
+  - Độ cao bay: 180 mét đến 250 mét so với mặt đất.
+  - Tọa độ bay: Trung tâm thung lũng Nghĩa Tá (nơi có thể nhìn bao quát cả cánh đồng lúa,
+    dòng suối uốn lượn, các nếp nhà sàn và dãy núi đá vôi ATK vòng cung ôm quanh).
+  - Góc gimbal: Chụp tự động chế độ 360 Sphere (26 đến 34 tấm ảnh RAW ghép cầu).
+  - Hướng chính diện (Front Yaw = 0°): Hướng về dãy núi đá vôi nơi có căn cứ ATK và lũng lúa.
+  - Thời điểm chụp lý tưởng: 7h00 - 8h30 sáng (nắng sớm dịu, sương mỏng bay lưng chừng núi)
+    hoặc 16h30 - 17h30 chiều (ánh hoàng hôn vàng phủ trên các mái ngói âm dương).
+
+* Quy chuẩn xuất file:
+  - Bước 1: Ghép thành ảnh Panorama Equirectangular tỷ lệ 2:1 (ví dụ: 8192 x 4096 px).
+  - Bước 2: Dùng Photoshop (Filter > Distort > Polar Coordinates > Rectangular to Polar)
+    hoặc phần mềm PTGui xuất chiếu Stereographic (Little Planet Projection).
+  - Bước 3: Đảm bảo bầu trời xung quanh hình cầu xanh trong trẻo, không bị méo lệch tâm.
+  - Tên file lưu: public/images/panoramas/little-planet-nghia-ta.jpg
+  - Kích thước: 3840 x 2160 px hoặc 2048 x 2048 px (JPG chất lượng cao, dung lượng 1.5MB - 3MB).
+
+--------------------------------------------------------------------------------
+MẪU 2: ẢNH CẦU 360° TƯƠNG TÁC & TUYẾN BƯỚC CHÂN (WALKTHROUGH PANORAMAS)
+--------------------------------------------------------------------------------
+* Mục đích sử dụng trên web:
+  - Không gian thực tế ảo 360 độ tương tác chính của toàn bộ nền tảng.
+  - Người dùng xoay chuột 360 độ, phóng to thu nhỏ, và BẤM VÀO CÁC MŨI TÊN TRÊN ĐƯỜNG
+    để di chuyển bước đi (Walkthrough) từ điểm này sang điểm khác mượt mà.
+
+* Thiết bị khuyến nghị:
+  - Máy ảnh Fullframe (Sony A7R IV/V, Canon R5) kèm ống kính Fisheye (Sigma 8mm, Samyang 7.5mm)
+    trên đầu chụp Panorama chuyên dụng (Nodal Ninja) để triệt tiêu thị sai (Parallax).
+  - Hoặc Camera 360 chuyên nghiệp 8K (Insta360 Pro 2, Ricoh Theta Z1 chụp RAW DNG).
+
+* QUY TẮC BẮT BUỘC ĐỂ HIỂN THỊ MŨI TÊN ĐIỀU HƯỚNG MẶT ĐƯỜNG (GROUND ARROWS):
+  1. Khi đặt chân máy (Tripod), ĐỘ CAO MẮT ĐẶT TẠI 1.5M - 1.6M (đúng tầm mắt người đi bộ).
+  2. Tuyệt đối không đặt camera sát mép cỏ làm che khuất mặt đường đi.
+  3. MẶT ĐƯỜNG / LỐI MÒN PHẢI NẰM RÕ RÀNG Ở GÓC PITCH TỪ -15° ĐẾN -25° trong ảnh.
+  4. Nadiar (chân đế tripod): Xóa sạch chân máy (nadia patch) để nền đường phẳng mịn.
+  5. Tính kết nối liên thông: Từ vị trí chụp Cảnh A, con đường dẫn tới Cảnh B phải nhìn thấy được.
+     Người duyệt web nhìn theo con đường sẽ thấy mũi tên chỉ dẫn "Đi tiếp tới Thác Nàng Tiên"
+     ngay trên mặt đường.
+
+* Kịch bản chụp cho từng cảnh:
+
+  + CẢNH 2.1: KHU DI TÍCH LỊCH SỬ ATK ĐỊNH HÓA (scene-atk-forest)
+    - Tên file đích: public/images/panoramas/pano-atk.jpg
+    - Vị trí đặt máy: Ngã ba lối mòn giao liên kháng chiến, trước lán di tích lịch sử ATK.
+    - Hướng Yaw = 0°: Nhìn thẳng vào cổng/lán di tích và bia lưu niệm.
+    - Hướng Yaw = 18° (Pitch = -18°): Lối đường đất thung lũng (Mũi tên: "Đi tiếp tới Thác Nàng Tiên").
+    - Hướng Yaw = 65° (Pitch = -20°): Lối rẽ râm mát bóng cây (Mũi tên: "Đường về Bản Làng Nhà Sàn Tày").
+    - Hướng Yaw = -45° (Pitch = -20°): Lối bậc đá leo dốc (Mũi tên: "Lối mòn sang Rừng Đại Ngàn").
+    - Hướng Yaw = -10° (Pitch = -5°): Thung lũng lúa phía xa (Hotspot thông tin: Thung lũng Nghĩa Tá).
+
+  + CẢNH 2.2: THẮNG CẢNH SINH THÁI THÁC NÀNG TIÊN (scene-thac-tien)
+    - Tên file đích: public/images/panoramas/pano-thac-tien.jpg
+    - Vị trí đặt máy: Bờ đá phẳng ngay trước vụng nước trong xanh màu ngọc bích, cách chân thác 25m.
+    - Hướng Yaw = 0° (Pitch = 12°): Dòng thác chính đổ bọt trắng xóa giữa hẻm đá vôi.
+    - Hướng Yaw = -25° (Pitch = -20°): Vụng nước trong veo nhìn thấu sỏi đáy suối.
+    - Hướng Yaw = 35° (Pitch = -20°): Tuyến đường mòn men bờ đá (Mũi tên: "Trekking lên Rừng Đại Ngàn").
+    - Hướng Yaw = -70° (Pitch = -22°): Đường mòn xuôi dòng suối (Mũi tên: "Đường về Bản Làng Nhà Sàn Tày").
+    - Hướng Yaw = 175° (Pitch = -22°): Đường bậc thang quay ra bãi xe (Mũi tên: "Trở về Khu Di Tích ATK").
+
+  + CẢNH 2.3: KHÔNG GIAN BẢN LÀNG & NHÀ SÀN TÀY (scene-ban-lang)
+    - Tên file đích: public/images/destinations/ban-lang-tay.jpg
+    - Vị trí đặt máy: Sân rộng trước dãy nhà sàn gỗ 5 gian, cạnh cầu đá bắc qua mương nước nhỏ.
+    - Hướng Yaw = -15° (Pitch = 0°): Nếp nhà sàn chính 5 gian lợp ngói âm dương cổ kính.
+    - Hướng Yaw = 75° (Pitch = -20°): Tuyến đường liên xóm bằng phẳng (Mũi tên: "Đi tới Thác Nàng Tiên").
+    - Hướng Yaw = -130° (Pitch = -22°): Trục đường liên thôn (Mũi tên: "Đường sang Khu Di Tích ATK").
+    - Hướng Yaw = 145° (Pitch = -20°): Lối mòn chân núi đá vôi (Mũi tên: "Lối lên Rừng Đại Ngàn").
+
+  + CẢNH 2.4: RỪNG NGUYÊN SINH ĐẠI NGÀN NGHĨA TÁ (scene-rung-dai-ngan)
+    - Tên file đích: public/images/destinations/rung-nghia-ta.jpg
+    - Vị trí đặt máy: Vạt đất phẳng dưới tán cây bạnh vè cổ thụ hàng trăm năm tuổi, ven suối đầu nguồn.
+    - Hướng Yaw = 40° (Pitch = 10°): Thân cây cổ thụ khổng lồ phủ rêu phong và phong lan rừng.
+    - Hướng Yaw = 15° (Pitch = -22°): Lối mòn men theo bờ suối (Mũi tên: "Đường xuống Thác Nàng Tiên").
+    - Hướng Yaw = -60° (Pitch = -20°): Lối mòn hạ sơn (Mũi tên: "Lối về Bản Làng Nhà Sàn Tày").
+    - Hướng Yaw = 160° (Pitch = -20°): Đường tuần tra bảo vệ rừng (Mũi tên: "Lối mòn về Khu Di Tích ATK").
+
+* Thông số kỹ thuật ảnh cầu xuất bản:
+  - Tỷ lệ khung hình: Đúng 2:1 (Equirectangular 360° x 180° Sphere).
+  - Độ phân giải khuyến nghị: 8192 x 4096 px (chuẩn 8K) hoặc tối thiểu 6000 x 3000 px.
+  - Định dạng: JPG (chất lượng 85-90%), không gian màu sRGB.
+  - Dung lượng mỗi file: 3.5MB - 6.5MB (nén tối ưu để web tải nhanh không vỡ hình).
+
+--------------------------------------------------------------------------------
+MẪU 3: THUYẾT MINH VIÊN ẢO GÓC MÀN HÌNH (VIRTUAL TOUR GUIDE MC)
+================================================================================
+* Mục đích sử dụng trên web:
+  - Đứng ở góc dưới bên phải màn hình khi người dùng mở tour 360°.
+  - Khi bật âm thanh thuyết minh, cô gái sẽ cử động môi, chớp mắt và cử chỉ tay
+    chào đón như một hướng dẫn viên thực thụ đang giới thiệu di tích cho du khách.
+  - Khi tắt âm thanh, cô gái giữ tư thế đứng thẳng lịch sự, hai tay đan nhẹ.
+
+* Yêu cầu diễn viên / MC:
+  - Nữ hướng dẫn viên trẻ trung (20-28 tuổi), gương mặt thanh tú, nụ cười thân thiện,
+    phong thái thanh lịch đậm nét văn hóa truyền thống Việt Bắc.
+  - Trang phục: 
+    + Lựa chọn 1: Áo dài truyền thống màu đỏ thắm, in/thêu hình quốc kỳ hoặc hoa sen vàng.
+    + Lựa chọn 2: Bộ trang phục chàm truyền thống của thiếu nữ Tày có dải thắt lưng xanh/hồng.
+  - Tóc bới gọn gàng hoặc buộc nửa đầu nhã nhặn, trang điểm tự nhiên.
+
+* Kịch bản quay & Thiết lập Studio:
+  - Phông nền: Phông xanh lá cây (Chroma Key Green Screen) phẳng tuyệt đối, không nhăn nhó.
+  - Ánh sáng: Đánh đèn 3 điểm (Key light, Fill light, Hair/Back light) để tách bạch viền tóc
+    và bờ vai khỏi phông xanh, không bị ám sắc xanh vào quần áo.
+  - Góc máy: Chụp/quay bán thân từ đùi trở lên (Medium Shot). Góc quay ngang tầm mắt diễn viên.
+  - Cử chỉ 1 (Tư thế chờ - Idle State): Đứng thẳng, tay đan trước bụng, thỉnh thoảng chớp mắt,
+    mỉm cười nhẹ duyên dáng.
+  - Cử chỉ 2 (Tư thế nói - Speaking State): Miệng mấp máy tự nhiên theo tiết tấu thuyết minh,
+    đầu gật nhẹ biểu cảm, bàn tay thi thoảng mở nhẹ hướng về phía trước như đang thuyết trình.
+  - Thời lượng video loop: 4 giây đến 8 giây (đầu và cuối video trùng khớp động tác để lặp vô tận).
+
+* Quy chuẩn xuất file:
+  - File 1 (Video nền trong suốt - Chrome/Edge): public/videos/virtual-guide.webm
+    + Codec: VP9 có kênh Alpha (Transparency).
+    + Độ phân giải: 720 x 1280 px (khung đứng 9:16) hoặc 540 x 960 px.
+    + Tốc độ khung hình: 25 hoặc 30 fps. Dung lượng < 1.5MB.
+  - File 2 (Video nền trong suốt - Safari/iOS): public/videos/virtual-guide.mp4
+    + Codec: H.264 hoặc HEVC with Alpha.
+  - File 3 (Ảnh chờ): public/images/mc/guide-idle.png
+    + Ảnh PNG tách nền trong suốt, dung lượng < 800KB.
+  - File 4 (Ảnh động nói nhép): public/images/mc/guide-speaking.webp
+    + Ảnh động WebP có kênh alpha trong suốt, tốc độ lặp 6fps, dung lượng < 2.5MB.
+
+--------------------------------------------------------------------------------
+MẪU 4: ẢNH BÌA TOÀN CẢNH CINEMATIC HERO (TRANG CHỦ)
+================================================================================
+* Mục đích sử dụng trên web:
+  - Chiếm trọn khung hình đầu tiên của Trang Chủ (Hero Section).
+  - Gợi lên ấn tượng choáng ngợp đầu tiên về "Hồn Thiêng Chiến Khu, Kỳ Quan Đại Ngàn".
+
+* Kịch bản chụp:
+  - Thiết bị: Flycam góc rộng hoặc máy ảnh trên đỉnh đồi cao nhìn xuống xã Nghĩa Tá.
+  - Góc máy: Góc toàn cảnh Panorama siêu rộng (Wide Angle), đường chân trời đặt ở 1/3 phía trên.
+  - Tiêu điểm bố cục:
+    + Phía dưới và giữa: Thung lũng lúa xanh rì hoặc vàng óng, con đường uốn quanh xóm làng.
+    + Phía trên và hậu cảnh: Dãy núi đá vôi hùng vĩ ngút ngàn, mây sương bồng bềnh buổi sáng.
+    + Khoảng tối bên trái: Chừa khoảng trống bầu trời/sườn núi màu trầm để chữ tiêu đề hiển thị rõ.
+  - Thời điểm: Khoảnh khắc bình minh vừa ló rạng qua đỉnh núi đá.
+
+* Quy chuẩn xuất file:
+  - Tên file lưu: public/images/hero/hero-nghia-ta.jpg
+  - Tỷ lệ: 16:9 hoặc 21:9 ngang.
+  - Độ phân giải: 3840 x 2160 px (4K Ultra HD).
+  - Không gian màu: sRGB. Dung lượng: 800KB - 1.5MB.
+
+--------------------------------------------------------------------------------
+MẪU 5: BỘ ẢNH ĐIỂM ĐẾN DI TÍCH & DANH THẮNG (DESTINATIONS & GALLERY)
+================================================================================
+* Mục đích sử dụng trên web:
+  - Làm ảnh đại diện các thẻ di tích trên Trang Chủ (`/`) và Trang Danh Mục (`/di-tich`).
+  - Làm ảnh bìa lớn và bộ sưu tập thực địa cho từng trang chi tiết (`/di-tich/[slug]`).
+
+* Danh sách điểm đến cần chụp:
+  1. Khu Di Tích Lịch Sử ATK Định Hóa (Căn cứ cách mạng Nghĩa Tá):
+     - File đại diện: public/images/destinations/atk-dinh-hoa.jpg
+     - Ảnh cần có: Bia tưởng niệm di tích, lán ở và làm việc giữa rừng vầu, gốc cây giao liên bí mật.
+  2. Thắng Cảnh Sinh Thái Thác Nàng Tiên:
+     - File đại diện: public/images/destinations/thac-nang-tien.jpg
+     - Ảnh cần có: Toàn cảnh tầng thác cao 25m, vụng nước ngọc bích, du khách ngâm chân giải nhiệt.
+  3. Quần Thể Không Gian Bản Làng Tày:
+     - File đại diện: public/images/destinations/ban-lang-tay.jpg
+     - Ảnh cần có: Toàn cảnh bản làng tựa lưng vào núi, nếp nhà sàn gỗ cột lim, cây cầu đá qua suối.
+  4. Rừng Nguyên Sinh Đại Ngàn Nghĩa Tá:
+     - File đại diện: public/images/destinations/rung-nghia-ta.jpg
+     - Ảnh cần có: Cây nghiến/bạnh vè đại thụ nghìn năm, vạt nắng chiếu qua tán lá rừng ẩm, thảm rêu.
+
+* Quy chuẩn kỹ thuật:
+  - Tỷ lệ: 16:9 (ngang chuẩn).
+  - Độ phân giải: 2560 x 1440 px hoặc 1920 x 1080 px.
+  - Định dạng: JPG chất lượng cao, sRGB, dung lượng 700KB - 1.2MB/file.
+
+--------------------------------------------------------------------------------
+MẪU 6: BỘ ẢNH TƯ LIỆU VĂN HÓA DÂN TỘC TÀY - NÙNG (CULTURE ARTICLES)
+================================================================================
+* Mục đích sử dụng trên web:
+  - Hiển thị trên Trang Văn Hóa (`/van-hoa`) và từng bài đọc chuyên sâu (`/van-hoa/[slug]`).
+  - Khẳng định giá trị nhân văn và chiều sâu di sản phi vật thể của Nghĩa Tá.
+
+* Danh sách các bộ ảnh chuyên đề:
+  1. Di sản Hát Then & Đàn Tính:
+     - File đích: public/images/culture/hat-then-dan-tinh.jpg
+     - Kịch bản chụp: Nghệ nhân cao tuổi hoặc thiếu nữ người Tày mặc áo chàm, thắt dải lưng xanh,
+       ngồi trên bậc thang nhà sàn gảy cây đàn Tính (tính tẩu) ba dây, ánh mắt gửi gắm tâm tình.
+  2. Kiến Trúc Nhà Sàn Gỗ Cổ Truyền:
+     - File đích: public/images/culture/nha-san-tay.jpg
+     - Kịch bản chụp: Khung cảnh góc nhìn chéo 45 độ tôn vinh hệ kết cấu vì kèo gỗ mộng khít khao,
+       mái ngói máng âm dương rêu phong, bếp lửa ấm cúng trên sàn gỗ nghiến.
+  3. Lễ Hội Lồng Tồng (Ngày Hội Xuống Đồng):
+     - File đích: public/images/culture/le-hoi-long-tong.jpg
+     - Kịch bản chụp: Cảnh đông đảo bà con dân bản trong ngày hội xuân đầu năm, cây nêu vút cao
+       với quả còn ngũ sắc đang bay lượn qua vòng nguyệt, mâm lễ cúng tạ ơn đất trời.
+
+* Quy chuẩn kỹ thuật:
+  - Tỷ lệ: 16:9 ngang hoặc 3:2.
+  - Độ phân giải: 1920 x 1080 px. Dung lượng: 600KB - 1.0MB/file.
+
+--------------------------------------------------------------------------------
+MẪU 7: FILE ÂM THANH THUYẾT MINH & HIỆU ỨNG MÔI TRƯỜNG (AUDIO)
+================================================================================
+* Mục đích sử dụng trên web:
+  - Phát tự động hoặc khi người dùng bấm nút "Thuyết Minh" trong tour 360°.
+  - Âm thanh suối rừng chạy ngầm (Ambient) khi bật nút "Âm thanh thiên nhiên".
+
+* Yêu cầu thu âm giọng đọc thuyết minh:
+  - Giọng đọc: Nam hoặc Nữ phát thanh viên chuẩn tiếng Việt miền Bắc, âm sắc ấm, truyền cảm,
+    nhịp độ từ tốn (khoảng 130 - 150 từ/phút), phát âm rõ ràng tên riêng di tích.
+  - Kịch bản đọc cho từng cảnh:
+    + ATK Định Hóa (thời lượng 02:45): Nói về vai trò phên dậu kiên trung của Nghĩa Tá trong ATK Định Hóa.
+    + Thác Nàng Tiên (thời lượng 02:15): Kể truyền thuyết các nàng tiên giáng trần ngâm mình suối mát.
+    + Bản Làng Tày (thời lượng 03:10): Giới thiệu nếp nhà sàn, phong tục đãi khách, làn điệu Then.
+    + Rừng Đại Ngàn (thời lượng 02:30): Nhấn mạnh đa dạng sinh học và tầm quan trọng giữ nguồn nước ngọt.
+  - File định dạng: MP3 (192 kbps, Stereo, tần số 44.1kHz). Không rè, không tiếng ồn nền (noise floor < -60dB).
+
+--------------------------------------------------------------------------------
+4. HƯỚNG DẪN GHÉP NỐI VÀO MÃ NGUỒN WEBSITE (STEP-BY-STEP INTEGRATION)
+================================================================================
+
+BƯỚC 1: COPY TOÀN BỘ FILE ẢNH & VIDEO VÀO ĐÚNG THƯ MỤC CỦA DỰ ÁN
+  Sao chép các file sau khi hậu kỳ vào thư mục:
+  d:\Download\AMZ\v360-nghiata\public\
+    ├── images\
+    │   ├── hero\
+    │   │   └── hero-nghia-ta.jpg
+    │   ├── panoramas\
+    │   │   ├── little-planet-nghia-ta.jpg
+    │   │   ├── pano-atk.jpg
+    │   │   └── pano-thac-tien.jpg
+    │   ├── destinations\
+    │   │   ├── atk-dinh-hoa.jpg
+    │   │   ├── thac-nang-tien.jpg
+    │   │   ├── ban-lang-tay.jpg
+    │   │   └── rung-nghia-ta.jpg
+    │   ├── culture\
+    │   │   ├── hat-then-dan-tinh.jpg
+    │   │   ├── nha-san-tay.jpg
+    │   │   └── le-hoi-long-tong.jpg
+    │   └── mc\
+    │       ├── guide-idle.png
+    │       └── guide-speaking.webp
+    └── videos\
+        ├── virtual-guide.webm
+        └── virtual-guide.mp4
+
+BƯỚC 2: CẬP NHẬT THÔNG TIN VÀ TỌA ĐỘ TRONG FILE `src/data/mockData.ts`
+  Mở file: d:\Download\AMZ\v360-nghiata\src\data\mockData.ts
+  Tìm mảng `panoramaScenes`:
+  
+  Mỗi cảnh 360° có cấu trúc:
+  {
+    id: "scene-atk-forest",
+    title: "Khu Di Tích Lịch Sử ATK Định Hóa",
+    equirectangularImageUrl: "/images/panoramas/pano-atk.jpg",
+    initialYaw: 15,    // Góc nhìn ngang khởi điểm (độ)
+    initialPitch: -5,  // Góc nhìn nghiêng khởi điểm (độ)
+    initialFov: 75,    // Độ mở ống kính (mặc định 75)
+    hotspots: [
+      {
+        id: "hs-nav-thac-tien",
+        yaw: 18,              // Góc ngang đặt mũi tên (-180 đến 180)
+        pitch: -18,           // Góc chúc xuống mặt đường (thường từ -15 đến -25)
+        label: "Đi tiếp tới Thác Nàng Tiên",
+        linkedSceneId: "scene-thac-tien", // ID cảnh sẽ chuyển đến khi bấm
+        distance: "850 m",
+        iconType: "walk",     // BẮT BUỘC: "walk" để hiện mũi tên di chuyển trên đường
+      },
+      ...
+    ]
+  }
+
+BƯỚC 3: CÁCH ĐO VÀ ĐIỀN TỌA ĐỘ YAW / PITCH CHO MŨI TÊN ĐIỀU HƯỚNG MẶT ĐƯỜNG
+  1. Mở trang web tour 360° tại địa chỉ: http://localhost:3000/kham-pha
+  2. Nhìn vào La bàn (Compass) ở góc trên bên phải màn hình:
+     - Số độ góc nhìn hiện tại (ví dụ: 18°, 65°, 175°) chính là tọa độ YAW.
+  3. Kéo chuột rê tâm màn hình vào ĐIỂM MẶT ĐƯỜNG nơi bạn muốn mũi tên xuất hiện:
+     - Con số góc chúc xuống chính là tọa độ PITCH (thường âm, từ -15° đến -25°).
+  4. Ghi lại cặp số (Yaw, Pitch) đó và điền vào trường tương ứng trong `mockData.ts`.
+  5. Khi tải lại trang web, mũi tên 3D sẽ nằm chính xác trên mặt con đường thực tế.
+
+BƯỚC 4: KIỂM TRA BIÊN DỊCH VÀ XÁC THỰC
+  Mở PowerShell tại thư mục dự án và chạy:
+  1. `npx tsc --noEmit`  (Xác nhận 0 lỗi cú pháp TypeScript)
+  2. `npm run build`     (Biên dịch toàn bộ các trang tĩnh)
+  3. `npm run start`     (Khởi động máy chủ kiểm tra trực quan)
+
+--------------------------------------------------------------------------------
+5. CHECKLIST NGHIỆM THU CHẤT LƯỢNG TRƯỚC KHI BÀN GIAO
+--------------------------------------------------------------------------------
+[ ] Toàn bộ ảnh toàn cảnh 360° đều đạt tỷ lệ 2:1, không bị đen/rách ở hai cực trên dưới.
+[ ] Ảnh Little Planet xoay tròn mượt mà, không bị méo lệch tâm.
+[ ] Các mũi tên điều hướng (`iconType: "walk"`) nằm chuẩn trên mặt đường mòn/lối đi,
+    không bị lơ lửng trên ngọn cây hay trên bầu trời.
+[ ] Nhấn vào mũi tên điều hướng có hiệu ứng bước đi phóng nhanh tầm nhìn (`walkToScene`)
+    và chuyển cảnh mượt mà.
+[ ] Video MC ảo góc màn hình có nền trong suốt, môi cử động nhịp nhàng khi phát thuyết minh.
+[ ] Thanh tiến trình cuộn trang và các hiệu ứng ScrollReveal trên Landing Page hoạt động trơn tru.
+[ ] Tên địa danh trên toàn bộ giao diện đã chuẩn xác: Xã Nghĩa Tá, Huyện Định Hóa, Tỉnh Thái Nguyên.
+[ ] Không còn bất kỳ đường dẫn ảnh nào trả về mã lỗi 404.
+
+================================================================================
+HẾT TÀI LIỆU — BAN PHÁT TRIỂN DỰ ÁN V360 NGHĨA TÁ · ĐỊNH HÓA, THÁI NGUYÊN
+================================================================================
